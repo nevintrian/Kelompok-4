@@ -25,7 +25,7 @@
 				<li class="active"><a href="http://localhost/kelompok-4/Nevin%20Trian%20Ade/navbar2.php">Home <span class="sr-only">(current)</span></a></li>
 				<li><a href="#">Profil</a></li>
 				<li><a href="#">Tentang Kami</a></li> 
-				<li><a href="#">Kontak</a></li> 
+				<li><a href="http://localhost/kelompok-4/Nevin%20Trian%20Ade/rumahrumah/index.php">Perumahan</a></li> 
 				<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tutorial
 					<span class="caret"></span></a>
