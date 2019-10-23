@@ -7,6 +7,9 @@
 <body>
 	<h1>daftar</h1>
 	<form method="post" action="proses_daftar.php" enctype="multipart/form-data">
+
+	
+ 
     <label>Username</label>
 			<input type="text" name="USER_ADMIN" class="form_login" placeholder="username..." required="required">
  
