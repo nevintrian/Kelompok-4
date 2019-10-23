@@ -1,9 +1,9 @@
 <html>
 <head>
-	<title>Data Perumahan</title>
+	<title>Data Profil</title>
 </head>
 <body>
-	<h1>Data Perumahan</h1>
+	<h1>Data Profil</h1>
 	<a href="form_simpan.php">Tambah Data</a><br><br>
 	<table border="1" width="100%">
 	<tr>
@@ -32,6 +32,8 @@
 	echo "<td>".$row['JENIS_KELAMIN']."</td>";
 	echo "<td>".$row['NO_TELEPON']."</td>";
 	echo "<td><img src='images/".$row['FOTO']."' width='100' height='100'></td>";
+	echo "<td><a href='form_ubah.php?KD_PROFIL=".$row['KD_PROFIL']."'>Ubah</a></td>";
+	echo "<td><a href='proses_hapus.php?KD_PROFIL=".$row['KD_PROFIL']."'>Hapus</a></td>";
 	echo "</tr>";
    }
 // Apakah kita perlu menjalankan fungsi mysqli_free_result() ini? baca bagian VII

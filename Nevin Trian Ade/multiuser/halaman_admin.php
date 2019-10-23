@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Halaman Developer</title>
+	<title>Halaman Customer</title>
 </head>
 <body>
 	<?php 
@@ -13,7 +13,7 @@
 	}
  
 	?>
-	<h1>Halaman developer</h1>
+	<h1>Halaman admin</h1>
  
 	<p>Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
 	<a href="logout.php">LOGOUT</a>
@@ -21,6 +21,6 @@
 	<br/>
 	<br/>
  
-	<a><a href="http://localhost/kelompok-4/Nevin%20Trian%20Ade/navbar2.php">klik disni</a> </a>
+	<a><a href="http://localhost/kelompok-4/Nevin%20Trian%20Ade/navbar2.php">klik disini</a> </a>
 </body>
 </html>

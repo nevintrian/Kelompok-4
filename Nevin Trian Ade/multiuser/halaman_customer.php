@@ -13,7 +13,7 @@
 	}
  
 	?>
-	<h1>Halaman Pegawai</h1>
+	<h1>Halaman customer</h1>
  
 	<p>Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
 	<a href="logout.php">LOGOUT</a>

@@ -36,6 +36,13 @@ if($cek > 0){
 		$_SESSION['STATUS'] = "customer";
 		// alihkan ke halaman dashboard pegawai
 		header("location:halaman_customer.php");
+
+	}else if($data['STATUS']=="admin"){
+		// buat session login dan username
+		$_SESSION['USERNAME'] = $USERNAME;
+		$_SESSION['STATUS'] = "admin";
+		// alihkan ke halaman dashboard pegawai
+		header("location:halaman_admin.php");
  
 	}else{
  
