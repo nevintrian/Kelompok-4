@@ -7,20 +7,20 @@
 	<a href="form_simpan.php">Tambah Data</a><br><br>
 	<table border="1" width="100%">
 	<tr>
-		<th>id</th>
-		<th>nama perumahan</th>
-		<th>tipe</th>
-		<th>stok</th>
-		<th>harga</th>
-		<th>fasilitas</th>
-		<th>gambar</th>
+		<th>KD_PROFIL</th>
+		<th>KD_USER</th>
+		<th>NAMA</th>
+		<th>TGL_LAHIR</th>
+		<th>JENIS KELAMIN</th>
+		<th>NO_TELEPON</th>
+		<th>FOTO/th>
 		<th colspan="2">Aksi</th>
 	</tr>
 	<?php
 	// Load file koneksi.php
 	include "koneksi.php";
 	
-	$query = "SELECT * FROM rumah"; // Query untuk menampilkan semua data siswa
+	$query = "SELECT * FROM "; // Query untuk menampilkan semua data siswa
 	$sql = mysqli_query($connect, $query); // Eksekusi/Jalankan query dari variabel $query
 	
 	while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi $sql
