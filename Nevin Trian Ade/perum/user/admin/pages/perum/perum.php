@@ -98,7 +98,7 @@
                                             <td><?php echo $row['NAMA_PT']; ?></td>
                                              <td><?php echo $row['LOKASI']; ?></td>
                                             <td>
-                                                <a data-fancybox="gallery" href="/images/<?php echo $row['GAMBAR_PERUM']; ?>">
+                                                <a data-fancybox="GAMBAR_PERUM" href="/images/<?php echo $row['GAMBAR_PERUM']; ?>">
                                                     <img src="/images/<?php echo $row['GAMBAR_PERUM']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
