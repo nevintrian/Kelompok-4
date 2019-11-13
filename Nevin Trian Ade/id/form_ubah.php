@@ -13,7 +13,7 @@
 	$id = $_GET['id'];
 	
 	// Query untuk menampilkan data siswa berdasarkan NIS yang dikirim
-	$query ="SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id";
+	$query ="SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id WHERE user.id='$id'";
 	$sql = mysqli_query($conn, $query);  // Eksekusi/Jalankan query dari variabel $query
 	$row = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 	?>

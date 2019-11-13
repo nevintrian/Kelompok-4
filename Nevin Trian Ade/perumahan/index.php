@@ -42,8 +42,8 @@
 	echo "<td>".$row['STOK']."</td>";
 	echo "<td>".$row['HARGA']."</td>";
 	echo "<td>".$row['FASILITAS']."</td>";
-	echo "<td><a href='form_ubah.php?KD_PERUM=".$row['KD_PERUM']."'>Ubah</a></td>";
-	echo "<td><a href='proses_hapus.php?KD_PERUM=".$row['KD_PERUM']."'>Hapus</a></td>";
+	echo "<td><a href='form_ubah.php?KD_CLUSTER=".$row['KD_CLUSTER']."'>Ubah</a></td>";
+	echo "<td><a href='proses_hapus.php?KD_CLUSTER=".$row['KD_CLUSTER']."'>Hapus</a></td>";
 	echo "</tr>";
    }
 // Apakah kita perlu menjalankan fungsi mysqli_free_result() ini? baca bagian VII

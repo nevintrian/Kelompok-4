@@ -8,25 +8,42 @@
 	<form method="post" action="proses_simpan.php" enctype="multipart/form-data">
 	<table cellpadding="8">
 	<tr>
-		<td>nama lengkap</td>
-		<td><input type="text" name="NAMA_LENGKAP"></td>
+		<td>username</td>
+		<td><input type="text" name="USERNAME"></td>
 	</tr>
 	<tr>
-		<td>tanggal lahir</td>
-		<td><input type="text" name="TGL_LAHIR"></td>
+		<td>nama pt</td>
+		<td><input type="text" name="NAMA_PT"></td>
 	</tr>
 	<tr>
-		<td>jenis kelamin</td>
-		<td><input type="text" name="JENIS_KELAMIN"></td>
+		<td>nama perum</td>
+		<td><input type="text" name="NAMA_PERUM"></textarea></td>
 	</tr>
 	<tr>
-		<td>no telepon</td>
-		<td><input type="text" name="NO_TELEPON"></textarea></td>
+		<td>nama cluster</td>
+		<td><input type="text" name="NAMA_CLUSTER"></td>
 	</tr>
 	<tr>
-		<td>foto</td>
-		<td><input type="file" name="FOTO"></td>
+		<td>lokasi</td>
+		<td><input type="text" name="LOKASI"></textarea></td>
 	</tr>
+	<tr>
+		<td>tipe</td>
+		<td><input type="text" name="TIPE"></textarea></td>
+	</tr>
+	<tr>
+		<td>stok</td>
+		<td><input type="text" name="STOK"></textarea></td>
+	</tr>
+	<tr>
+		<td>harga</td>
+		<td><input type="text" name="HARGA"></textarea></td>
+	</tr>
+	<tr>
+		<td>fasilitas</td>
+		<td><input type="text" name="FASILITAS"></textarea></td>
+	</tr>
+
 	</table>
 	
 	<hr>

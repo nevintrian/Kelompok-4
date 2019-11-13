@@ -23,7 +23,8 @@ $NAMA = $_POST['NAMA'];
 		FROM user LEFT JOIN profil 
 		ON user.KD_USER=profil.KD_USER 
 		LEFT JOIN profil_detil 
-		ON profil.KD_PROFIL=profil_detil.KD_PROFIL";
+		ON profil.KD_PROFIL=profil_detil.KD_PROFIL
+		WHERE user.KD_USER='$KD_USER'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/Jalankan query dari variabel $query
 		$data = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 	
@@ -31,7 +32,8 @@ $NAMA = $_POST['NAMA'];
 		$query = "UPDATE user LEFT JOIN profil 
 		ON user.KD_USER=profil.KD_USER 
 		LEFT JOIN profil_detil 
-		ON profil.KD_PROFIL=profil_detil.KD_PROFIL SET user.USERNAME='$USERNAME', user.PASSWORD='$PASSWORD', user.STATUS='$STATUS', profil.NAMA_LENGKAP='$NAMA_LENGKAP', profil.TGL_LAHIR='$TGL_LAHIR', profil.JENIS_KELAMIN='$JENIS_KELAMIN', profil_detil.NO_TELEPON='$NO_TELEPON', profil_detil.NAMA='$NAMA'";
+		ON profil.KD_PROFIL=profil_detil.KD_PROFIL SET user.USERNAME='$USERNAME', user.PASSWORD='$PASSWORD', user.STATUS='$STATUS', profil.NAMA_LENGKAP='$NAMA_LENGKAP', profil.TGL_LAHIR='$TGL_LAHIR', profil.JENIS_KELAMIN='$JENIS_KELAMIN', profil_detil.NO_TELEPON='$NO_TELEPON', profil_detil.NAMA='$NAMA' 
+		WHERE user.KD_USER='$KD_USER'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 		if($sql){ // Cek jika proses simpan ke database sukses atau tidak

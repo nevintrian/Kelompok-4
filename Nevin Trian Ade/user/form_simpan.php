@@ -7,7 +7,18 @@
 	<h1>Tambah Data Profil</h1>
 	<form method="post" action="proses_simpan.php" enctype="multipart/form-data">
 	<table cellpadding="8">
-
+	<tr>
+		<td>username</td>
+		<td><input type="text" name="USERNAME"></td>
+	</tr>
+	<tr>
+		<td>password</td>
+		<td><input type="text" name="PASSWORD"></td>
+	</tr>
+	<tr>
+		<td>status</td>
+		<td><input type="text" name="STATUS"></td>
+	</tr>
 	<tr>
 		<td>nama lengkap</td>
 		<td><input type="text" name="NAMA_LENGKAP"></td>

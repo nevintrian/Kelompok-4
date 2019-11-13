@@ -17,7 +17,8 @@
 	FROM user LEFT JOIN profil 
 	ON user.KD_USER=profil.KD_USER 
 	LEFT JOIN profil_detil 
-	ON profil.KD_PROFIL=profil_detil.KD_PROFIL";
+	ON profil.KD_PROFIL=profil_detil.KD_PROFIL
+	WHERE user.KD_USER='$KD_USER'";
 	$sql = mysqli_query($conn, $query);  // Eksekusi/Jalankan query dari variabel $query
 	$row = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 	?>

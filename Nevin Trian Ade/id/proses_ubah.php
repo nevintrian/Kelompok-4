@@ -12,12 +12,12 @@ $telepon = $_POST['telepon'];
 
 
 	
-		$query = "SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id";
+		$query = "SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id WHERE user.id='$id";
 		$sql = mysqli_query($conn, $query); // Eksekusi/Jalankan query dari variabel $query
 		$data = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 
 		// Proses ubah data ke Database
-		$query = "UPDATE user LEFT JOIN profil ON user.id=profil.id SET user.username='$username', profil.nama='$nama', profil.telepon='$telepon'";
+		$query = "UPDATE user LEFT JOIN profil ON user.id=profil.id SET user.username='$username', profil.nama='$nama', profil.telepon='$telepon' WHERE user.id='$id'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 		if($sql){ // Cek jika proses simpan ke database sukses atau tidak
