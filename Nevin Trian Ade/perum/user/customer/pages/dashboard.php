@@ -4,9 +4,9 @@
         }
     $USERNAME=$_SESSION['USERNAME'];
   
-    $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, user.USERNAME, user.KD_USER  FROM diskusi INNER JOIN user ON diskusi.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
-    $review=mysqli_query($konek, "SELECT review.KD_REV, user.USERNAME, user.KD_USER FROM review INNER JOIN user ON review.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
-    $report=mysqli_query($konek, "SELECT report.KD_REP, user.USERNAME, user.KD_USER FROM report INNER JOIN user ON report.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
+    $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, user.USERNAME  FROM diskusi INNER JOIN user ON diskusi.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
+    $review=mysqli_query($konek, "SELECT review.KD_REV, user.USERNAME FROM review INNER JOIN user ON review.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
+    $report=mysqli_query($konek, "SELECT report.KD_REP, user.USERNAME  FROM report INNER JOIN user ON report.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
 ?>
 <div class="panel-content">
         <div class="main-title-sec">

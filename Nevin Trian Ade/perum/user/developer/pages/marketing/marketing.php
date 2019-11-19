@@ -1,16 +1,10 @@
-<?php
-    if(!defined('MyConst')){
-        die('Akses langsung tidak diperbolehkan');
-    }
-    $USERNAME=$_SESSION['USERNAME'];
-    $pt=mysqli_query($konek, "SELECT user.KD_USER, user.USERNAME, profil.NAMA_LENGKAP, profil.JENIS_KELAMIN, profil.TGL_LAHIR, profil.FOTO, profil_detil.NAMA, profil_detil.NO_TELEPON, profil_detil.KD_PROFIL
-    FROM user
-    INNER JOIN profil
-    ON user.KD_USER=profil.KD_USER
-    INNER JOIN profil_detil
-    ON profil.KD_PROFIL=profil_detil.KD_PROFIL
-    WHERE user.USERNAME='$USERNAME'");
-?>
+
+
+<body>
+  <?php
+  include 'lib/koneksi.php';
+  ?>
+
 <div class="panel-content">
           <div class="main-title-sec">
                <div class="row">
@@ -22,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data PT baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data PT baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data PT berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data PT berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -56,72 +50,161 @@
           </ul>
           <div class="main-content-area">
                <div class="row">
-                    <div class="col-md-6">
-                        <div class="widget">
-                              <div class="widget-title">
-                                   <h3>Data Marketing</h3>
-                                   <div class="widget-controls">
-                                        <span class="expand-content"><i class="fa fa-expand"></i></span>
-                                        <span class="refresh-content"><i class="fa fa-refresh"></i></span>
-                                   </div><!-- Widget Controls -->
-                              </div>
-                              <div class="with-padding">                                          
-                                <table class="table table-responsive table-bordered table-condensed table-hover table-striped">
+               <div class="streaming-table">
+                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Marketing</a>
+                  </div>
+              </div>
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="streaming-table">
+                                   <span id="found" class="label label-info"></span>
+                                   <table id="buku" class='table table-responsive table-responsive table-striped table-hover'>
                                     <thead>
                                         <tr>
                                             
-                                            <th>Kode profil</th>
+                                            <th>Kode Marketing</th>
                                             <th>Nama Marketing</th>
-                                            <th>Nomor telepon</th>
+                                            <th>No telepon</th>
                                             <th>Operasi</th>
                                         </tr>
                                     </thead>    
                                     <tbody>
                                         <?php 
-                                            
-                                            while ($row=mysqli_fetch_assoc($pt)) {
+                                          
+                                             
+                               $query = mysqli_query($konek, "SELECT * FROM marketing INNER JOIN user ON marketing.USERNAME=user.USERNAME WHERE marketing.USERNAME='$USERNAME'");
+         
+                          while ($data = mysqli_fetch_assoc($query)) 
+                                    {
                                         ?>
+                                        
                                         <tr>
                                             
-                                            <td><?php echo $row['KD_PROFIL'] ?></td>
-                                            <td><?php echo $row['NAMA'] ?></td>
-                                            <td><?php echo $row['NO_TELEPON'] ?></td>
+                                            <td><?php echo $data['KD_MARKET'] ?></td>
+                                            <td><?php echo $data['NAMA'] ?></td>
+                                            <td><?php echo $data['NO_TELEPON'] ?></td>
                                             <td>
-                                                <a href="#" data-toggle="modal" data-target=".pt" data-id='<?php echo $row['KD_PT'] ?>' data-pt='<?php echo $row['NAMA_PT'] ?>' 
-                                                class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
-
-                                                <a href="#" data-toggle="modal" data-target=".hapus" data-id='<?php echo $row['KD_PT'] ?>' data-pt='<?php echo $row['NAMA_PT'] ?>'
-                                                class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_MARKET']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_MARKET']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                        <?php 
-                                    }
-                                     ?>
-                                    </tbody>
-                                </table>
+                                        
+                                   
+                                
                               </div>
                          </div>
                     </div>   
-                    <div class="col-md-6">
-                        <div class="widget">
-                              <div class="widget-title">
-                                   <h3>Tambah Marketing</h3>
-                                   <div class="widget-controls">
-                                        <span class="expand-content"><i class="fa fa-expand"></i></span>
-                                        <span class="refresh-content"><i class="fa fa-refresh"></i></span>
-                                   </div><!-- Widget Controls -->
-                              </div>
-                              <div class="with-padding">                                          
-                                <form action="proses_tambah.php" method="post">
-                                    <div class="form-group">
-                                        <label for="NAMA">Nama Marketing</label>
-                                        <input type="text" name="NAMA" placeholder="Masukkan nama marketing" class="form-control">
-                                        <label for="NO_TELEPON">Nomor telepon</label>
-                                        <input type="text" name="NO_TELEPON" placeholder="Masukkan nomor telepon" class="form-control">
+                    
+     
+     <div class="modal fade" tabindex="-3" id="myModal<?php echo $data['KD_MARKET']; ?>" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Data PT</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/marketing/editmar.php" method="get">
+                        <?php
+                        $KD_MARKET = $data['KD_MARKET']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM marketing WHERE KD_MARKET='$KD_MARKET'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="KD_MARKET" value="<?php echo $row['KD_MARKET']; ?>">
+                        <div class="form-group">
+                          <label>Nama</label>
+                          <input type="text" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>No telepon</label>
+                          <input type="text" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
+                        </div>
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Update</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+     <div class="modal fade" tabindex="-3" id="myModal1<?php echo $data['KD_MARKET']; ?>" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hapus Data Kategori</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/marketing/delmar.php" method="get">
+                        <?php
+                        $KD_MARKET = $data['KD_MARKET']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM marketing WHERE KD_MARKET='$KD_MARKET'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="KD_MARKET" value="<?php echo $row['KD_MARKET']; ?>">
+                        <div class="form-group">
+                          <label>Nama</label>
+                          <input type="text" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>No telepon</label>
+                          <input type="text" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
+                        </div>
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+            <?php               
+          } 
+          ?>
+        </tbody>
+      </table>   
+      <div class="modal fade tambah" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Data PT</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/marketing/tammar.php" method="post">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                                <div class="form-group">
+                                        <label for="USERNAME"></label>
+                                        <input type="hidden" name="USERNAME" value="<?php echo $_SESSION['USERNAME']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="c-btn large blue-bg" name="tambah_kat">Tambah</button>
-                                        <button type="reset" class="c-btn large red-bg">Batal</button>
+                                        <label for="NAMA">Nama</label>
+                                        <input type="text" name="NAMA" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NO_TELEPON">No telepon</label>
+                                        <input type="text" name="NO_TELEPON" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Tambah</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </form>
                               </div>
@@ -129,5 +212,9 @@
                     </div>      
                </div>
           </div>
-     </div><!-- Panel Content -->
-   
+     </div><!-- Panel Content -->       
+  </div>
+      </body>
+
+</html>
+      

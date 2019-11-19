@@ -12,7 +12,7 @@ $telepon = $_POST['telepon'];
 
 
 	
-		$query = "SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id WHERE user.id='$id";
+		$query = "SELECT * FROM user LEFT JOIN profil ON user.id=profil.id WHERE user.id='$id'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/Jalankan query dari variabel $query
 		$data = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 

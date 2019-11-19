@@ -5,9 +5,9 @@
       $pt=mysqli_query($konek, "SELECT KD_PT FROM pt");
       $perum=mysqli_query($konek, "SELECT KD_PERUM FROM perum");
       $cluster=mysqli_query($konek, "SELECT KD_CLUSTER FROM cluster");
-      $admin=mysqli_query($konek, "SELECT user.KD_USER FROM user WHERE user.STATUS='admin'");
-      $developer=mysqli_query($konek, "SELECT user.KD_USER FROM user WHERE user.STATUS='developer'");
-      $customer=mysqli_query($konek, "SELECT user.KD_USER FROM user WHERE user.STATUS='customer'");
+      $admin=mysqli_query($konek, "SELECT USERNAME FROM user WHERE user.STATUS='admin'");
+      $developer=mysqli_query($konek, "SELECT USERNAME FROM user WHERE user.STATUS='developer'");
+      $customer=mysqli_query($konek, "SELECT USERNAME FROM user WHERE user.STATUS='customer'");
       $diskusi=mysqli_query($konek, "SELECT KD_DIS FROM diskusi");
       $review=mysqli_query($konek, "SELECT KD_REV FROM review");
       $report=mysqli_query($konek, "SELECT KD_REP FROM report");
@@ -35,6 +35,13 @@
                               <!--badge red <i class="badge red-bg">HOT</i>-->
                               <a title="Halaman Utama" href="index.php"><i class="ti-desktop"></i><span>Dashboard</span></a>
                          </li>
+                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='perum'||$_GET['p']=='cluster'||$_GET['p']=='pt') echo 'active'; ?>">
+                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Setting Akun</span></a>
+                              <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
+                              <li><a href="?p=profil/profil">Data Profil </a></li>     
+                            
+                         </ul>
+                        </li>
                          <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='perum'||$_GET['p']=='cluster'||$_GET['p']=='pt') echo 'active'; ?>">
                               <a title="Area administrasi buku"><i class="ti-book"></i><span>Rumah</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>

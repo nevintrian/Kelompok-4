@@ -1,20 +1,20 @@
 <!-- Our Website Content Goes Here -->
 <?php 
 $USERNAME=$_SESSION['USERNAME'];
-$user=mysqli_query($konek, "SELECT user.KD_USER, user.USERNAME FROM user WHERE user.USERNAME='$USERNAME'");
-$pt=mysqli_query($konek, "SELECT pt.KD_PT, pt.NAMA_PT, user.USERNAME, user.KD_USER FROM pt INNER JOIN user ON pt.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
+$user=mysqli_query($konek, "SELECT * FROM user WHERE user.USERNAME='$USERNAME'");
+$pt=mysqli_query($konek, "SELECT pt.KD_PT, pt.NAMA_PT, user.USERNAME FROM pt INNER JOIN user ON pt.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
 $perum=mysqli_query($konek, "SELECT KD_PERUM 
 FROM user
-INNER JOIN pt ON user.KD_USER=pt.KD_USER
+INNER JOIN pt ON user.USERNAME=pt.USERNAME
 INNER JOIN perum ON pt.KD_PT=perum.KD_PT
 WHERE user.USERNAME='$USERNAME'");
-$cluster=mysqli_query($konek, "SELECT user.USERNAME, perum.KD_PERUM, cluster.KD_CLUSTER, user.KD_USER, pt.KD_PT
+$cluster=mysqli_query($konek, "SELECT perum.KD_PERUM, cluster.KD_CLUSTER, user.USERNAME, pt.KD_PT
 FROM cluster 
 INNER JOIN perum ON cluster.KD_PERUM=perum.KD_PERUM 
 INNER JOIN pt ON perum.KD_PT=pt.KD_PT
-INNER JOIN user ON pt.KD_USER=user.KD_USER
+INNER JOIN user ON pt.USERNAME=user.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.KD_USER, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
 FROM diskusi
 INNER JOIN cluster
 ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
@@ -23,9 +23,9 @@ ON cluster.KD_PERUM=perum.KD_PERUM
 INNER JOIN pt
 ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.KD_USER=user.KD_USER
+ON pt.USERNAME=user.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$review=mysqli_query($konek, "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.FOTO_REV, user.KD_USER, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$review=mysqli_query($konek, "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.FOTO_REV, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
 FROM review
 INNER JOIN cluster
 ON review.KD_CLUSTER=cluster.KD_CLUSTER
@@ -34,9 +34,9 @@ ON cluster.KD_PERUM=perum.KD_PERUM
 INNER JOIN pt
 ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.KD_USER=user.KD_USER
+ON pt.USERNAME=user.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$report=mysqli_query($konek, "SELECT report.KD_REP, report.ISI_REP, report.TGLWAKTU_REP, user.KD_USER, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$report=mysqli_query($konek, "SELECT report.KD_REP, report.ISI_REP, report.TGLWAKTU_REP, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
 FROM report
 INNER JOIN cluster
 ON report.KD_CLUSTER=cluster.KD_CLUSTER
@@ -45,14 +45,12 @@ ON cluster.KD_PERUM=perum.KD_PERUM
 INNER JOIN pt
 ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.KD_USER=user.KD_USER
+ON pt.USERNAME=user.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$marketing=mysqli_query($konek, "SELECT user.KD_USER, user.USERNAME, profil.NAMA_LENGKAP, profil.JENIS_KELAMIN, profil.TGL_LAHIR, profil.FOTO, profil_detil.NAMA, profil_detil.NO_TELEPON, profil_detil.KD_PROFIL
+$marketing=mysqli_query($konek, "SELECT  user.USERNAME, marketing.NAMA, marketing.NO_TELEPON, marketing.KD_MARKET
 FROM user
-INNER JOIN profil
-ON user.KD_USER=profil.KD_USER
-INNER JOIN profil_detil
-ON profil.KD_PROFIL=profil_detil.KD_PROFIL
+INNER JOIN marketing
+ON user.USERNAME=marketing.USERNAME
 WHERE user.USERNAME='$USERNAME'");
 ?>
 <header class="simple-normal">

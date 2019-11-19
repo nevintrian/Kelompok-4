@@ -1,12 +1,10 @@
-<?php
-    if(!defined('MyConst')){
-        die('Akses langsung tidak diperbolehkan');
-    }
-    $buku = mysqli_query($konek, "SELECT user.KD_USER, user.USERNAME, user.PASSWORD, profil.KD_PROFIL, profil.NAMA_LENGKAP, profil.TGL_LAHIR, profil.JENIS_KELAMIN, profil.FOTO 
-    FROM user LEFT JOIN profil 
-    ON user.KD_USER=profil.KD_USER 
-    WHERE user.STATUS='customer'");
-?>
+
+
+<body>
+  <?php
+  include 'lib/koneksi.php';
+  ?>
+
 <div class="panel-content">
           <div class="main-title-sec">
                <div class="row">
@@ -18,43 +16,30 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data buku baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data buku baru gagal.
-                        </div>
-                        <?php } else if($alert=='upload_gagal'){ ?>
-                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Gagal!</strong> Upload cover buku gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data buku berhasil.
-                        </div>
-                        <?php } else if($alert=='update_gagal'){ ?>
-                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Gagal!</strong> Pembaharuan data buku gagal.
+                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus Sukses!</strong> Data buku berhasil dihapus.
-                        </div>
-                        <?php } else if($alert=='hapus_gagal'){ ?>
-                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Gagal!</strong> Pembaharuan data buku gagal.
+                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
                         </div>
                         <?php } } ?>
                     </div>
-                    <div class="col-md-3 column">
+                    <div class="col-md-20 column">
                          <div class="heading-profile">
                               <h2>Data Customer</h2>
+                              <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
+                         
                          </div>
                     </div>
                </div>
@@ -64,8 +49,8 @@
                <li>Data Customer</li>
           </ul>
           <div class="main-content-area">
-              <div class="row">
-                  <div class="streaming-table">
+               <div class="row">
+               <div class="streaming-table">
                     <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Customer</a>
                   </div>
               </div>
@@ -74,11 +59,11 @@
                          <div class="streaming-table">
                                    <span id="found" class="label label-info"></span>
                                    <table id="buku" class='table table-responsive table-responsive table-striped table-hover'>
-                                     <thead>
+                                    <thead>
                                         <tr>
-                                          
-                                          <th>kode user</th>
-                                          <th>username</th>
+                                            
+                                        <th>username</th>
+                                          <th>email</th>
                                           <th>password</th>
                                           <th>nama lengkap</th>
                                           <th>tanggal lahir</th>
@@ -86,51 +71,161 @@
                                           <th>foto</th>
                                           <th>Operasi</th>
                                         </tr>
-                                     </thead>
-                                     <tbody>
-                                        <?php
-                                            $no = 1; 
-                                            while($row=mysqli_fetch_assoc($buku)){ 
+                                    </thead>    
+                                    <tbody>
+                                        <?php 
+                                          
+                                             
+                               $query = mysqli_query($konek, "SELECT *
+                               FROM user 
+                               WHERE user.STATUS='customer'");
+         
+                          while ($data = mysqli_fetch_assoc($query)) 
+                                    {
                                         ?>
-                                         <tr>
+                                        
+                                        <tr>
                                             
-                                            <td><?php echo $row['KD_USER']; ?></td>
-                                            <td><?php echo $row['USERNAME']; ?></td>
-                                            <td><?php echo $row['PASSWORD']; ?></td>
-                                            <td><?php echo $row['NAMA_LENGKAP']; ?></td>
-                                            <td><?php echo $row['TGL_LAHIR']; ?></td>
-                                            <td><?php echo $row['JENIS_KELAMIN']; ?></td>
+                                        <td><?php echo $data['USERNAME']; ?></td>
+                                            <td><?php echo $data['EMAIL']; ?></td>
+                                            <td><?php echo $data['PASSWORD']; ?></td>
+                                            <td><?php echo $data['NAMA_LENGKAP']; ?></td>
+                                            <td><?php echo $data['TGL_LAHIR']; ?></td>
+                                            <td><?php echo $data['JENIS_KELAMIN']; ?></td>
 
                                                 <td>
-                                                <a data-fancybox="gallery" href="../img/book/<?php echo $row['FOTO']; ?>">
-                                                    <img src="../img/book/<?php echo $row['FOTO']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="pages/user/images/<?php echo $data['FOTO']; ?>">
+                                                    <img src="pages/user/images/<?php echo $data['FOTO']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
-                                                 <button type="submit" name="hapus_best" title="Hapus sebagai best seller" class="c-btn small blue-bg buzz"><i class="fa fa-star"></i></button>
-                                               
-                                                 
-                                                </form>
-                                                <a href="" data-toggle="modal" data-target=".edit" data-id='<?php echo $row['id_buku']; ?>' data-judul='<?php echo $row['judul_buku']; ?>' 
-                                                data-pengarang='<?php echo $row['pengarang']; ?>' data-penerbit='<?php echo $row['penerbit']; ?>' data-harga='<?php echo $row['harga']; ?>'
-                                                data-halaman='<?php echo $row['halaman']; ?>' data-kategori='<?php echo $row['id_kategori']; ?>' data-sinopsis='<?php echo $row['sinopsis']; ?>' 
-                                                data-stok='<?php echo $row['stok']; ?>' data-rating='<?php echo $row['rating']; ?>' class="c-btn small green-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
-
-                                                <a href="" data-toggle="modal" data-target=".hapus" data-id='<?php echo $row['id_buku']; ?>' data-judul='<?php echo $row['judul_buku']; ?>' 
-                                                data-pengarang='<?php echo $row['pengarang']; ?>' data-penerbit='<?php echo $row['penerbit']; ?>' class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['USERNAME']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['USERNAME']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                         <?php } ?>
-                                     </tbody>
-                                   </table>
-                                </div>
+                                        
+                                   
+                                
                               </div>
                          </div>
-                    </div>
-               </div>
-          </div>
-     </div><!-- Panel Content -->
-     <div class="modal fade tambah" tabindex="-1" role="dialog">
+                    </div>   
+                    
+     
+     <div class="modal fade" tabindex="-3" id="myModal<?php echo $data['USERNAME']; ?>" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Data Customer</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/user/editcus.php?USERNAME=<?php echo $USERNAME; ?>" method="post">
+                        <?php
+                        
+                        $USERNAME = $data['USERNAME']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM user WHERE USERNAME='$USERNAME'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+
+                        
+                        <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
+                        <div class="form-group">
+                          <label>Email</label>
+                          <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>password</label>
+                          <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Nama Lengkap</label>
+                          <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Tanggal Lahir</label>
+                          <input type="text" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Jenis Kelamin</label>
+                          <input type="text" name="JENIS_KELAMIN" class="form-control"  value="<?php echo $row['JENIS_KELAMIN']; ?>">      
+                        </div>
+                        <div class="form-group">
+                        <label>gambar</label>
+			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
+			                      <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>"  
+                          </div>
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Update</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+     <div class="modal fade" tabindex="-3" id="myModal1<?php echo $data['USERNAME']; ?>" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hapus Data Kategori</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/user/delcus.php" method="get">
+            <?php
+                        $USERNAME = $data['USERNAME']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM user WHERE USERNAME='$USERNAME'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
+                        <div class="form-group">
+                          <label>Email</label>
+                          <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>password</label>
+                          <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Nama Lengkap</label>
+                          <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Tanggal Lahir</label>
+                          <input type="text" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Jenis Kelamin</label>
+                          <input type="text" name="JENIS_KELAMIN" class="form-control" value="<?php echo $row['JENIS_KELAMIN']; ?>">      
+                        </div>
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+            <?php               
+          } 
+          ?>
+        </tbody>
+      </table>   
+      <div class="modal fade tambah" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -139,219 +234,47 @@
                 <h4 class="modal-title">Tambah Data Customer</h4>
             </div>
             <div class="modal-body">
-                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
+            <form role="form" action="pages/user/tamcus.php" method="post">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group">
-                            <label for="judul">Judul Buku</label>
-                            <input type="text" placeholder="Masukkan Judul Buku" id="judul" name="judul" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pengarang">Pengarang</label>
-                            <input type="text" placeholder="Masukkan Pengarang Buku" id="pengarang" name="pengarang" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="penerbit">Penerbit</label>
-                            <input type="text" placeholder="Masukkan Penerbit Buku" id="penerbit" name="penerbit" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="harga">Harga</label>
-                            <input type="number" placeholder="Masukkan Harga" id="harga" name="harga" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="halaman">Halaman</label>
-                            <input type="number" placeholder="Masukkan Halaman Buku" id="halaman" name="halaman" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="kategori">Kategori</label>
-                            <select name="kategori" id="kategori" class="form-control">
-                                <?php while($row=mysqli_fetch_assoc($kategori)){ ?>
-                                    <option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['judul_kategori']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="sinopsis">Sinopsis</label>
-                            <textarea name="sinopsis" id="sinopsis" rows="5" cols="20" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="stok">Stok</label>
-                            <input type="number" placeholder="Masukkan Jumlah Stok Buku" id="stok" name="stok" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cover">Cover</label>
-                            <input type="file" id="cover" name="cover" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rating">Rating</label>
-                            <select name="rating" id="rating" class="form-control" style="font-family:'FontAwesome', Arial; color:#f39c12;">
-                                <option value="0">
-                                    &#xf006;&#xf006;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="1">
-                                    &#xf005;&#xf006;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="2">
-                                    &#xf005;&#xf005;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="3">
-                                    &#xf005;&#xf005;&#xf005;&#xf006;&#xf006;
-                                </option>
-                                <option value="4">
-                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf006;
-                                </option>
-                                <option value="5">
-                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="col-md-4 col-md-offset-4">
-                        <button type="submit" class="c-btn large blue-bg" name="tambah">Tambah</button>
-                        <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>            
-            </div>
-        </div>
-    </div>
+                    <div class="form-group">
+                                        <label for="USERNAME">Username</label>
+                                        <input type="text" name="USERNAME" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="EMAIL">Email</label>
+                                        <input type="text" name="EMAIL" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PASSWORD">Password</label>
+                                        <input type="text" name="PASSWORD" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NAMA_LENGKAP">Nama lengkap</label>
+                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="TGL_LAHIR">Tanggal lahir</label>
+                                        <input type="text" name="TGL_LAHIR" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="JENIS_KELAMIN">Jenis Kelamin</label>
+                                        <input type="text" name="JENIS_KELAMIN" placeholder="Masukkan judul kategori baru" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Tambah</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                              </div>
+                         </div>
+                    </div>      
+               </div>
+          </div>
+     </div><!-- Panel Content -->       
+  </div>
+      </body>
 
-    <div class="modal fade edit" tabindex="-2" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit Data Buku</h4>
-            </div>
-            <div class="modal-body">
-                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group">
-                            <label for="id">ID Buku</label>
-                            <input type="text" id="judul" name="id" class="form-control edit_id" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="judul">Judul Buku</label>
-                            <input type="text" placeholder="Masukkan Judul Buku" id="judul" name="judul" class="form-control edit_judul" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pengarang">Pengarang</label>
-                            <input type="text" placeholder="Masukkan Pengarang Buku" id="pengarang" name="pengarang" class="form-control edit_pengarang" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="penerbit">Penerbit</label>
-                            <input type="text" placeholder="Masukkan Penerbit Buku" id="penerbit" name="penerbit" class="form-control edit_penerbit" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="harga">Harga</label>
-                            <input type="number" placeholder="Masukkan Harga" id="harga" name="harga" class="form-control edit_harga" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="halaman">Halaman</label>
-                            <input type="number" placeholder="Masukkan Halaman Buku" id="halaman" name="halaman" class="form-control edit_halaman" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="kategori">Kategori</label>
-                            <select name="kategori" id="kategori" class="form-control">
-                                <?php 
-                                    $kat=mysqli_query($konek, "SELECT * FROM tb_kategori");
-                                    while($data=mysqli_fetch_assoc($kat)){ ?>
-                                    <option value="<?php echo $data['id_kategori']; ?>" id="<?php echo $data['id_kategori']; ?>"><?php echo $data['judul_kategori']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="sinopsis">Sinopsis</label>
-                            <textarea name="sinopsis" id="sinopsis" rows="5" cols="20" class="form-control edit_sinopsis"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="stok">Stok</label>
-                            <input type="number" placeholder="Masukkan Jumlah Stok Buku" id="stok" name="stok" class="form-control edit_stok" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cover">Ganti Cover <small>(Biarkan kosong jika tidak ingin cover berganti)</small></label>
-                            <input type="file" id="cover" name="cover" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="rating">Rating</label>
-                            <select name="rating" id="rating_edit" class="form-control" style="font-family:'FontAwesome', Arial; color:#f39c12;">
-                                <option value="0" id="nol">
-                                    &#xf006;&#xf006;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="1" id="satu">
-                                    &#xf005;&#xf006;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="2" id="dua">
-                                    &#xf005;&#xf005;&#xf006;&#xf006;&#xf006;
-                                </option>
-                                <option value="3" id="tiga">
-                                    &#xf005;&#xf005;&#xf005;&#xf006;&#xf006;
-                                </option>
-                                <option value="4" id="empat">
-                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf006;
-                                </option>
-                                <option value="5" id="lima">
-                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="col-md-4 col-md-offset-4">
-                        <button type="submit" class="c-btn large blue-bg" name="update">Update</button>
-                        <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>            
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade hapus" tabindex="-3" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Buku</h4>
-            </div>
-            <div class="modal-body">
-                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group">
-                            <label for="id">ID Buku</label>
-                            <input type="text" id="judul" name="id" class="form-control hapus_id" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="judul">Judul Buku</label>
-                            <input type="text" placeholder="Masukkan Judul Buku" id="judul" name="judul" class="form-control hapus_judul" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="pengarang">Pengarang</label>
-                            <input type="text" placeholder="Masukkan Pengarang Buku" id="pengarang" name="pengarang" class="form-control hapus_pengarang" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="penerbit">Penerbit</label>
-                            <input type="text" placeholder="Masukkan Penerbit Buku" id="penerbit" name="penerbit" class="form-control hapus_penerbit" readonly>
-                        </div>
-                        <p>Apakah Anda yakin akan menghapus buku dengan data di atas?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="col-md-4 col-md-offset-4">
-                        <button type="submit" class="c-btn large blue-bg" name="hapus">Hapus</button>
-                        <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>            
-            </div>
-        </div>
-    </div>
+</html>
+      

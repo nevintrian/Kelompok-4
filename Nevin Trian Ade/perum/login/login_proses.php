@@ -14,11 +14,12 @@ include 'koneksi.php';
  
 // menangkap data yang dikirim dari form login
 $USERNAME = $_POST['USERNAME'];
+$EMAIL = $_POST['EMAIL'];
 $PASSWORD = $_POST['PASSWORD'];
  
  
 // menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($koneksi,"select * from user where USERNAME='$USERNAME' and PASSWORD='$PASSWORD'");
+$login = mysqli_query($koneksi,"select * from user where PASSWORD='$PASSWORD' && USERNAME='$USERNAME' || PASSWORD='$PASSWORD' && EMAIL='$EMAIL'");
 // menghitung jumlah data yang ditemukan
 $cek = mysqli_num_rows($login);
  
@@ -32,6 +33,7 @@ if($cek > 0){
  
 		// buat session login dan username
 		$_SESSION['USERNAME'] = $USERNAME;
+		$_SESSION['EMAIL'] = $EMAIL;
 		$_SESSION['STATUS'] = "developer";
 		// alihkan ke halaman dashboard admin
 		header("location:../user/developer/index.php");
@@ -54,10 +56,10 @@ if($cek > 0){
 	}else{
  
 		// alihkan ke halaman login kembali
-		header("location:index.php?pesan=gagal");
+		header("location:index.php?&a=gagal_login");
 	}	
 }else{
-	header("location:index.php?pesan=gagal");
+	header("location:index.php?&a=gagal_login");
 }
- 
+
 ?>

@@ -2,9 +2,9 @@
 <?php 
  $USERNAME=$_SESSION['USERNAME'];
   
- $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, user.USERNAME, user.KD_USER  FROM diskusi INNER JOIN user ON diskusi.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
- $review=mysqli_query($konek, "SELECT review.KD_REV, user.USERNAME, user.KD_USER FROM review INNER JOIN user ON review.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
- $report=mysqli_query($konek, "SELECT report.KD_REP, user.USERNAME, user.KD_USER FROM report INNER JOIN user ON report.KD_USER=user.KD_USER WHERE user.USERNAME='$USERNAME'");
+ $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, user.USERNAME FROM diskusi INNER JOIN user ON diskusi.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
+ $review=mysqli_query($konek, "SELECT review.KD_REV, user.USERNAME  FROM review INNER JOIN user ON review.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
+ $report=mysqli_query($konek, "SELECT report.KD_REP, user.USERNAME FROM report INNER JOIN user ON report.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
 
 ?>
 <header class="simple-normal">
@@ -29,7 +29,13 @@
                               <a title="Halaman Utama" href="index.php"><i class="ti-desktop"></i><span>Dashboard</span></a>
                          </li>
                          
-                       
+                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='perum'||$_GET['p']=='cluster'||$_GET['p']=='pt') echo 'active'; ?>">
+                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Setting Akun</span></a>
+                              <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
+                              <li><a href="?p=profil/profil">Data Profil </a></li>     
+                              
+                         </ul>
+                        </li>
                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') echo 'active'; ?>">
                               <a title="Area administrasi buku"><i class="ti-book"></i><span>Lainnya</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>

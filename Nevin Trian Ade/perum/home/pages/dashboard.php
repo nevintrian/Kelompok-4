@@ -76,11 +76,11 @@
                     <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
                     <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                   </a>
-                  <a href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
+                  <a href="?p=buku&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                 </div>
                 <div class="product-details">
                   <h3>
-                    <a class="product-title" href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
+                    <a class="product-title" href="?p=buku&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
                   </h3>
                   <span class="price">
                     <ins>

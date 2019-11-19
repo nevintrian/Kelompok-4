@@ -3,16 +3,39 @@
         die('Akses langsung tidak diperbolehkan');
     }
     $USERNAME=$_SESSION['USERNAME'];
-    $pt=mysqli_query($konek, "SELECT user.KD_USER, user.USERNAME, profil.KD_PROFIL, profil.NAMA_LENGKAP, profil.JENIS_KELAMIN, profil.TGL_LAHIR, profil.FOTO
+    $pt=mysqli_query($konek, "SELECT *
     FROM user
-    INNER JOIN profil
-    ON user.KD_USER=profil.KD_USER
     WHERE user.USERNAME='$USERNAME'");
 ?>
 <div class="panel-content">
           <div class="main-title-sec">
                <div class="row">
                    <div class="col-md-12 column">
+                   <?php
+                        if(isset($_GET['a'])){
+                            $alert=$_GET['a'];
+                            if($alert=='insert_sukses'){
+                        ?>
+                        <div role="alert" class="alert color green-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                        </div>
+                        <?php } else if($alert=='insert_gagal'){ ?>
+                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                        </div>
+                        <?php } else if($alert=='update_sukses'){ ?>
+                        <div role="alert" class="alert color green-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                        </div>
+                        <?php } else if($alert=='hapus_sukses'){ ?>
+                        <div role="alert" class="alert color blue-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                        </div>
+                        <?php } } ?>
                         <div class="col-md-20 column">
                          <div class="heading-profile">
                               <h2>Data Profil</h2>
@@ -27,16 +50,28 @@
                                </div><!-- Widget Controls -->
                               </div>
                               <div class="with-padding">                                          
-                                <form action="lib/proses.php?USERNAME=<?php echo $USERNAME; ?>" method="post">
+                                <form action="../developer/lib/proses.php" method="post">
                                     <div class="form-group">
                                     <?php 
                                             
-                                            while ($row=mysqli_fetch_assoc($pt)) {
+                                        while ($row=mysqli_fetch_assoc($pt)) {
                                         ?>
-                                     
-                                        <label for="KD_PROFIL">Kode Profil</label>
-                                        <input type="text" name="KD_PROFIL" class="form-control" value="<?php echo $row['KD_PROFIL']; ?>">
-                                      
+                                       
+                                       
+                                        <img src="../developer/images/<?php echo $row['FOTO']; ?>" height="100px" width="100px" >
+                                   
+                                        <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>">
+                                       
+                                        <label for="USERNAME">username</label>
+                                        <input type="text" name="USERNAME" class="form-control" value="<?php echo $row['USERNAME']; ?>">
+                                        <label for="EMAIL">email</label>
+                                        <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">
+                                        <label for="PASSWORD">password</label>
+                                        <input type="password" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
+                                    
+
+        
+                                        
                                     
                                         <label for="NAMA_LENGKAP">Nama lengkap</label>
                                         <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">
@@ -51,19 +86,16 @@
                                         <label for="JENIS_KELAMIN">jenis kelamin</label>
                                         <input type="text" name="JENIS_KELAMIN" class="form-control" value="<?php echo $row['JENIS_KELAMIN']; ?>">
                                     
-                                    
-                                    
-                                        <label for="FOTO">foto</label>
-                                        <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>">
-                                        <img src="../../images/<?php echo $row['FOTO']; ?>" height="150px" width="150px" class="rounded-circle z-depth-1-half avatar-pic">
                                        
+                                    
+   
                                     <?php 
                                     }
                                      ?>                               
                                     </div>
                                             
                                     <div class="form-group">
-                                        <button type="submit" class="c-btn large blue-bg" name="tambah_kat">Simpan</button>
+                                        <button type="submit" class="c-btn large blue-bg" name="ubah_profil">Simpan</button>
                                         </div>
                                 </form>
                               </div>
@@ -73,5 +105,6 @@
                </div>
           </div>
      </div><!-- Panel Content -->
-                                            
-                                          
+     <?php 
+
+?>  

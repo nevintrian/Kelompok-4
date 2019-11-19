@@ -2,7 +2,7 @@
     if(!defined('MyConst')){
             die('Akses langsung tidak diperbolehkan');
         }
-    $user=mysqli_query($konek, "SELECT KD_USER FROM user");
+    $user=mysqli_query($konek, "SELECT USERNAME FROM user");
     $pt=mysqli_query($konek, "SELECT KD_PT FROM pt");
     $perum=mysqli_query($konek, "SELECT KD_PERUM FROM perum");
     $cluster=mysqli_query($konek, "SELECT KD_CLUSTER FROM cluster");

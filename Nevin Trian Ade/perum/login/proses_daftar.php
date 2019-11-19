@@ -7,23 +7,24 @@ include "koneksi.php";
 $USERNAME = $_POST['USERNAME'];
 $PASSWORD = $_POST['PASSWORD'];
 $STATUS = $_POST['STATUS'];
+$EMAIL = $_POST['EMAIL'];
+$NAMA_LENGKAP= $_POST['NAMA_LENGKAP'];
+$TGL_LAHIR = $_POST['TGL_LAHIR'];
+$JENIS_KELAMIN = $_POST['JENIS_KELAMIN'];
+
 // Rename nama fotonya dengan menambahkan tanggal dan jam upload
 
 
 // Proses upload
 
 	// Proses simpan ke Database
-	$query = "INSERT INTO user VALUES(null,'".$USERNAME."', '".$PASSWORD."', '".$STATUS."')";
-	$sql = mysqli_query($konek, $query); // Eksekusi/ Jalankan query dari variabel $query
-
-	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
-		// Jika Sukses, Lakukan :
-		header("location: index.php"); // Redirect ke halaman index.php 
-	}else{
-		// Jika Gagal, Lakukan :
-		echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";
-		echo "<br><a href='form_simpan.php'>Kembali Ke Form</a>";
-	}
+	$query5 = "INSERT INTO user VALUES('$USERNAME', '$EMAIL','$PASSWORD', '$STATUS' , '$NAMA_LENGKAP', '$TGL_LAHIR', '$JENIS_KELAMIN', null)";
+	$sql5 = mysqli_query($konek, $query5); // Eksekusi/ Jalankan query dari variabel $query
+	$last_id = mysqli_insert_id($konek);
+	
+		header("location: index.php");
 ?>
+
+
 
 

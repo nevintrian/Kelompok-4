@@ -1,46 +1,91 @@
-<!-- Our Website Content Goes Here -->
-<?php 
-      $buku=mysqli_query($konek, "SELECT id_buku FROM tb_buku");
-      $kategori=mysqli_query($konek, "SELECT id_kategori FROM tb_kategori");
-?>
-<header class="simple-normal">
-     <div class="top-bar">
-          <div class="logo">
-               <a href="index.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
-          </div>
-          <div class="menu-options"><span class="menu-action"><i></i></span></div>
-          <div class="top-bar-quick-sec">
-               <a href="#" data-toggle="modal" data-target=".logout"><span class="full-screen-btn"><i class="fa fa-sign-out"></i></span></a>
-               <span id="toolFullScreen" class="full-screen-btn"><i class="fa fa-arrows-alt fa-spin"></i></span>
-          </div>
-     </div><!-- Top Bar -->
-     <div class="side-menu-sec" id="header-scroll">
-         <br>
-          <div class="side-menus">
-               <span>MENU UTAMA</span>
-               <nav>
-                    <ul class="parent-menu">
-                         <li class="<?php if(!isset($_GET['p'])) echo 'active'; ?>">
-                              <!--badge red <i class="badge red-bg">HOT</i>-->
-                              <a title="Halaman Utama" href="index.php"><i class="ti-desktop"></i><span>Dashboard</span></a>
-                         </li>
-                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='kategori') echo 'active'; ?>">
-                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Perumahan</span></a>
-                              <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='kategori') { ?> style="display: block;" <?php } ?>>
-                              <li><a href="?p=kategori">Data PT <i class="badge blue-bg"><?php echo mysqli_num_rows($kategori); ?></i></a></li>     
-                              <li><a href="?p=data">Data Perumahan <i class="badge red-bg"><?php echo mysqli_num_rows($buku); ?></i></a></li>
-                                   
-                              </ul>
-                        </li>
-               
-                        <li class="<?php if(isset($_GET['p'])) if($_GET['p']=='comment') echo 'active'; ?>">
-                              <a title="Pantau Komentar" href="?p=comment"><i class="ti-comments"></i><span>Diskusi</span></a>
-                        </li>
-                        <li class="">
-                              <a title="Keluar dari Halaman Admin" href="#logout" data-toggle="modal" data-target=".logout"><i class="ti-export"></i><span>Log Out</span></a>
-                        </li>
-                    </ul>
-               </nav>
-          </div>
-     </div>
-</header>
+<!-- Navigation -->
+    <header class="nav-type-1">
+    
+      <nav class="navbar navbar-static-top">
+        <!--<div class="navigation" id="sticky-nav">-->
+        <div class="navigation">
+          <div class="container relative">
+
+            <div class="row">
+
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div> <!-- end navbar-header -->
+
+              <div class="header-wrap">
+                <div class="header-wrap-holder">
+
+                  <!-- Search -->
+                  <div class="nav-search hidden-sm hidden-xs">
+                    <form method="get" name="cari" action="index.php">
+                      <input type="text" name="judul" class="form-control" placeholder="Cari Perumahan">
+                      <button name="cari" type="submit" class="search-button">
+                        <i class="icon icon_search"></i>
+                      </button>
+                    </form>
+                  </div>
+
+                  <!-- Logo -->
+                  <div class="logo-container">
+                    <div class="logo-wrap text-center">
+                      <a href="index.php">
+                        <!--<img class="logo" src="img/logo_dark.png" alt="logo">-->
+                        <h4 class="logo"><b>carirumah.com</b><h4>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Cart -->
+                  <div class="nav-cart-wrap hidden-sm hidden-xs">
+                    &nbsp;
+                  </div> <!-- end cart -->
+
+                </div>
+              </div> <!-- end header wrap -->
+
+              <div class="nav-wrap">
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                  
+                  <ul class="nav navbar-nav">
+
+                    <li id="mobile-search" class="hidden-lg hidden-md">
+                      <form method="get" name="cari" action="index.php" class="mobile-search relative">
+                        <input type="text" name="judul" class="form-control" placeholder="Cari...">
+                        <button name="cari" type="submit" class="search-button">
+                          <i class="icon icon_search"></i>
+                        </button>
+                      </form>
+                    </li>
+
+                    <li class="dropdown">
+                      <a href="index.php">Beranda</a>
+                    </li>
+
+                  
+                    <li class="dropdown">
+                      <a href="#">Informasi</a>
+                      <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
+                      <ul class="dropdown-menu">
+                        <li><a href="?p=about">Tentang Kami</a></li>
+                      </ul>
+                    </li>
+
+                   
+                    <li class="dropdown">
+                      <a href="../login/index.php">Akun</a>
+                    </li>
+                    
+                  </ul> <!-- end menu -->
+                </div> <!-- end collapse -->
+              </div> <!-- end col -->
+          
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end navigation -->
+      </nav> <!-- end navbar -->
+    </header> <!-- end navigation -->

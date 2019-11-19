@@ -1,23 +1,10 @@
-<?php
-    if(!defined('MyConst')){
-        die('Akses langsung tidak diperbolehkan');
-    }
-    $USERNAME=$_SESSION['USERNAME'];
-    $komentar=mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.KD_USER, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
-    FROM diskusi
-    INNER JOIN cluster
-    ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
-    INNER JOIN perum
-    ON cluster.KD_PERUM=perum.KD_PERUM
-    INNER JOIN pt
-    ON perum.KD_PT=pt.KD_PT
-    INNER JOIN user
-    ON pt.KD_USER=user.KD_USER
-    WHERE user.USERNAME='$USERNAME'");
 
-    
-    $deleted=mysqli_query($konek, "SELECT komen.*, buku.judul_buku FROM tb_komentar komen INNER JOIN tb_buku buku ON komen.id_buku=buku.id_buku WHERE komen.hapus=1 ORDER BY komen.id_komentar DESC");
-?>
+
+<body>
+  <?php
+  include 'lib/koneksi.php';
+  ?>
+
 <div class="panel-content">
           <div class="main-title-sec">
                <div class="row">
@@ -25,26 +12,26 @@
                        <?php
                         if(isset($_GET['a'])){
                             $alert=$_GET['a'];
-                            if($alert=='hapus_sukses'){
+                            if($alert=='insert_sukses'){
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus Sukses!</strong> Penghapusan data komentar berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
                         </div>
-                        <?php } else if($alert=='hapus_gagal'){ ?>
+                        <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus Gagal!</strong> Penghapusan data komentar gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
                         </div>
-                        <?php } else if($alert=='restore_sukses'){ ?>
+                        <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Restore Sukses!</strong> Restore komentar terhapus berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
                         </div>
-                        <?php } else if($alert=='restore_gagal'){ ?>
-                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
+                        <?php } else if($alert=='hapus_sukses'){ ?>
+                        <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Restore Gagal!</strong> Restore komentar terhapus gagal.
+                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -62,19 +49,17 @@
                <li>Data Diskusi</li>
           </ul>
           <div class="main-content-area">
-              <div class="row">
-                  <div class="streaming-table">
-                    <a href="#" data-toggle="modal" data-target=".deleted" class="icon-btn pulse-grow"><i class="fa fa-trash red-bg"></i> Diskusi terhapus</a>
-                  </div>
+               <div class="row">
+               
               </div>
                <div class="row">
                     <div class="col-md-12">
                          <div class="streaming-table">
                                    <span id="found" class="label label-info"></span>
                                    <table id="komentar" class='table table-responsive table-responsive table-striped table-hover'>
-                                     <thead>
+                                    <thead>
                                         <tr>
-                                          <th>No</th>
+                                        <th>Kode Diskusi</th>
                                           <th>Username</th>
                                           <th>Status</th>
                                           <th>Isi diskusi</th>
@@ -83,19 +68,34 @@
                                           <th>Tanggal diskusi</th>
                                           <th>Hapus diskusi</th>
                                         </tr>
-                                     </thead>
-                                     <tbody>
-                                        <?php
-                                            $no = 1;
-                                            while($row=mysqli_fetch_assoc($komentar)){
+                                    </thead>    
+                                    <tbody>
+                                        <?php 
+                                          
+                                             
+                               $query = mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+                               FROM diskusi
+                               INNER JOIN cluster
+                               ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
+                               INNER JOIN perum
+                               ON cluster.KD_PERUM=perum.KD_PERUM
+                               INNER JOIN pt
+                               ON perum.KD_PT=pt.KD_PT
+                               INNER JOIN user
+                               ON pt.USERNAME=user.USERNAME
+                               WHERE user.USERNAME='$USERNAME'");
+         
+                          while ($data = mysqli_fetch_assoc($query)) 
+                                    {
                                         ?>
-                                         <tr>
-                                            <td><?php echo $no; ?></td>
-                                            <td><?php echo $row['USERNAME']; ?></td>
-                                            <td><?php echo $row['STATUS']; ?></td>
+                                        
+                                        <tr>
+                                        <td><?php echo $data['KD_DIS']; ?></td>
+                                        <td><?php echo $data['USERNAME']; ?></td>
+                                            <td><?php echo $data['STATUS']; ?></td>
                                             <td>
                                                 <?php
-                                                    $text = $row['ISI_DIS'];
+                                                    $text = $data['ISI_DIS'];
                                                     $strip = strip_tags(stripcslashes($text), '<a>');
                                                     // echo $strip;
                                                 ?>
@@ -106,132 +106,63 @@
                                                     ?>
                                                 </div>
                                             </td>
-                                            <td><?php echo $row['NAMA_PERUM']; ?></td>
-                                            <td><?php echo $row['NAMA_CLUSTER']; ?></td>
-                                            <td><?php echo $row['TGLWAKTU_DIS']; ?></td>
+                                            <td><?php echo $data['NAMA_PERUM']; ?></td>
+                                            <td><?php echo $data['NAMA_CLUSTER']; ?></td>
+                                            <td><?php echo $data['TGLWAKTU_DIS']; ?></td>
                                             <td>
-                                                <a href="" data-toggle="modal" data-target=".hapus" data-id='<?php echo $row['id_komentar']; ?>' data-nama='<?php echo $row['nama']; ?>'
-                                                data-komentar='<?php echo $strip; ?>' data-judul='<?php echo $row['judul_buku']; ?>' class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+                                           
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_DIS']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                         <?php $no++; } ?>
-                                     </tbody>
-                                   </table>
-                                </div>
+                                        
+                                   
+                                
                               </div>
                          </div>
-                    </div>
-               </div>
-          </div>
-     </div><!-- Panel Content -->
-     <div class="modal fade deleted" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Diskusi Terhapus</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                         <div class="streaming-table">
-                                   <span id="found" class="label label-info"></span>
-                                   <table id="komentar_deleted" class='table table-responsive table-responsive table-striped table-hover'>
-                                     <thead>
-                                        <tr>
-                                          <th>No</th>
-                                          <th>Nama</th>
-                                          <th>Komentar</th>
-                                          <th>Pada buku</th>
-                                          <th>Tanggal post</th>
-                                          <th>Restore Komentar</th>
-                                        </tr>
-                                     </thead>
-                                     <tbody>
-                                        <?php
-                                            $no = 1;
-                                            while($row=mysqli_fetch_assoc($deleted)){
-                                        ?>
-                                         <tr>
-                                            <td><?php echo $no; ?></td>
-                                            <td><?php echo $row['nama']; ?></td>
-                                            <td>
-                                                <?php
-                                                    $text = $row['isi_komentar'];
-                                                    $strip = strip_tags(stripcslashes($text), '<a>');
-                                                    // echo $strip;
-                                                ?>
-                                                <div role="alert" class="alert color red-bg">
-                                                    <?php
-                                                        echo substr($strip, 0, 80);
-                                                        if(strlen(trim($strip))>80) echo " [...]";
-                                                    ?>
-                                                </div>
-                                            </td>
-                                            <td><?php echo $row['judul_buku']; ?></td>
-                                            <td><?php echo $row['tgl']; ?></td>
-                                            <td>
-                                                <form action="lib/proses.php" method="post">
-                                                    <input type="hidden" name="id" value="<?php echo $row['id_komentar']; ?>">
-                                                    <button type="submit" name="restore_comment" class="c-btn small blue-bg buzz"><i class="fa fa-reply"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                         <?php $no++; } ?>
-                                     </tbody>
-                                   </table>
-                                </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="c-btn medium red-bg" data-dismiss="modal">Tutup</button>
-            </div>
-            </form>
-            </div>
-        </div>
-     </div>
+                    </div>   
+                    
+     
+   
 
-     <div class="modal fade hapus" tabindex="-1" role="dialog">
+     <div class="modal fade" tabindex="-3" id="myModal1<?php echo $data['KD_DIS']; ?>" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Komentar</h4>
+                <h4 class="modal-title">Hapus Data Kategori</h4>
             </div>
             <div class="modal-body">
-                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group">
-                            <label for="id">ID Komentar</label>
-                            <input type="text" id="id" name="id" class="form-control hapus_id" readonly>
+            <form role="form" action="pages/diskusi/deldis.php" method="get">
+                        <?php
+                        $KD_DIS = $data['KD_DIS']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM diskusi WHERE KD_DIS='$KD_DIS'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="KD_DIS" value="<?php echo $row['KD_DIS']; ?>">
+                        
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
-                        <div class="form-group">
-                            <label for="komentar">Isi Komentar</label>
-                            <textarea rows="5" cols="10" id="komentar" name="komentar" class="form-control hapus_komentar" readonly></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Oleh</label>
-                            <input type="text" id="nama" name="nama" class="form-control hapus_nama" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="judul">Pada Buku</label>
-                            <input type="text" id="judul" name="judul" class="form-control hapus_judul" readonly>
-                        </div>
-                        <p>Apakah Anda yakin akan menghapus komentar dengan data seperti di atas?</p>
-                    </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="modal-footer">
-                <div class="col-md-4 col-md-offset-4">
-                        <button type="submit" class="c-btn medium blue-bg" name="delete_comment">Hapus</button>
-                        <button type="button" class="c-btn medium red-bg" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>
-            </div>
-        </div>
-     </div>
+
+           
+            <?php               
+          } 
+          ?>
+        </tbody>
+      </table>   
+     
+      </body>
+
+</html>
+      

@@ -2,23 +2,21 @@
 <?php
     $KD_CLUSTER = $_GET['KD_CLUSTER'];
    
-    $queryProduct = "SELECT perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.TIPE, cluster.STOK, cluster.HARGA, cluster.FASILITAS, cluster.GAMBAR, cluster.LUAS_TANAH, pt.KD_PT, user.KD_USER, profil.KD_PROFIL, profil_detil.NAMA, profil_detil.NO_TELEPON
+    $queryProduct = "SELECT perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.TIPE, cluster.STOK, cluster.HARGA, cluster.FASILITAS, cluster.GAMBAR, cluster.LUAS_TANAH, pt.KD_PT, user.USERNAME, marketing.KD_MARKET, marketing.NAMA, marketing.NO_TELEPON, pt.NAMA_PT, pt.KD_PT
     FROM cluster
     INNER JOIN perum
     ON cluster.KD_PERUM=perum.KD_PERUM
     INNER JOIN pt
     ON perum.KD_PT=pt.KD_PT
     INNER JOIN user
-    ON pt.KD_USER=user.KD_USER
-    INNER JOIN profil
-    ON user.KD_USER=profil.KD_USER
-    INNER JOIN profil_detil
-    ON profil.KD_PROFIL=profil_detil.KD_PROFIL
+    ON pt.USERNAME=user.USERNAME
+    INNER JOIN marketing
+    ON user.USERNAME=marketing.USERNAME
     WHERE cluster.KD_CLUSTER=$KD_CLUSTER";
     
     $rsProduct = mysqli_query($konek, $queryProduct);
-    $row = mysqli_fetch_assoc($rsProduct);
-    $queryKomentar = "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.KD_USER, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+     $row = mysqli_fetch_assoc($rsProduct);
+    $queryKomentar = "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
     FROM diskusi
     INNER JOIN cluster
     ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
@@ -27,10 +25,22 @@
     INNER JOIN pt
     ON perum.KD_PT=pt.KD_PT
     INNER JOIN user
-    ON diskusi.KD_USER=user.KD_USER
+    ON diskusi.USERNAME=user.USERNAME
     WHERE diskusi.KD_CLUSTER=$KD_CLUSTER";
     $rsKomentar = mysqli_query($konek, $queryKomentar);
-    
+
+    $queryReview = "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, user.USERNAME, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+    FROM review
+    INNER JOIN cluster
+    ON review.KD_CLUSTER=cluster.KD_CLUSTER
+    INNER JOIN perum
+    ON cluster.KD_PERUM=perum.KD_PERUM
+    INNER JOIN pt
+    ON perum.KD_PT=pt.KD_PT
+    INNER JOIN user
+    ON review.USERNAME=user.USERNAME
+    WHERE review.KD_CLUSTER=$KD_CLUSTER";
+    $rsReview = mysqli_query($konek, $queryReview);
 ?>
 <!-- Breadcrumbs -->
     <div class="container">
@@ -117,12 +127,23 @@
                         <td><span class="posted_in">STOK</td>
                         <td><?php echo $row['STOK']; ?></span></td>
                     </tr>
-                
+                    <tr>
+                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td><span class="posted_in">NAMA PT</td>
+                        <td><?php echo $row['NAMA_PT']; ?></a></span></td>
+                    </tr>
                     <tr>
                         <td width="5px"><span class="icon_tags"></span></td>
                         <td><span class="posted_in">NAMA PERUM</td>
                         <td><a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM'] ?>&halaman=1" target="_blank">
                             <?php echo $row['NAMA_PERUM']; ?></a></span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td><span class="posted_in">KONTAK</td>
+                        <td> <?php echo $row['NO_TELEPON']; ?></a></span></td>
+                        <td> <?php echo $row['NAMA']; ?></a></span></td>
+                            
                     </tr>
                 </table>
                 <!-- tabs -->
@@ -138,11 +159,12 @@
                         </li>                               
                         <li>
                         <a href="#tab-info" data-toggle="tab">Kirim Diskusi</a>
-                        </li>                                 
+                        </li>   
+                        <li >
+                        <a href="#tab-ulasan" data-toggle="tab">Review</a>
+                        </li>                                  
                       
-                        <li>
-                        <a href="#tab-kontak" data-toggle="tab">Kontak</a>
-                        </li>                                   
+                                           
                     </ul> <!-- end tabs -->
                     
                     <!-- tab content -->
@@ -154,12 +176,7 @@
                             <?php echo htmlspecialchars_decode(stripcslashes($row['FASILITAS'])); ?>
                         </p>
                         </div>     
-                        <div class="tab-pane" id="tab-kontak">
-                        <p align="justify">
-                            <?php echo htmlspecialchars_decode(stripcslashes($row['NO_TELEPON'])); ?>
-                            <?php echo htmlspecialchars_decode(stripcslashes($row['NAMA'])); ?>
-                        </p>
-                        </div> 
+                 
                         <div class="tab-pane fade" id="tab-info">
                             <div class="col-md-12">
                                 <form action="lib/proses.php" name="komentar" method="post">
@@ -177,6 +194,8 @@
                             </div>
                         </div>
                         
+
+ 
                         <div class="tab-pane fade" id="tab-reviews">
 
                         <div class="reviews">
@@ -191,6 +210,7 @@
                                 } else { 
                                     while($row=mysqli_fetch_assoc($rsKomentar)){ 
                             ?>
+                            
                             <li>
                                 <div class="review-body">
                                 <div class="review-content">
@@ -204,9 +224,44 @@
                                 </div>
                             </li>
                             <br><hr><br>
-                            <?php } } ?>
+                            <?php  }} ?>
                             </ul>         
                         </div> <!--  end reviews -->
+                        </div> 
+
+<div class="tab-pane fade" id="tab-ulasan">
+
+<div class="ulasan">
+    <ul class="ulasan-list">
+    <?php if(mysqli_num_rows($rsReview)==0) { ?>
+        <div class="ulasan-body">
+        <div class="ulasan-content">
+            <h3 class="text-center">Belum ada review pada buku ini</h3>
+        </div>
+        </div>
+    <?php 
+        } else { 
+            while($row1=mysqli_fetch_assoc($rsReview)){ 
+    ?>
+    
+    <li>
+        <div class="ulasan-body">
+        <div class="ulasan-content">
+            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><small> - <?php echo $row1['TGLWAKTU_REV']; ?></small></p>
+            <p align="justify">
+                <?php
+                     echo $row1['ISI_REV'];
+                ?>
+            </p>
+        </div>
+        </div>
+    </li>
+    <br><hr><br>
+    <?php  }} ?>
+    </ul>         
+</div>
+
+
                         </div>
                       
                     </div> <!-- end tab content -->
@@ -219,7 +274,7 @@
           </div> <!-- end col product description -->
         </div> <!-- end row -->
 
-
+                                  
         
       </div> <!-- end container -->
     </section> <!-- end single product -->

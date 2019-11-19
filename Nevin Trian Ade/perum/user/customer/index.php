@@ -1,11 +1,10 @@
 <?php
-    include "koneksi.php";
+    include "lib/koneksi.php";
     session_start();
     define('MyConst', TRUE);
-    if(!isset($_SESSION['USERNAME'])){
-  header("location:login.php?a=login_required");
-    }
-        
+    //if(!isset($_SESSION['username'])){
+      //  header("location:login.php?a=login_required");
+    //} else {
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
@@ -19,7 +18,7 @@
 <head>
 
     <!-- Meta-Information -->
-    <title>carirumah.com | Halaman Developer </title>
+    <title>carirumah.com | Customer</title>
     <meta charset="utf-8">
     <meta name="description" content="Glade is a clean and powerful ready to use responsive AngularJs Admin Template based on Latest Bootstrap version and powered by jQuery, Glade comes with 3 amazing Dashboard layouts. Glade is completely flexible and user friendly admin template as it supports all the browsers and looks awesome on any device.">
     <meta name="keywords" content="admin, admin dashboard, angular admin, bootstrap admin, dashboard, modern admin, responsive admin, web admin, web app, bitlers">
@@ -37,10 +36,10 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="../img/favicon.ico">
-    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="../../home/img/favicon.ico">
+    <link rel="apple-touch-icon" href="../../home/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../home/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../home/img/apple-touch-icon-114x114.png">
 
 </head>
 <body>
@@ -78,7 +77,7 @@
       </div>
       <div class="modal-footer">
         <div class="col-md-4 col-md-offset-4">
-                <a href="../../login/logout.php" class="c-btn large blue-bg">Ya</a>
+                <a href="../../home/index.php" class="c-btn large blue-bg">Ya</a>
                 <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
         </div>
       </div>
@@ -164,7 +163,7 @@
                 $(".hapus_penerbit").val(penerbit);
             });
         </script>
-<?php } else if($hal=='kategori'){?>
+<?php } else if($hal=='pt/pt'){?>
     <script type="text/javascript" class="init">
         $(document).on( "click", '.edit_button',function(e) {
                 var kategori = $(this).data('kategori');
@@ -231,6 +230,114 @@
                 $(".hapus_nama").val(nama);
         });
     </script>
+<?php } } ?>
+
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='diskusi/diskusi'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#komentar').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
+<?php } } ?>
+
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='review/review'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#komentar').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
+<?php } } ?>
+
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='report/report'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#komentar').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
 <?php } } ?>
 </body>
 </html>

@@ -10,7 +10,7 @@ if (!$conn) {
 }
 
 
-$sql ='SELECT user.id, user.username, profil.kode, profil.nama, profil.telepon FROM user LEFT JOIN profil ON user.id=profil.id';
+$sql ='SELECT * FROM user LEFT JOIN profil ON user.id=profil.id';
 $query = mysqli_query($conn, $sql);
 
 
