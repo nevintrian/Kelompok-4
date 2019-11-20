@@ -79,82 +79,39 @@
                             </div>
                         </div>
                         <?php } } ?>
-                   </div>
-         
+                        </div>
+          <div class="acount-sec">
                <div class="container">
                     <div class="row">
                          <div class="col-md-4">
-                              
                               <div class="account-detail">
                                    <ul>
                                         <li>
-                                       
-                                        <div class="account-form" align="justify">
-                                          <div class="widget-title">
-                                                  <h3>carirumah.com | Halaman Daftar</h3>
-                                                  <span>Belum punya akun? Silahkan daftar terlebih dahulu</span>
-                                             </div>
-                                                  <form action="proses_daftar.php" method="post">
-                                                       <div class="row">
-                                                            <div class="feild col-md-12">
-                                                                <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" placeholder="USERNAME" />
-                                                            </div>
-                                                           
-                                                            <div class="feild col-md-12">
-                                                            <label> EMAIL </label>
-                                                                 <input type="text" name="EMAIL" placeholder="EMAIL" />
-                                                            </div>
-                                                           
-                                                            <div class="feild col-md-12">
-                                                            <label> PASSWORD </label>
-                                                                 <input type="password" name="PASSWORD" placeholder="PASSWORD" />
-                                                            </div>
-                                                           
-                                                            <div class="feild col-md-12">
-                                                            <label> NAMA LENGKAP </label>
-                                                                 <input type="text" name="NAMA_LENGKAP" placeholder="NAMA LENGKAP" />
-                                                            </div>
-                                                             
-                                                            <div class="feild col-md-12">   
-                                                            <label> JENIS KELAMIN </label>                                                  
-			                                                       <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" class="form-control" >
-                                                                             <option value="">--PILIH JENIS KELAMIN--</option>
-                                                                             <option value="laki-laki">laki-laki</option>
-                                                                               <option value="perempuan">perempuan</option>
-                                                                               </div>
-                                                                  
-                                                            
-                                                            <div class="feild col-md-12">
-                                                            <label> TANGGAL LAHIR </label>   
-                                                                 <input type="date" name="TGL_LAHIR" class="form-control" >
-                                                            </div>
-                                                          
-                                                            <div class="feild col-md-12 ">   
-                                                            <label> STATUS</label>                                                    
-			                                                       <select name="STATUS" id="STATUS" class="form-control" >
-                                                                             <option value="">--PILIH STATUS--</option>
-                                                                             <option value="developer">developer</option>
-                                                                               <option value="customer">customer</option>
-                                                                               </div>
-
-                                                            <div class="feild col-md-12">
-                                                                 <input type="submit" name="daftar" value="Daftar" />
-                                                            </div>
-                                                            </form>
-                                                       </li>
+                                             <h3><i class="fa  fa-television"></i>  Login </h3>
+                                             <p align="justify">Dengan melakukan login menggunakan akun anda,
+                                                 Anda dapat masuk kehalaman dashboard sesuai status anda
+                                             </p>
+                                        </li>
+                                        <li>
+                                             <h3><i class="fa fa-map-o"></i> Butuh bantuan?</h3>
+                                             <p align="justify">Anda butuh bantuan? Silakan hubungi admin melalui kontak yang tersedia di
+                                                 halaman utama web.
+                                             </p>
+                                        </li>
+                                        <li>
+                                             <h3><i class="fa  fa-send-o"></i> Sederhana, Elegan & Super Cepat</h3>
+                                             <p>Website kami menyediakan interface yang sederhana, elegan, dan cepat untuk menangani kebutuhan pengguna</p>
+                                        </li>
                                    </ul>
                               </div>
                          </div>
-                         <div class="col-md-7">
-                              
+                         <div class="col-md-8">
+                              <div class="contact-sec">
                                    <div class="row">
-                                        <div class="col-md-8 col-md-offset-6">   
-                                             
+                                        <div class="col-md-8 col-md-offset-2">   
                                              <div class="widget-title">
                                                   <br>
-                                                  <h3>carirumah.com | Halaman Login</h3>
-                                                  <span>Sudah memiliki akun? Silahkan isi data Anda untuk login</span>
+                                                  <h3 ><a href="../home/index.php">carirumah.com | Halaman Login</a></h3>                                                  
                                              </div><!-- Widget title -->
                                              <div class="account-form">
                                                   <form action="login_proses.php" method="post">
@@ -169,8 +126,12 @@
                                                                  <input type="password" name="PASSWORD" placeholder="PASSWORD" />
                                                             </div>
                                                             <div class="feild col-md-12">
-                                                                 <input type="submit" name="login" value="Login" />
+                                                            <label ><a href="daftar.php"> belum punya akun ? Daftar </a></label>
                                                             </div>
+                                                            <div class="feild col-md-12">
+                                                                 <input type="submit" name="login" value="Login" />                                                       
+                                                            </div>                                                       
+                     
                                                        </div>
                                                   </form>
                                              </div>

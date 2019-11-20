@@ -77,7 +77,7 @@
 
                    
                     <li class="dropdown">
-                      <a href="../login/index.php">Akun</a>
+                      <a href="../login/login.php">Akun</a>
                     </li>
                     
                   </ul> <!-- end menu -->

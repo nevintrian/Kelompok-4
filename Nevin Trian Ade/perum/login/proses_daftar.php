@@ -22,7 +22,7 @@ $JENIS_KELAMIN = $_POST['JENIS_KELAMIN'];
 	$sql5 = mysqli_query($konek, $query5); // Eksekusi/ Jalankan query dari variabel $query
 	$last_id = mysqli_insert_id($konek);
 	
-		header("location: index.php");
+		header("location: login.php");
 ?>
 
 
