@@ -153,7 +153,7 @@
                         <div class="form-group">
                         <label>gambar</label>
 			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
-			                      <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>"  
+			                      <input type="file" name="FOTO" class="form-control"> 
                           </div>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Update</button>
