@@ -111,7 +111,7 @@
                                         <div class="col-md-8 col-md-offset-2">   
                                              <div class="widget-title">
                                                   <br>
-                                                  <h3><a href="../home/inddex.php">carirumah.com | Halaman Daftar</a></h3>                                                  
+                                                  <h3><a href="../home/index.php">carirumah.com | Halaman Daftar</a></h3>                                                  
                                              </div><!-- Widget title -->
                                              <div class="account-form">
                                              <form action="proses_daftar.php" method="post">
