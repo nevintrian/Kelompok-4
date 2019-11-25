@@ -77,7 +77,8 @@
       </div>
       <div class="modal-footer">
         <div class="col-md-4 col-md-offset-4">
-                <a href="../../home/index.php" class="c-btn large blue-bg">Ya</a>
+                <a href="../../login/logout.php" class="c-btn large blue-bg" >Ya</a>
+                
                 <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
         </div>
       </div>

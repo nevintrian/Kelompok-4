@@ -160,19 +160,19 @@
  
                         <div class="form-group">
                           <label>Tipe</label>
-                          <input type="number" name="TIPE" class="form-control" value="<?php echo $row['TIPE']; ?>">      
+                          <input type="number" min="0" name="TIPE" class="form-control" value="<?php echo $row['TIPE']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Luas Tanah</label>
-                          <input type="number" name="LUAS_TANAH" class="form-control" value="<?php echo $row['LUAS_TANAH']; ?>">      
+                          <input type="number" min="0" name="LUAS_TANAH" class="form-control" value="<?php echo $row['LUAS_TANAH']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Stok</label>
-                          <input type="number" name="STOK" class="form-control" value="<?php echo $row['STOK']; ?>">      
+                          <input type="number" min="0" name="STOK" class="form-control" value="<?php echo $row['STOK']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Harga</label>
-                          <input type="number" name="HARGA" class="form-control" value="<?php echo $row['HARGA']; ?>">      
+                          <input type="number" min="0" name="HARGA" class="form-control" value="<?php echo $row['HARGA']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Fasilitas</label>

@@ -120,7 +120,7 @@
                 <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
                     <li><a href="../user/customer/index.php">Setting Akun</a></li>
-                    <li><a href="../home/index.php">Logout</a></li>
+                    <li> <a data-toggle="modal" data-target="#myModal" href="#">Logout</a></li>
                 </ul>
               </li>
                   
@@ -133,3 +133,26 @@
       </div> <!-- end navigation -->
     </nav> <!-- end navbar -->
   </header> <!-- end navigation -->
+
+  <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <form role="form" action="../login/logout.php">
+        <h4 align="center" class="modal-title">Konfirmasi Keluar</h4>
+      </div>
+      <div class="modal-body">
+        <p align="center">Apakah Anda Yakin Akan Keluar?</p>
+      </div>
+      <div class="modal-footer">
+        <div align= "center" class="col-md-4 col-md-offset-4">
+              <button type="submit" class="c-btn large blue-bg" >Ya</button>
+                <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
+               </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
