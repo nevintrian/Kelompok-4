@@ -33,12 +33,29 @@ $USERNAME = $_POST['USERNAME'];
 		WHERE user.USERNAME='$USERNAME'";
 		$sql = mysqli_query($konek, $query); // Eksekusi/ Jalankan query dari variabel $query
 
-		if($sql){ // Cek jika proses simpan ke database sukses atau tidak
-			// Jika Sukses, Lakukan :
-			header('location: ../../index.php?p=profil/profil&a=update_sukses');
-    }else{
-        header('location: ../../index.php?p=profil/profil&a=update_gagal');  
-        }
+	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
+		// Jika Sukses, Lakukan :
+		header('location: ../../index.php?p=profil/profil&a=update_sukses');
+}else{
+	header('location: ../../index.php?p=profil/profil&a=update_sukses');  
 	}
+
+}else{ // Jika user tidak menceklis checkbox yang ada di form ubah, lakukan :
+// Proses ubah data ke Database
+$query = "UPDATE user SET USERNAME='$USERNAME', EMAIL='$EMAIL', PASSWORD='$PASSWORD', NAMA_LENGKAP='$NAMA_LENGKAP', TGL_LAHIR='$TGL_LAHIR', JENIS_KELAMIN='$JENIS_KELAMIN' WHERE user.USERNAME='$USERNAME'";
+$sql = mysqli_query($konek, $query); // Eksekusi/ Jalankan query dari variabel $query
+
+if($sql){ // Cek jika proses simpan ke database sukses atau tidak
+	// Jika Sukses, Lakukan :
+	header('location: ../../index.php?p=profil/profil&a=update_sukses');
+}else{
+header('location: ../../index.php?p=profil/profil&a=update_sukses');  
+}
+}
+
+
 ?>
+
+
+
 
