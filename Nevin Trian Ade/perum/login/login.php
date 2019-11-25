@@ -131,7 +131,7 @@
                                                        <div class="row">
                                                             <div class="feild col-md-12">
                                                             <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" required name="EMAIL" placeholder="Masukkan email atau password" />
+                                                                 <input type="text" name="USERNAME" required placeholder="Masukkan email atau username" />
                                                             
                                                             </div>
                                                             <div class="feild col-md-12">

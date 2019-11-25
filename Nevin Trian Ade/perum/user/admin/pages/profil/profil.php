@@ -3,7 +3,7 @@
         die('Akses langsung tidak diperbolehkan');
     }
     $USERNAME=$_SESSION['USERNAME'];
-    $pt=mysqli_query($konek, "SELECT * FROM user WHERE USERNAME='$USERNAME'");
+    $pt=mysqli_query($konek, "SELECT * FROM user WHERE USERNAME='$USERNAME' OR EMAIL='$USERNAME'");
 ?>
 <div class="panel-content">
 <div class="main-title-sec">
