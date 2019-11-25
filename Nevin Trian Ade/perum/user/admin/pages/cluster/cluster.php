@@ -70,9 +70,9 @@
                                           <th>Stok</th>
                                           <th>Harga</th>
                                           <th>Fasilitas</th>
-                                          <th>Gambar</th>
-                                          <th>Gambar1</th>
-                                          <th>Gambar2</th>
+                                          <th>Gambar 1</th>
+                                          <th>Gambar 2</th>
+                                          <th>Gambar 3</th>
                                           <th>Operasi</th>
                                         </tr>
                                     </thead>    
@@ -179,10 +179,18 @@
                         </div>
                      
                         <div class="form-group">
-                        <label>Gambar</label>
+                        <label>Gambar 1</label>
 			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah gambar<br>
                             <input type="file" name="GAMBAR" class="form-control"> 
+                          </div>
+                          <div class="form-group">
+                          <label>Gambar 2</label>
+			                    <input type="checkbox" name="ubah_foto1" value="true"> Ceklis jika ingin mengubah gambar<br>
                             <input type="file" name="GAMBAR1" class="form-control"> 
+                          </div>
+                          <div class="form-group">
+                          <label>Gambar 3</label>
+			                    <input type="checkbox" name="ubah_foto2" value="true"> Ceklis jika ingin mengubah gambar<br>
                             <input type="file" name="GAMBAR2" class="form-control"> 
                           </div>
                         <div class="modal-footer">  
