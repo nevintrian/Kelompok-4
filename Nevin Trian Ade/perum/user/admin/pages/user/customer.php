@@ -16,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan customer baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data customer baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data customer berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data customer berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -62,13 +62,13 @@
                                     <thead>
                                         <tr>
                                             
-                                        <th>username</th>
-                                          <th>email</th>
-                                          <th>password</th>
-                                          <th>nama lengkap</th>
-                                          <th>tanggal lahir</th>
-                                          <th>jenis kelamin</th>
-                                          <th>foto</th>
+                                        <th>Username</th>
+                                          <th>Email</th>
+                                          <th>Password</th>
+                                          <th>Nama Lengkap</th>
+                                          <th>Tanggal Lahir</th>
+                                          <th>Jenis Kelamin</th>
+                                          <th>Foto</th>
                                           <th>Operasi</th>
                                         </tr>
                                     </thead>    
@@ -119,7 +119,7 @@
                 <h4 class="modal-title">Edit Data Customer</h4>
             </div>
             <div class="modal-body">
-            <form role="form" action="pages/user/editcus.php?USERNAME=<?php echo $USERNAME; ?>" method="post">
+            <form role="form" action="pages/user/editcus.php" method="post" enctype="multipart/form-data">
                         <?php
                         
                         $USERNAME = $data['USERNAME']; 
@@ -135,7 +135,7 @@
                           <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>password</label>
+                          <label>Password</label>
                           <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
                         </div>
                         <div class="form-group">
@@ -144,14 +144,14 @@
                         </div>
                         <div class="form-group">
                           <label>Tanggal Lahir</label>
-                          <input type="text" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
+                          <input type="date" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Jenis Kelamin</label>
                           <input type="text" name="JENIS_KELAMIN" class="form-control"  value="<?php echo $row['JENIS_KELAMIN']; ?>">      
                         </div>
                         <div class="form-group">
-                        <label>gambar</label>
+                        <label>Foto</label>
 			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
 			                      <input type="file" name="FOTO" class="form-control"> 
                           </div>
@@ -174,7 +174,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Kategori</h4>
+                <h4 class="modal-title">Hapus Data Customer</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/user/delcus.php" method="get">
@@ -187,28 +187,30 @@
                         <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
                         <div class="form-group">
                           <label>Email</label>
-                          <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
+                          <input type="text" name="EMAIL" class="form-control" readonly value="<?php echo $row['EMAIL']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>password</label>
-                          <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
+                          <label>Password</label>
+                          <input type="text" name="PASSWORD" class="form-control" readonly value="<?php echo $row['PASSWORD']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Nama Lengkap</label>
-                          <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">      
+                          <input type="text" name="NAMA_LENGKAP" class="form-control" readonly value="<?php echo $row['NAMA_LENGKAP']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Tanggal Lahir</label>
-                          <input type="text" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
+                          <input type="text" name="TGL_LAHIR" class="form-control" readonly value="<?php echo $row['TGL_LAHIR']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Jenis Kelamin</label>
-                          <input type="text" name="JENIS_KELAMIN" class="form-control" value="<?php echo $row['JENIS_KELAMIN']; ?>">      
+                          <input type="text" name="JENIS_KELAMIN" class="form-control" readonly value="<?php echo $row['JENIS_KELAMIN']; ?>">      
                         </div>
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Delete</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
+                        
                         <?php 
                         }
                         //mysql_close($host);
@@ -239,28 +241,32 @@
                     <div class="col-md-10 col-md-offset-1">
                     <div class="form-group">
                                         <label for="USERNAME">Username</label>
-                                        <input type="text" name="USERNAME" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="USERNAME" placeholder="Masukkan username" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="EMAIL">Email</label>
-                                        <input type="text" name="EMAIL" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="EMAIL" placeholder="Masukkan email" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="PASSWORD">Password</label>
-                                        <input type="text" name="PASSWORD" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="PASSWORD" placeholder="Masukkan password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="NAMA_LENGKAP">Nama lengkap</label>
-                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="NAMA_LENGKAP">Nama Lengkap</label>
+                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan nama lengkap" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="TGL_LAHIR">Tanggal lahir</label>
-                                        <input type="text" name="TGL_LAHIR" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="TGL_LAHIR">Tanggal Lahir</label>
+                                        <input type="date" name="TGL_LAHIR" placeholder="Masukkan tanggal lahir" class="form-control">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="JENIS_KELAMIN">Jenis Kelamin</label>
-                                        <input type="text" name="JENIS_KELAMIN" placeholder="Masukkan judul kategori baru" class="form-control">
-                                    </div>
+                                    <div class="form-group">  
+                                    <label> Jenis Kelamin </label>                                                  
+			                             <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" class="form-control" >
+                                      <option value="">--PILIH JENIS KELAMIN--</option>
+                                      <option value="laki-laki">laki-laki</option>
+                                      <option value="perempuan">perempuan</option>
+                                   </select>
+                                  </div>
                                     
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">Tambah</button>

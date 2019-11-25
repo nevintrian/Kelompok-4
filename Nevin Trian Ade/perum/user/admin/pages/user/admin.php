@@ -16,28 +16,28 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data admin baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data admin baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data admin berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data admin berhasil.
                         </div>
                         <?php } } ?>
                     </div>
                     <div class="col-md-20 column">
                          <div class="heading-profile">
-                              <h2>Data admin</h2>
+                              <h2>Data Admin</h2>
                               <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
                          
                          </div>
@@ -46,12 +46,12 @@
           </div><!-- Heading Sec -->
           <ul class="breadcrumbs">
                <li><a href="#" title="">Beranda</a></li>
-               <li>Data admin</li>
+               <li>Data Admin</li>
           </ul>
           <div class="main-content-area">
                <div class="row">
                <div class="streaming-table">
-                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data admin</a>
+                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Admin</a>
                   </div>
               </div>
                <div class="row">
@@ -62,13 +62,13 @@
                                     <thead>
                                         <tr>
                                             
-                                        <th>username</th>
-                                          <th>email</th>
-                                          <th>password</th>
-                                          <th>nama lengkap</th>
-                                          <th>tanggal lahir</th>
-                                          <th>jenis kelamin</th>
-                                          <th>foto</th>
+                                        <th>Username</th>
+                                          <th>Email</th>
+                                          <th>Password</th>
+                                          <th>Nama Lengkap</th>
+                                          <th>Tanggal Lahir</th>
+                                          <th>Jenis Kelamin</th>
+                                          <th>Foto</th>
                                           
                                         </tr>
                                     </thead>    
@@ -113,7 +113,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit Data admin</h4>
+                <h4 class="modal-title">Edit Data Admin</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/user/editadm.php" method="get">
@@ -129,7 +129,7 @@
                           <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>password</label>
+                          <label>Password</label>
                           <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
                         </div>
                         <div class="form-group">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="form-group">
                           <label>Tanggal Lahir</label>
-                          <input type="text" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
+                          <input type="date" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Jenis Kelamin</label>
@@ -183,7 +183,7 @@
                           <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>password</label>
+                          <label>Password</label>
                           <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
                         </div>
                         <div class="form-group">
@@ -224,7 +224,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Tambah Data admin</h4>
+                <h4 class="modal-title">Tambah Data Admin</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/user/tamadm.php" method="post">
@@ -232,29 +232,33 @@
                     <div class="col-md-10 col-md-offset-1">
                     <div class="form-group">
                                         <label for="USERNAME">Username</label>
-                                        <input type="text" name="USERNAME" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="USERNAME" placeholder="Masukkan username" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="EMAIL">Email</label>
-                                        <input type="text" name="EMAIL" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="EMAIL" placeholder="Masukkan email" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="PASSWORD">Password</label>
-                                        <input type="text" name="PASSWORD" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="PASSWORD" placeholder="Masukkan password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="NAMA_LENGKAP">Nama lengkap</label>
-                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="NAMA_LENGKAP">Nama Lengkap</label>
+                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan nama lengkap" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="TGL_LAHIR">Tanggal lahir</label>
-                                        <input type="text" name="TGL_LAHIR" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="TGL_LAHIR">Tanggal Lahir</label>
+                                        <input type="date" name="TGL_LAHIR" placeholder="Masukkan tanggal lahir" class="form-control">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="JENIS_KELAMIN">Jenis Kelamin</label>
-                                        <input type="text" name="JENIS_KELAMIN" placeholder="Masukkan judul kategori baru" class="form-control">
-                                    </div>
-                                    
+                                    <div class="form-group">  
+                                    <label> Jenis Kelamin </label>                                                  
+			                             <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" class="form-control" >
+                                      <option value="">--PILIH JENIS KELAMIN--</option>
+                                      <option value="laki-laki">laki-laki</option>
+                                      <option value="perempuan">perempuan</option>
+                                   </select>
+                                  </div>
+                    
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">Tambah</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

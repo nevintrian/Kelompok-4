@@ -11,11 +11,12 @@
       $diskusi=mysqli_query($konek, "SELECT KD_DIS FROM diskusi");
       $review=mysqli_query($konek, "SELECT KD_REV FROM review");
       $report=mysqli_query($konek, "SELECT KD_REP FROM report");
+      
 ?>
 <header class="simple-normal">
      <div class="top-bar">
           <div class="logo">
-               <a href="index.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
+               <a href="../../home/index_admin.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
                
           </div>
           <div class="menu-options"><span class="menu-action"><i></i></span></div>
@@ -68,6 +69,10 @@
                               <li><a href="?p=report/report">Data Report <i class="badge red-bg"><?php echo mysqli_num_rows($report); ?></i></a></li> 
                                    
                          </ul>
+                        </li>
+                        </li>
+                        <li class="<?php if(isset($_GET['p'])) if($_GET['p']=='slider') echo 'active'; ?>">
+                              <a title="Slider Web" href="?p=slider/slider"><i class="ti-layout-slider"></i><span>Slider Web</span></a>
                         </li>
                         <li class="">
                               <a title="Keluar dari Halaman Admin" href="#logout" data-toggle="modal" data-target=".logout"><i class="ti-export"></i><span>Log Out</span></a>

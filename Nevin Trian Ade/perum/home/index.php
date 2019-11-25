@@ -51,7 +51,7 @@
                 include "pages/404.php";
             }
         } else {
-            include "pages/dashboardperum.php";
+            include "pages/dashboardperum/dashboardperum.php";
         }
         include "inc/footer.php";
     ?>  

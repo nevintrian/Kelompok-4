@@ -7,9 +7,9 @@ $NAMA_PT = $_GET['NAMA_PT'];
 $query = "UPDATE pt SET NAMA_PT='$NAMA_PT' WHERE KD_PT='$KD_PT' ";
 if (mysqli_query($konek, $query)) {
     # credirect ke page index
-        header('location: ../../index.php?p=pt/pt&a=insert_sukses');
+        header('location: ../../index.php?p=pt/pt&a=update_sukses');
     }else{
-        header('location: ../../index.php?p=pt/pt&a=insert_gagal');  
+        header('location: ../../index.php?p=pt/pt&a=update_gagal');  
 }
 
 

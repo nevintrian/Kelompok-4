@@ -2,10 +2,6 @@
 
 <body>
   <?php
-  if(!defined('MyConst')){
-    die('Akses langsung tidak diperbolehkan');
-}
-  $USERNAME=$_SESSION['USERNAME'];
   include 'lib/koneksi.php';
   ?>
 
@@ -20,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data perumahan baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data perumahan baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data perumahan berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data perumahan berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -66,11 +62,11 @@
                                     <thead>
                                         <tr>
                                             
-                                        <th>kode perum</th>
-                                        <th>nama PT</th>
-                                          <th>nama perum</th>
-                                          <th>lokasi</th>
-                                          <th>gambar</th>
+                                        <th>Kode Perumahan</th>
+                                        <th>Nama PT</th>
+                                          <th>Nama Perumahan</th>
+                                          <th>Lokasi</th>
+                                          <th>Gambar</th>
                                           <th>Operasi</th>
                                         </tr>
                                     </thead>    
@@ -78,13 +74,13 @@
                                         <?php 
                                           
                                              
-                               $query = mysqli_query($konek, "SELECT pt.KD_PT, pt.NAMA_PT, perum.KD_PERUM, perum.NAMA_PERUM, perum.LOKASI, perum.GAMBAR_PERUM, user.USERNAME
-                               FROM perum
-                               INNER JOIN pt
-                               ON perum.KD_PT=pt.KD_PT
-                               INNER JOIN user
-                               ON pt.USERNAME=user.USERNAME
-                               WHERE user.USERNAME='$USERNAME'");
+                                          $query = mysqli_query($konek, "SELECT pt.KD_PT, pt.NAMA_PT, perum.KD_PERUM, perum.NAMA_PERUM, perum.LOKASI, perum.GAMBAR_PERUM, user.USERNAME
+                                          FROM perum
+                                          INNER JOIN pt
+                                          ON perum.KD_PT=pt.KD_PT
+                                          INNER JOIN user
+                                          ON pt.USERNAME=user.USERNAME
+                                          WHERE pt.USERNAME='$USERNAME'");
          
                           while ($data = mysqli_fetch_assoc($query)) 
                                     {
@@ -93,17 +89,18 @@
                                         <tr>
                                             
                                         <td><?php echo $data['KD_PERUM']; ?></td>
-                                        <td><?php echo $data['NAMA_PT']; ?></td>
+                                            <td><?php echo $data['NAMA_PT']; ?></td>
                                             <td><?php echo $data['NAMA_PERUM']; ?></td>
-                                            
-                                             <td><?php echo $data['LOKASI']; ?></td>
-                                            <td>
-                                                <a data-fancybox="gallery" href="../developer/pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>">
-                                                    <img src="../developer/pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                            <td><?php echo $data['LOKASI']; ?></td>
+                                       
+
+                                                <td>
+                                                <a data-fancybox="gallery" href="pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>">
+                                                    <img src="pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_PERUM'];  ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_PERUM']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
                                             <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_PERUM']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -120,16 +117,19 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit Data PT</h4>
+                <h4 class="modal-title">Edit Data Perumahan</h4>
             </div>
             <div class="modal-body">
-            <form role="form" action="pages/perum/editperum.php" method="get">
+            <form role="form" action="pages/perum/editperum.php" method="post" enctype="multipart/form-data">
                         <?php
+                        
                         $KD_PERUM = $data['KD_PERUM']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM perum WHERE KD_PERUM='$KD_PERUM'");
                         //$result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
+
+                        
                         <input type="hidden" name="KD_PERUM" value="<?php echo $row['KD_PERUM']; ?>">
                         <div class="form-group">
                           <label>Nama Perumahan</label>
@@ -139,12 +139,12 @@
                           <label>Lokasi</label>
                           <input type="text" name="LOKASI" class="form-control" value="<?php echo $row['LOKASI']; ?>">      
                         </div>
-
+                     
                         <div class="form-group">
-                            <label for="GAMBAR_PERUM">Gambar Perum</label>
-                            <input type="file" name="GAMBAR_PERUM"  class="form-control" value="<?php echo $row['GAMBAR_PERUM']; ?>">
-                        </div>
-
+                        <label>Gambar</label>
+			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
+			                      <input type="file" name="GAMBAR_PERUM" class="form-control"> 
+                          </div>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Update</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -164,29 +164,29 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Kategori</h4>
+                <h4 class="modal-title">Hapus Data Perumahan</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/perum/delperum.php" method="get">
             <?php
+                        
                         $KD_PERUM = $data['KD_PERUM']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM perum WHERE KD_PERUM='$KD_PERUM'");
                         //$result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
+
+                        
                         <input type="hidden" name="KD_PERUM" value="<?php echo $row['KD_PERUM']; ?>">
                         <div class="form-group">
                           <label>Nama Perumahan</label>
-                          <input type="text" name="NAMA_PERUM" class="form-control" value="<?php echo $row['NAMA_PERUM']; ?>">      
+                          <input type="text" name="NAMA_PERUM" class="form-control" readonly value="<?php echo $row['NAMA_PERUM']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Lokasi</label>
-                          <input type="text" name="LOKASI" class="form-control" value="<?php echo $row['LOKASI']; ?>">      
+                          <input type="text" name="LOKASI" class="form-control" readonly value="<?php echo $row['LOKASI']; ?>">      
                         </div>
-                        </div>
-
-                        
-
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Delete</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -207,8 +207,7 @@
           ?>
         </tbody>
       </table>   
-      </div><!-- Panel Content -->
-     <div class="modal fade tambah" tabindex="-1" role="dialog">
+      <div class="modal fade tambah" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -227,7 +226,7 @@
                                 <?php 
                                     $kat=mysqli_query($konek, "SELECT *
                                     FROM pt
-                                     INNER JOIN user
+                                    INNER JOIN user
                                     ON pt.USERNAME=user.USERNAME
                                     WHERE user.USERNAME='$USERNAME'");
                                     while($data=mysqli_fetch_assoc($kat)){ ?>
@@ -245,7 +244,7 @@
                             <input type="text" name="LOKASI" placeholder="Masukkan lokasi" class="form-control">
                      </div>
                      <div class="form-group">
-                            <label for="GAMBAR_PERUM">Gambar Perum</label>
+                            <label for="GAMBAR_PERUM">Gambar</label>
                             <input type="file" id="GAMBAR_PERUM" name="GAMBAR_PERUM" class="form-control" required>
                         </div>
             <div class="modal-footer">
@@ -261,4 +260,8 @@
             </div>
         </div>
     </div>
+      
+      </body>
+
+</html>
       

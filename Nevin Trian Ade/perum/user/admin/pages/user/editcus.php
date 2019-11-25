@@ -13,14 +13,14 @@ if(isset($_POST['ubah_foto'])){
 	$FOTO = $_FILES['FOTO']['name'];
 	$tmp = $_FILES['FOTO']['tmp_name'];
 	$gambarbaru = date('dmYHis').$FOTO;
-	$path = "pages/user/images/".$gambarbaru;
+	$path = "images/".$gambarbaru;
 
 	if(move_uploaded_file($tmp, $path)){ 
 		$query = "SELECT * FROM user WHERE USERNAME='".$USERNAME."'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("pages/user/images/" .$data['FOTO'])) // Jika foto ada
-			unlink("pages/user/images/" .$data['FOTO']); // Hapus file foto sebelumnya yang ada di folder images
+		if(is_file("images/" .$data['FOTO'])) // Jika foto ada
+			unlink("images/" .$data['FOTO']); // Hapus file foto sebelumnya yang ada di folder images
 		
 		// Proses ubah data ke Database
 		$query = "UPDATE user SET USERNAME='$USERNAME', PASSWORD='$PASSWORD', EMAIL='$EMAIL', NAMA_LENGKAP='$NAMA_LENGKAP', TGL_LAHIR='$TGL_LAHIR', JENIS_KELAMIN='$JENIS_KELAMIN' , FOTO='$gambarbaru' WHERE USERNAME='$USERNAME' ";
@@ -28,9 +28,9 @@ if(isset($_POST['ubah_foto'])){
 
 		if($sql){ // Cek jika proses simpan ke database sukses atau tidak
 			// Jika Sukses, Lakukan :
-			header('location: ../../index.php?p=user/customer&a=insert_sukses');
+			header('location: ../../index.php?p=user/customer&a=update_sukses');
     }else{
-        header('location: ../../index.php?p=user/customer&a=insert_gagal');  
+        header('location: ../../index.php?p=user/customer&a=update_gagal');  
         }
 	}else{
 		// Jika gambar gagal diupload, Lakukan :
@@ -44,9 +44,9 @@ if(isset($_POST['ubah_foto'])){
 
 	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
         // Jika Sukses, Lakukan :
-        header('location: ../../index.php?p=user/customer&a=insert_sukses');
+        header('location: ../../index.php?p=user/customer&a=update_sukses');
 }else{
-    header('location: ../../index.php?p=user/customer&a=insert_gagal');  
+    header('location: ../../index.php?p=user/customer&a=update_gagal');  
     }
 }
 ?>

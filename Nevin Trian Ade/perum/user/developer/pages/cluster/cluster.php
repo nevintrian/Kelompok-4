@@ -2,10 +2,6 @@
 
 <body>
   <?php
-  if(!defined('MyConst')){
-    die('Akses langsung tidak diperbolehkan');
-}
-  $USERNAME=$_SESSION['USERNAME'];
   include 'lib/koneksi.php';
   ?>
 
@@ -20,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data cluster baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data cluster baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data cluster berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data cluster berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -66,22 +62,24 @@
                                     <thead>
                                         <tr>
                                             
-                                        <th>kode cluster</th>
-                                          <th>nama cluster </th>
-                                          <th>nama perum </th>
-                                          <th>tipe</th>
-                                          <th>stok</th>
-                                          <th>harga</th>
-                                          <th>fasilitas</th>
-                                          <th>gambar</th>
+                                        <th>Kode Cluster</th>
+                                          <th>Nama Cluster </th>
+                                          <th>Nama Perumahan </th>
+                                          <th>Tipe</th>
+                                          <th>Luas Tanah</th>
+                                          <th>Stok</th>
+                                          <th>Harga</th>
+                                          <th>Fasilitas</th>
+                                          <th>Gambar</th>
+                                          <th>Gambar1</th>
+                                          <th>Gambar2</th>
                                           <th>Operasi</th>
                                         </tr>
                                     </thead>    
                                     <tbody>
                                         <?php 
                                           
-                                             
-                               $query = mysqli_query($konek,  "SELECT perum.KD_PERUM, perum.NAMA_PERUM, perum.LOKASI, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.TIPE, cluster.STOK, cluster.HARGA, cluster.FASILITAS, cluster.GAMBAR
+                                          $query = mysqli_query($konek,  "SELECT *
                                FROM cluster 
                                INNER JOIN perum
                                ON cluster.KD_PERUM=perum.KD_PERUM
@@ -100,17 +98,31 @@
                                         <td><?php echo $data['KD_CLUSTER']; ?></td>
                                             <td><?php echo $data['NAMA_CLUSTER']; ?></td>
                                             <td><?php echo $data['NAMA_PERUM']; ?></td>
+                                          
                                             <td><?php echo $data['TIPE']; ?></td>
+                                            <td><?php echo $data['LUAS_TANAH']; ?></td>
                                             <td><?php echo $data['STOK']; ?></td>
                                             <td><?php echo $data['HARGA']; ?></td>
                                             <td><?php echo $data['FASILITAS']; ?></td>
-                                            <td>
-                                                <a data-fancybox="gallery" href="../developer/pages/cluster/images/<?php echo $data['GAMBAR']; ?>">
-                                                    <img src="../developer/pages/cluster/images/<?php echo $data['GAMBAR']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                       
+
+                                                <td>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_CLUSTER'];  ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_CLUSTER']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
                                             <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_CLUSTER']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -130,39 +142,50 @@
                 <h4 class="modal-title">Edit Data Cluster</h4>
             </div>
             <div class="modal-body">
-            <form role="form" action="pages/cluster/editclus.php" method="get">
+            <form role="form" action="pages/cluster/editclus.php" method="post" enctype="multipart/form-data">
                         <?php
+                        
                         $KD_CLUSTER = $data['KD_CLUSTER']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM cluster WHERE KD_CLUSTER='$KD_CLUSTER'");
                         //$result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
+
+                        
                         <input type="hidden" name="KD_CLUSTER" value="<?php echo $row['KD_CLUSTER']; ?>">
                         <div class="form-group">
                           <label>Nama Cluster</label>
                           <input type="text" name="NAMA_CLUSTER" class="form-control" value="<?php echo $row['NAMA_CLUSTER']; ?>">      
                         </div>
+ 
                         <div class="form-group">
                           <label>Tipe</label>
-                          <input type="text" name="TIPE" class="form-control" value="<?php echo $row['TIPE']; ?>">      
+                          <input type="number" name="TIPE" class="form-control" value="<?php echo $row['TIPE']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>Luas tanah</label>
-                          <input type="text" name="LUAS_TANAH" class="form-control" value="<?php echo $row['LUAS_TANAH']; ?>">      
+                          <label>Luas Tanah</label>
+                          <input type="number" name="LUAS_TANAH" class="form-control" value="<?php echo $row['LUAS_TANAH']; ?>">      
                         </div>
                         <div class="form-group">
-                            <label>Stok</label>
-                            <input type="text" name="STOK"  class="form-control" value="<?php echo $row['STOK']; ?>">
+                          <label>Stok</label>
+                          <input type="number" name="STOK" class="form-control" value="<?php echo $row['STOK']; ?>">      
                         </div>
                         <div class="form-group">
-                            <label>Harga</label>
-                            <input type="text" name="HARGA"  class="form-control" value="<?php echo $row['HARGA']; ?>">
+                          <label>Harga</label>
+                          <input type="number" name="HARGA" class="form-control" value="<?php echo $row['HARGA']; ?>">      
                         </div>
                         <div class="form-group">
-                            <label>Fasilitas</label>
-                            <input type="text" name="FASILITAS"  class="form-control" value="<?php echo $row['FASILITAS']; ?>">
+                          <label>Fasilitas</label>
+                          <input type="text" name="FASILITAS" class="form-control" value="<?php echo $row['FASILITAS']; ?>">      
                         </div>
-                        
+                     
+                        <div class="form-group">
+                        <label>Gambar</label>
+			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah gambar<br>
+                            <input type="file" name="GAMBAR" class="form-control"> 
+                            <input type="file" name="GAMBAR1" class="form-control"> 
+                            <input type="file" name="GAMBAR2" class="form-control"> 
+                          </div>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Update</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -182,45 +205,47 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Kategori</h4>
+                <h4 class="modal-title">Hapus Data Cluster</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/cluster/delclus.php" method="get">
             <?php
+                        
                         $KD_CLUSTER = $data['KD_CLUSTER']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM cluster WHERE KD_CLUSTER='$KD_CLUSTER'");
                         //$result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
+
+                        
                         <input type="hidden" name="KD_CLUSTER" value="<?php echo $row['KD_CLUSTER']; ?>">
                         <div class="form-group">
                           <label>Nama Cluster</label>
-                          <input type="text" name="NAMA_CLUSTER" class="form-control" value="<?php echo $row['NAMA_CLUSTER']; ?>">      
+                          <input type="text" name="NAMA_CLUSTER" class="form-control" readonly value="<?php echo $row['NAMA_CLUSTER']; ?>">      
                         </div>
+ 
                         <div class="form-group">
                           <label>Tipe</label>
-                          <input type="text" name="TIPE" class="form-control" value="<?php echo $row['TIPE']; ?>">      
+                          <input type="text" name="TIPE" class="form-control" readonly value="<?php echo $row['TIPE']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>Luas tanah</label>
-                          <input type="text" name="LUAS_TANAH" class="form-control" value="<?php echo $row['LUAS_TANAH']; ?>">      
-                        </div>
-
-                        <div class="form-group">
-                            <label>Stok</label>
-                            <input type="text" name="STOK"  class="form-control" value="<?php echo $row['STOK']; ?>">
+                          <label>Luas Tanah</label>
+                          <input type="text" name="LUAS_TANAH" class="form-control" readonly value="<?php echo $row['LUAS_TANAH']; ?>">      
                         </div>
                         <div class="form-group">
-                            <label>Harga</label>
-                            <input type="text" name="HARGA"  class="form-control" value="<?php echo $row['HARGA']; ?>">
+                          <label>Stok</label>
+                          <input type="text" name="STOK" class="form-control" readonly value="<?php echo $row['STOK']; ?>">      
                         </div>
                         <div class="form-group">
-                            <label>Fasilitas</label>
-                            <input type="text" name="FASILITAS"  class="form-control" value="<?php echo $row['FASILITAS']; ?>">
+                          <label>Harga</label>
+                          <input type="text" name="HARGA" class="form-control" readonly value="<?php echo $row['HARGA']; ?>">      
                         </div>
-
-                        
-
+                        <div class="form-group">
+                          <label>Fasilitas</label>
+                          <input type="text" name="FASILITAS" class="form-control" readonly value="<?php echo $row['FASILITAS']; ?>">      
+                        </div>
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
+                     
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Delete</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -241,8 +266,7 @@
           ?>
         </tbody>
       </table>   
-      </div><!-- Panel Content -->
-     <div class="modal fade tambah" tabindex="-1" role="dialog">
+      <div class="modal fade tambah" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -256,7 +280,7 @@
                     <div class="col-md-10 col-md-offset-1">
                   
                     <div class="form-group">
-                            <label for="KD_PERUM"> Nama Cluster</label>
+                            <label for="KD_PERUM"> Kode Perumahan</label>
                             <select name="KD_PERUM" id="KD_PERUM" class="form-control">
                                 <?php 
                                     $kat=mysqli_query($konek, "SELECT *
@@ -274,36 +298,44 @@
 
                     <div class="form-group">
                         <label for="NAMA_CLUSTER">Nama Cluster</label>
-                        <input type="text" name="NAMA_CLUSTER" placeholder="Masukkan nama perumahan" class="form-control">
+                        <input type="text" name="NAMA_CLUSTER" placeholder="Masukkan nama cluster" class="form-control">
                      </div>
                         <div class="form-group">
                          <label for="TIPE">Tipe</label>
-                            <input type="text" name="TIPE" placeholder="Masukkan lokasi" class="form-control">
+                            <input type="number" name="TIPE" placeholder="Masukkan tipe" class="form-control">
                      </div>
                      
                         <div class="form-group">
-                         <label for="LUAS_TANAH">Luas tanah</label>
-                            <input type="text" name="LUAS_TANAH" placeholder="Masukkan lokasi" class="form-control">
+                         <label for="LUAS_TANAH">Luas Tanah</label>
+                            <input type="number" name="LUAS_TANAH" placeholder="Masukkan luas tanah" class="form-control">
                      </div>
                      
                         <div class="form-group">
                          <label for="STOK">Stok</label>
-                            <input type="text" name="STOK" placeholder="Masukkan lokasi" class="form-control">
+                            <input type="number" name="STOK" placeholder="Masukkan stok" class="form-control">
                      </div>
                      
                         <div class="form-group">
                          <label for="HARGA">Harga</label>
-                            <input type="text" name="HARGA" placeholder="Masukkan lokasi" class="form-control">
+                            <input type="number" name="HARGA" placeholder="Masukkan harga" class="form-control">
                      </div>
                      <div class="form-group">
                          <label for="FASILITAS">Fasilitas</label>
-                            <input type="text" name="FASILITAS" placeholder="Masukkan lokasi" class="form-control">
+                            <input type="text" name="FASILITAS" placeholder="Masukkan fasilitas" class="form-control">
                      </div>
                      
                        
                      <div class="form-group">
                             <label for="GAMBAR">Gambar</label>
                             <input type="file" id="GAMBAR" name="GAMBAR" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="GAMBAR1">Gambar1</label>
+                            <input type="file" id="GAMBAR1" name="GAMBAR1" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="GAMBAR2">Gambar2</label>
+                            <input type="file" id="GAMBAR2" name="GAMBAR2" class="form-control" required>
                         </div>
             <div class="modal-footer">
                 <div class="col-md-4 col-md-offset-4">
@@ -318,4 +350,7 @@
             </div>
         </div>
     </div>
+      </body>
+
+</html>
       

@@ -8,8 +8,10 @@ INNER JOIN cluster
 ON review.KD_CLUSTER=cluster.KD_CLUSTER
 INNER JOIN perum
 ON cluster.KD_PERUM=perum.KD_PERUM
+INNER JOIN pt
+ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON user.USERNAME=review.USERNAME
+ON pt.USERNAME=user.USERNAME
 WHERE review.KD_REV='$KD_REV' ";
 if (mysqli_query($konek, $query)) {
     # credirect ke page index

@@ -58,25 +58,38 @@
 <div class="account-user-sec">
      <div class="account-sec">
                    <div class="row">
-                       <?php 
-                            if (isset($_GET['a'])) {
-                                $alert=$_GET['a'];
-                                if ($alert=='login_required') {
-                       ?>
-                       <div class="col-md-6 col-md-offset-3">
-                            <div role="alert" class="alert color blue-bg fade in alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <strong>Maaf!</strong> Anda harus login terlebih dahulu untuk mengakses halaman Admin.
-                            </div>
-                        </div>
-                        <?php 
-                            } else if ($alert=='gagal_login') {
+                   <?php
+                        if(isset($_GET['a'])){
+                            $alert=$_GET['a'];
+                            if($alert=='insert_sukses'){
                         ?>
+
                         <div class="col-md-6 col-md-offset-3">
-                            <div role="alert" class="alert color red-bg fade in alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <strong>Login gagal!</strong> Username atau password yang Anda masukkan salah.
-                            </div>
+                        <div role="alert" class="alert color green-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Daftar sukses!</strong> Silahkan login untuk melanjutkan ke menu utama.
+                        </div>
+                        </div>
+                        <?php } else if($alert=='insert_gagal'){ ?>
+                         <div class="col-md-6 col-md-offset-3">
+                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Login Gagal!</strong> Username atau password yang anda masukkan salah.
+                        </div>
+                        </div>
+                        <?php } else if($alert=='update_sukses'){ ?>
+                         <div class="col-md-6 col-md-offset-3">
+                        <div role="alert" class="alert color green-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Update Sukses!</strong> Pembaharuan data perumahan berhasil.
+                        </div>
+                        </div>
+                        <?php } else if($alert=='hapus_sukses'){ ?>
+                         <div class="col-md-6 col-md-offset-3">
+                        <div role="alert" class="alert color blue-bg fade in alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Hapus sukses!</strong> Penghapusan data perumahan berhasil.
+                        </div>
                         </div>
                         <?php } } ?>
                         </div>
@@ -118,15 +131,17 @@
                                                        <div class="row">
                                                             <div class="feild col-md-12">
                                                             <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" name="EMAIL" placeholder="USERNAME / EMAIL" />
+                                                                 <input type="text" name="USERNAME" required name="EMAIL" placeholder="Masukkan email atau password" />
                                                             
                                                             </div>
                                                             <div class="feild col-md-12">
                                                             <label> PASSWORD </label>
-                                                                 <input type="password" name="PASSWORD" placeholder="PASSWORD" />
+                                                                 <input type="password" name="PASSWORD" required placeholder="Masukkan password" />
                                                             </div>
                                                             <div class="feild col-md-12">
-                                                            <label ><a href="daftar.php"> belum punya akun ? Daftar </a></label>
+                                                            <d3> Belum memiliki akun ? 
+                                                            <d3 ><a href="daftar.php"> Daftar Disini </a></d3>
+                                                            </d3>
                                                             </div>
                                                             <div class="feild col-md-12">
                                                                  <input type="submit" name="login" value="Login" />                                                       

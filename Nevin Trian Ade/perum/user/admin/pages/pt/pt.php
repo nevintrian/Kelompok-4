@@ -16,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data PT baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data PT baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data PT berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data PT berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -51,7 +51,7 @@
           <div class="main-content-area">
                <div class="row">
                <div class="streaming-table">
-                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Perumahan</a>
+                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data PT</a>
                   </div>
               </div>
                <div class="row">
@@ -111,7 +111,7 @@
                         ?>
                         <input type="hidden" name="KD_PT" value="<?php echo $row['KD_PT']; ?>">
                         <div class="form-group">
-                          <label>Nama</label>
+                          <label>Nama PT</label>
                           <input type="text" name="NAMA_PT" class="form-control" value="<?php echo $row['NAMA_PT']; ?>">      
                         </div>
                         <div class="modal-footer">  
@@ -133,7 +133,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Kategori</h4>
+                <h4 class="modal-title">Hapus Data PT</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/pt/delpt.php" method="get">
@@ -145,9 +145,10 @@
                         ?>
                         <input type="hidden" name="KD_PT" value="<?php echo $row['KD_PT']; ?>">
                         <div class="form-group">
-                          <label>Nama</label>
-                          <input type="text" name="NAMA_PT" class="form-control" value="<?php echo $row['NAMA_PT']; ?>">      
+                          <label>Nama PT</label>
+                          <input type="text" name="NAMA_PT" class="form-control" readonly value="<?php echo $row['NAMA_PT']; ?>">      
                         </div>
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Delete</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -186,7 +187,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="NAMA_PT">Nama PT</label>
-                                        <input type="text" name="NAMA_PT" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <input type="text" name="NAMA_PT" placeholder="Masukkan nama PT" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">Tambah</button>

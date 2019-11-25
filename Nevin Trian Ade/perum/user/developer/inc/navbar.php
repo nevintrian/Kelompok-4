@@ -14,39 +14,37 @@ INNER JOIN perum ON cluster.KD_PERUM=perum.KD_PERUM
 INNER JOIN pt ON perum.KD_PT=pt.KD_PT
 INNER JOIN user ON pt.USERNAME=user.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$diskusi=mysqli_query($konek, "SELECT *
 FROM diskusi
 INNER JOIN cluster
 ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
 INNER JOIN perum
 ON cluster.KD_PERUM=perum.KD_PERUM
-INNER JOIN pt
-ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.USERNAME=user.USERNAME
+ON user.USERNAME=diskusi.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$review=mysqli_query($konek, "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.FOTO_REV, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$review=mysqli_query($konek, "SELECT *
 FROM review
 INNER JOIN cluster
 ON review.KD_CLUSTER=cluster.KD_CLUSTER
 INNER JOIN perum
 ON cluster.KD_PERUM=perum.KD_PERUM
-INNER JOIN pt
-ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.USERNAME=user.USERNAME
+ON user.USERNAME=review.USERNAME
 WHERE user.USERNAME='$USERNAME'");
-$report=mysqli_query($konek, "SELECT report.KD_REP, report.ISI_REP, report.TGLWAKTU_REP, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+$report=mysqli_query($konek, "SELECT *
 FROM report
 INNER JOIN cluster
 ON report.KD_CLUSTER=cluster.KD_CLUSTER
 INNER JOIN perum
 ON cluster.KD_PERUM=perum.KD_PERUM
-INNER JOIN pt
-ON perum.KD_PT=pt.KD_PT
 INNER JOIN user
-ON pt.USERNAME=user.USERNAME
+ON user.USERNAME=report.USERNAME
 WHERE user.USERNAME='$USERNAME'");
+
+
+
+
 $marketing=mysqli_query($konek, "SELECT  user.USERNAME, marketing.NAMA, marketing.NO_TELEPON, marketing.KD_MARKET
 FROM user
 INNER JOIN marketing
@@ -56,7 +54,7 @@ WHERE user.USERNAME='$USERNAME'");
 <header class="simple-normal">
      <div class="top-bar">
           <div class="logo">
-               <a href="index.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
+               <a href="../../home/index_developer.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
           </div>
           <div class="menu-options"><span class="menu-action"><i></i></span></div>
           <div class="top-bar-quick-sec">

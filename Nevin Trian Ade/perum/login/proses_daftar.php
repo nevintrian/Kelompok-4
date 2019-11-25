@@ -18,11 +18,17 @@ $JENIS_KELAMIN = $_POST['JENIS_KELAMIN'];
 // Proses upload
 
 	// Proses simpan ke Database
-	$query5 = "INSERT INTO user VALUES('$USERNAME', '$EMAIL','$PASSWORD', '$STATUS' , '$NAMA_LENGKAP', '$TGL_LAHIR', '$JENIS_KELAMIN', null)";
-	$sql5 = mysqli_query($konek, $query5); // Eksekusi/ Jalankan query dari variabel $query
-	$last_id = mysqli_insert_id($konek);
+	$query = "INSERT INTO user VALUES('$USERNAME', '$EMAIL','$PASSWORD', '$STATUS' , '$NAMA_LENGKAP', '$TGL_LAHIR', '$JENIS_KELAMIN', null)";
+	$sql = mysqli_query($konek, $query); // Eksekusi/ Jalankan query dari variabel $query
+
 	
-		header("location: login.php");
+	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
+		// Jika Sukses, Lakukan :
+		header('location:login.php?&a=insert_sukses');
+}else{
+	header('location:daftar.php&a=insert_sukses');  
+	}
+
 ?>
 
 

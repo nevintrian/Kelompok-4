@@ -1,13 +1,15 @@
 <!-- Breadcrumbs -->
-    <div class="container">
+<div class="container">
       <ol class="breadcrumb">
         <li>
           <a href="index.php">Beranda</a>
         </li>
         <li>
-          <a href="?p=buku&halaman=1">Cluster</a>
+          <a href="?p=buku&halaman=1">Buku</a>
         </li>
-        
+        <li class="active">
+          Koleksi Buku
+        </li>
       </ol> <!-- end breadcrumbs -->
     </div>
 
@@ -30,16 +32,16 @@
                 $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
                 if(isset($_GET['KD_PERUM'])){
                     $KD_PERUM = $_GET['KD_PERUM'];
-                    $result = mysqli_query($konek,"SELECT * FROM cluster WHERE id_kategori=$KD_PERUM");
+                    $result = mysqli_query($konek,"SELECT * FROM perum WHERE KD_PERUM=$KD_PERUM");
                 } else 
                     $result = mysqli_query($konek,"SELECT * FROM cluster");
                 $total = mysqli_num_rows($result);
                 $pages = ceil($total/$halaman);
                 if(isset($_GET['KD_PERUM'])){
-                    $buku = "SELECT KD_CLUSTER, NAMA_CLUSTER, TIPE, GAMBAR FROM cluster WHERE id_kategori=$KD_PERUM ORDER BY KD_CLUSTER DESC LIMIT $mulai, $halaman";
+                    $buku = "SELECT * FROM cluster WHERE KD_PERUM=$KD_PERUM ORDER BY KD_CLUSTER DESC LIMIT $mulai, $halaman";
                 }
                 else    
-                    $buku = "SELECT KD_CLUSTER, NAMA_CLUSTER, TIPE, GAMBAR FROM cluster ORDER BY KD_CLUSTER DESC LIMIT $mulai, $halaman";
+                    $buku = "SELECT * FROM cluster ORDER BY KD_CLUSTER DESC LIMIT $mulai, $halaman";
                 $rs = mysqli_query($konek, $buku);
                 $no =$mulai+1;
                 $data = mysqli_num_rows($rs);
@@ -58,21 +60,21 @@
                     <div class="product-item">
                         <div class="product-img">
                         <a href="#">
-                            <img src="img/book/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
-                            <img src="img/book/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
+                            <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
+                            <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                         </a>
-                        <a href="?p=buku_detail&KD_PERUM=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
+                        <a href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                         </div>
                         <div class="product-details">
                         <h3>
-                            <a title="<?php $row['NAMA_CLUSTER']; ?>" class="product-title" href="?p=buku_detail&id_buku=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
+                            <a title="<?php $row['NAMA_CLUSTER']; ?>" class="product-title" href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
                         </h3>
                         <span class="price">
                             <ins>
                             <span class="ammount text-danger">
                                 <?php
-                                $harga = number_format($row['TIPE']);
-                                echo.$harga;
+                                $harga = number_format($row['HARGA'], 2, ",", ".");
+                                echo "Rp ".$harga;
                                 ?>
                             </span>
                             </ins>
@@ -120,6 +122,38 @@
             <?php } ?>
 
           </div> <!-- end col -->
+
+          <!-- Sidebar -->
+          <aside class="col-md-3 sidebar left-sidebar">
+
+            <!-- Categories -->
+            <div class="widget categories">
+              <h3 class="widget-title uppercase">Perumahan</h3>
+              <ul class="list-no-dividers">
+                <li class="<?php if(!isset($_GET['KD_PERUM'])) echo "active-cat" ?>">
+                        <a href="?p=buku&halaman=1">Semua Perumahan <?php echo "(".mysqli_num_rows($rsBukuAll).")" ?></a>
+                </li>
+                <?php
+                    $sideKat = "SELECT * FROM perum";
+                    $rsSideKat = mysqli_query($konek, $sideKat);
+                    while($row=mysqli_fetch_assoc($rsSideKat)){
+                        if(isset($_GET['KD_PERUM'])){
+                            $KD_PERUM = $_GET['KD_PERUM'];
+                            $active = "active-cat";
+                        } else $active = "";
+                        $sideKatPer = "SELECT KD_CLUSTER FROM cluster WHERE KD_PERUM=".$row['KD_PERUM'];
+                        $rsSideKatPer = mysqli_query($konek, $sideKatPer);
+                ?>
+                    <li class="<?php if($row['KD_PERUM']==$id_kat) echo $active ?>">
+                        <a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM'] ?>&halaman=1"><?php echo $row['NAMA_PERUM']." (".mysqli_num_rows($rsSideKatPer).")"; ?></a>
+                    </li>
+                <?php } ?>
+              </ul>
+            </div>
+            <!-- Bestsellers -->
+           
+          </aside> <!-- end sidebar -->
+
         </div> <!-- end row -->
       </div> <!-- end container -->
     </section> <!-- end catalogue -->

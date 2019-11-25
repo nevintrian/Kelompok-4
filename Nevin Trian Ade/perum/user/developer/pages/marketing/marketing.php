@@ -16,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data marketing baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data marketing baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data marketing berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data marketing berhasil.
                         </div>
                         <?php } } ?>
                     </div>
@@ -64,7 +64,7 @@
                                             
                                             <th>Kode Marketing</th>
                                             <th>Nama Marketing</th>
-                                            <th>No telepon</th>
+                                            <th>No Telepon</th>
                                             <th>Operasi</th>
                                         </tr>
                                     </thead>    
@@ -101,7 +101,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit Data PT</h4>
+                <h4 class="modal-title">Edit Data Marketing</h4>
             </div>
             <div class="modal-body">
             <form role="form" action="pages/marketing/editmar.php" method="get">
@@ -113,11 +113,11 @@
                         ?>
                         <input type="hidden" name="KD_MARKET" value="<?php echo $row['KD_MARKET']; ?>">
                         <div class="form-group">
-                          <label>Nama</label>
+                          <label>Nama Marketing</label>
                           <input type="text" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
                         </div>
                         <div class="form-group">
-                          <label>No telepon</label>
+                          <label>No Telepon</label>
                           <input type="text" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
                         </div>
                         <div class="modal-footer">  
@@ -151,13 +151,14 @@
                         ?>
                         <input type="hidden" name="KD_MARKET" value="<?php echo $row['KD_MARKET']; ?>">
                         <div class="form-group">
-                          <label>Nama</label>
-                          <input type="text" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
+                          <label>Nama Marketing</label>
+                          <input type="text" name="NAMA" class="form-control" readonly value="<?php echo $row['NAMA']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>No telepon</label>
-                          <input type="text" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
+                          <input type="text" name="NO_TELEPON" class="form-control" readonly value="<?php echo $row['NO_TELEPON']; ?>">      
                         </div>
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Delete</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,12 +196,12 @@
                                         <input type="hidden" name="USERNAME" value="<?php echo $_SESSION['USERNAME']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="NAMA">Nama</label>
-                                        <input type="text" name="NAMA" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="NAMA">Nama Marketing</label>
+                                        <input type="text" name="NAMA" placeholder="Masukkan nama marketing" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="NO_TELEPON">No telepon</label>
-                                        <input type="text" name="NO_TELEPON" placeholder="Masukkan judul kategori baru" class="form-control">
+                                        <label for="NO_TELEPON">No Telepon</label>
+                                        <input type="text" name="NO_TELEPON" placeholder="Masukkan no telepon" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">Tambah</button>

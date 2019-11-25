@@ -36,7 +36,7 @@ if($cek > 0){
 		$_SESSION['EMAIL'] = $EMAIL;
 		$_SESSION['STATUS'] = "developer";
 		// alihkan ke halaman dashboard admin
-		header("location:../user/developer/index.php");
+		header("location:../home/index_developer.php");
  
 	// cek jika user login sebagai pegawai
 	}else if($data['STATUS']=="customer"){
@@ -44,22 +44,22 @@ if($cek > 0){
 		$_SESSION['USERNAME'] = $USERNAME;
 		$_SESSION['STATUS'] = "customer";
 		// alihkan ke halaman dashboard pegawai
-		header("location:../user/customer/index.php");
+		header("location:../home/index_customer.php");
 
 	}else if($data['STATUS']=="admin"){
 		// buat session login dan username
 		$_SESSION['USERNAME'] = $USERNAME;
 		$_SESSION['STATUS'] = "admin";
 		// alihkan ke halaman dashboard pegawai
-		header("location:../user/admin/index.php");
+		header("location:../home/index_admin.php");
  
 	}else{
  
 		// alihkan ke halaman login kembali
-		header("location:index.php?&a=gagal_login");
+		header("location:login.php?&a=insert_gagal");
 	}	
 }else{
-	header("location:index.php?&a=gagal_login");
+	header("location:login.php?&a=insert_gagal");
 }
 
 ?>

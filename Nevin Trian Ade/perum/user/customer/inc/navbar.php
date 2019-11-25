@@ -10,7 +10,7 @@
 <header class="simple-normal">
      <div class="top-bar">
           <div class="logo">
-               <a href="index.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
+               <a href="../../home/index_customer.php" title=""><i class="fa fa-bullseye"></i> carirumah.com</a>
           </div>
           <div class="menu-options"><span class="menu-action"><i></i></span></div>
           <div class="top-bar-quick-sec">

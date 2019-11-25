@@ -6,9 +6,9 @@ $NAMA_PERUM = $_GET['NAMA_PERUM'];
 $query = "DELETE perum FROM perum WHERE KD_PERUM='$KD_PERUM' ";
 if (mysqli_query($konek, $query)) {
     # credirect ke page index
-        header('location: ../../index.php?p=perum/perum&a=insert_sukses');
+        header('location: ../../index.php?p=perum/perum&a=hapus_sukses');
     }else{
-        header('location: ../../index.php?p=perum/perum&a=insert_gagal');  
+        header('location: ../../index.php?p=perum/perum&a=hapus_gagal');  
 }
 
 ?>

@@ -116,30 +116,35 @@
                                              <div class="account-form">
                                              <form action="proses_daftar.php" method="post">
                                                        <div class="row">
+                                                       <div class="feild col-md-12">
+                                                            <d3> Sudah memiliki akun ? 
+                                                            <d3 ><a href="login.php"> Login Disini </a></d3>
+                                                            </d3>
+                                                            </div>
                                                             <div class="feild col-md-12">
                                                                 <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" placeholder="USERNAME" />
+                                                                 <input type="text" name="USERNAME" required placeholder="Masukkan username" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> EMAIL </label>
-                                                                 <input type="text" name="EMAIL" placeholder="EMAIL" />
+                                                                 <input type="text" name="EMAIL" required placeholder="Masukkan email" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> PASSWORD </label>
-                                                                 <input type="password" name="PASSWORD" placeholder="PASSWORD" />
+                                                                 <input type="password" name="PASSWORD" required placeholder="Masukkan Password" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> NAMA LENGKAP </label>
-                                                                 <input type="text" name="NAMA_LENGKAP" placeholder="NAMA LENGKAP" />
+                                                                 <input type="text" name="NAMA_LENGKAP" required  placeholder="Masukkan nama lengkap" />
                                                             </div>
                                                              
                                                             <div class="feild col-md-12">   
                                                             <label> JENIS KELAMIN </label>                                                  
-			                                                    <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" class="form-control" >
-                                                                    <option value="">--PILIH JENIS KELAMIN--</option>
+			                                                    <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" required class="form-control" >
+                                                                    <option value="">--Pilih jenis kelamin--</option>
                                                                     <option value="laki-laki">laki-laki</option>
                                                                     <option value="perempuan">perempuan</option>
                                                                 </select>
@@ -148,22 +153,20 @@
                                                              
                                                             <div class="feild col-md-12"> 
                                                                 <label> TANGGAL LAHIR </label>  
-                                                                <input type="date" name="TGL_LAHIR" class="form-control" />
+                                                                <input type="date" name="TGL_LAHIR" class="form-control" required placeholder="Masukkan tanggal lahir" />
                                                             </div>
                                                           
                                                             <div class="feild col-md-12 ">   
                                                             <label> STATUS</label>                                                    
-			                                                    <select name="STATUS" id="STATUS" class="form-control" >
-                                                                    <option value="">--PILIH STATUS--</option>
+			                                                    <select name="STATUS" id="STATUS" required class="form-control" >
+                                                                    <option value="">--Pilih status--</option>
                                                                     <option value="developer">developer</option>
                                                                     <option value="customer">customer</option>
                                                                 </select>
                                                             </div>
 
-                                                            </div>
-                                                            <div class="feild col-md-12">
-                                                            <label ><a href="login.php"> Sudah punya akun ? Login </a></label>
-                                                            </div>
+                                                            
+
 
                                                             <div class="feild col-md-12">
                                                                  <input type="submit" name="daftar" value="Daftar" />

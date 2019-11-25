@@ -1,0 +1,460 @@
+
+<?php
+
+    $KD_CLUSTER = $_GET['KD_CLUSTER'];
+    $USERNAME=$_SESSION['USERNAME'];
+    $queryProduct = "SELECT perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.TIPE, cluster.STOK, cluster.HARGA, cluster.FASILITAS, cluster.GAMBAR, cluster.GAMBAR1, cluster.GAMBAR2, cluster.LUAS_TANAH, pt.KD_PT, user.USERNAME, marketing.KD_MARKET, marketing.NAMA, marketing.NO_TELEPON, pt.NAMA_PT, pt.KD_PT
+    FROM cluster
+    INNER JOIN perum
+    ON cluster.KD_PERUM=perum.KD_PERUM
+    INNER JOIN pt
+    ON perum.KD_PT=pt.KD_PT
+    INNER JOIN user
+    ON pt.USERNAME=user.USERNAME
+    INNER JOIN marketing
+    ON user.USERNAME=marketing.USERNAME
+    WHERE cluster.KD_CLUSTER=$KD_CLUSTER";
+    
+    $rsProduct = mysqli_query($konek, $queryProduct);
+     $row = mysqli_fetch_assoc($rsProduct);
+    $queryKomentar = "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+    FROM diskusi
+    INNER JOIN cluster
+    ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
+    INNER JOIN perum
+    ON cluster.KD_PERUM=perum.KD_PERUM
+    INNER JOIN pt
+    ON perum.KD_PT=pt.KD_PT
+    INNER JOIN user
+    ON diskusi.USERNAME=user.USERNAME
+    WHERE diskusi.KD_CLUSTER=$KD_CLUSTER";
+    $rsKomentar = mysqli_query($konek, $queryKomentar);
+
+    $queryReview = "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.RATING, review.FOTO_REV, user.USERNAME, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
+    FROM review
+    INNER JOIN cluster
+    ON review.KD_CLUSTER=cluster.KD_CLUSTER
+    INNER JOIN perum
+    ON cluster.KD_PERUM=perum.KD_PERUM
+    INNER JOIN pt
+    ON perum.KD_PT=pt.KD_PT
+    INNER JOIN user
+    ON review.USERNAME=user.USERNAME
+    WHERE review.KD_CLUSTER=$KD_CLUSTER";
+    $rsReview = mysqli_query($konek, $queryReview);
+
+    $query=  "SELECT AVG(RATING) FROM review WHERE KD_CLUSTER='$KD_CLUSTER'";
+    $rsq= mysqli_query($konek, $query);
+?>
+<!-- Breadcrumbs -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li>=
+          <a href="index.php">Beranda</a>
+        </li>
+        <li>
+          <a href="?p=buku&halaman=1">Cluster</a>
+        </li>
+        <li class="active">
+          <?php echo $row['NAMA_CLUSTER']; ?>
+
+        </li>
+      </ol> <!-- end breadcrumbs -->
+    </div>
+
+    <!-- Single Product -->
+    <section class="section-wrap single-product">
+      <div class="container relative">
+        <div class="row">
+        <?php 
+            if(isset($_GET['a'])){ 
+                $alert = $_GET['a'];
+                if ($alert=='komentar_sukses'){
+        ?>
+        <div class="col-sm-12 col-xs-12">
+            <div class="alert alert-success fade in alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Sukses!</strong> Komentar Anda telah ditambahkan
+            </div>
+        </div>
+            <?php } else { ?>
+        <div class="col-sm-12 col-xs-12">
+            <div class="alert alert-danger fade in alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Gagal!</strong> Komentar Anda gagal ditambahkan
+            </div>
+        </div>
+        <?php } } ?>
+
+
+
+          <div class="col-sm-6 col-xs-12 mb-60">
+
+            <div class="flickity  mfp-hover" id="gallery-main">
+
+              <div class="gallery-cell">
+                <a href="img/perum/<?php echo $row['GAMBAR']; ?>" class="lightbox-img">
+                  <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/perum/<?php echo $row['GAMBAR1']; ?>" class="lightbox-img">
+                  <img src="img/perum/<?php echo $row['GAMBAR1']; ?>" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/perum/<?php echo $row['GAMBAR2']; ?>" class="lightbox-img">
+                  <img src="img/perum/<?php echo $row['GAMBAR2']; ?>" alt="" />
+                </a>
+              </div>
+            </div> <!-- end gallery main -->
+            <d3 ><a href="#" data-toggle="modal" data-target=".tambah" class="fa fa-flag" > Laporkan iklan </a></d3>
+     
+          </div> <!-- end col img slider -->
+
+
+
+
+
+          <div class="col-sm-6 col-xs-12 product-description-wrap">
+            <h1 class="product-title"><?php echo $row['NAMA_CLUSTER']; ?></h1>
+            <span>
+            <?php 
+            while ($data = mysqli_fetch_assoc($rsq))
+{
+    ?>
+            <?php 
+                $x = $data['AVG(RATING)'];
+                $j = 5-$x;
+                for ($i=0; $i<$x ; $i++) {
+            ?>
+              <span class="icon_star" style="color:#f39c12;"></span>
+            <?php } for ($i=0; $i<$j ; $i++) { ?>
+              <span class="icon_star_alt" style="color:#f39c12;"></span>
+            <?php } }?>
+            </span>
+            <span class="price">
+              <ins>
+                <span class="ammount text-danger">
+                    <?php
+                        $harga = number_format($row['HARGA'], 2, ",", ".");
+                        echo "Rp.".$harga;
+                    ?>
+                </span>
+              </ins>
+            </span>
+            
+
+            <div class="product_meta">
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <td width="5px"><span class="icon_book"></span></td>
+                        <td><span class="sku">TIPE</td>
+                        <td><?php echo $row['TIPE']; ?></span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_documents"></span></td>
+                        <td><span class="tagged_as">LUAS TANAH</td>
+                        <td><?php echo $row['LUAS_TANAH']; ?> </span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_printer-alt"></span></td>
+                        <td><span class="posted_in">STOK</td>
+                        <td><?php echo $row['STOK']; ?></span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td><span class="posted_in">NAMA PT</td>
+                        <td><?php echo $row['NAMA_PT']; ?></a></span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td><span class="posted_in">NAMA PERUM</td>
+                        <td><a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM'] ?>&halaman=1" target="_blank">
+                            <?php echo $row['NAMA_PERUM']; ?></a></span></td>
+                    </tr>
+                    <tr>
+                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td><span class="posted_in">KONTAK</td>
+                        <td> <?php echo $row['NO_TELEPON']; ?></a></span></td>
+                        <td> <?php echo $row['NAMA']; ?></a></span></td>
+                            
+                    </tr>
+                </table>
+                <!-- tabs -->
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="tabs tabs-bb">
+                    <ul class="nav nav-tabs">                                 
+                        <li class="active">
+                        <a href="#tab-description" data-toggle="tab">Fasilitas</a>
+                        </li>    
+                        <li>
+                        <a href="#tab-reviews" data-toggle="tab">Diskusi</a>
+                        </li>                               
+
+                        <li >
+                        <a href="#tab-ulasan" data-toggle="tab">Review</a>
+                        </li>                                  
+                      
+                                           
+                    </ul> <!-- end tabs -->
+                    
+                    <!-- tab content -->
+                    <div class="tab-content">
+
+                        
+                    <div class="tab-pane fade in active" id="tab-description">
+                        <p align="justify">
+                            <?php echo htmlspecialchars_decode(stripcslashes($row['FASILITAS'])); ?>
+                        </p>
+                        </div>     
+                 
+
+
+ 
+                        <div class="tab-pane fade" id="tab-reviews">
+
+                        <div class="reviews">
+                            <ul class="reviews-list">
+                            <form action="lib/proses.php" name="komentar" method="post">
+                            <div align="right" class="streaming-table">
+                            <a href="#" data-toggle="modal" data-target=".tambah1" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Diskusi</a>
+                             </div>
+
+                             </form> 
+                             </br>
+                            <?php if(mysqli_num_rows($rsKomentar)==0) { ?>
+                                <div class="review-body">
+                                <div class="review-content">
+                                    <h3 class="text-center">Belum ada diskusi pada buku ini</h3>
+                                </div>
+                                </div>
+                            <?php 
+                                } else { 
+                                    while($row=mysqli_fetch_assoc($rsKomentar)){ 
+                            ?>
+                            
+                            <li>
+                                <div class="review-body">
+                                <div class="review-content">
+                                    <p class="review-author"><strong><?php echo $row['USERNAME']; ?></strong><small> - <?php echo $row['TGLWAKTU_DIS']; ?></small></p>
+                                    <p align="justify">
+                                        <?php
+                                             echo $row['ISI_DIS'];
+                                        ?>
+                                    </p>
+                                </div>
+                                </div>
+                            </li>
+                            <br><hr><br>
+                            <?php  }} ?>
+                            </ul>         
+                        </div> <!--  end reviews -->
+                        </div> 
+
+<div class="tab-pane fade" id="tab-ulasan">
+
+<div class="ulasan">
+    <ul class="ulasan-list">
+    <form action="lib/proses.php" name="ulasan" method="post">
+    <div align="right" class="streaming-table">
+                            <a href="#" data-toggle="modal" data-target=".tambah2" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Review</a>
+                             </div>
+     </form>
+     </br>
+    <?php if(mysqli_num_rows($rsReview)==0) { ?>
+        <div class="ulasan-body">
+        <div class="ulasan-content">
+            <h3 class="text-center">Belum ada review pada buku ini</h3>
+        </div>
+        </div>
+    <?php 
+        } else { 
+            while($row1=mysqli_fetch_assoc($rsReview)){ 
+    ?>
+    
+    <li>
+        <div class="ulasan-body">
+        <div class="ulasan-content">
+            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><small> - <?php echo $row1['TGLWAKTU_REV']; ?></small></p>
+            <p align="justify">
+              
+            <td>
+                                                <?php 
+                                                    $x = $row1['RATING'];
+                                                    $j = 5-$x;
+                                                    for ($i=0; $i<$x ; $i++) {
+                                                ?>
+                                                <i class="fa fa-star" style="color:#f39c12;"></i>
+                                                <?php } for ($i=0; $i<$j ; $i++) { ?>
+                                                <i class="fa fa-star-o" style="color:#f39c12;"></i>
+                                                <?php } ?>
+                                            </td>
+                                                </br></br>
+              <?php
+                     echo $row1['ISI_REV'];
+                     
+                ?>
+                </br></br>
+                <td>
+                     <a data-fancybox="gallery" href="../home/img/perum/<?php echo $row1['FOTO_REV']; ?>">
+                      <img src="../home/img/perum/<?php echo $row1['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                        </a>
+                          </td>
+            </p>
+        </div>
+        </div>
+    </li>
+    <br><hr><br>
+    <?php  }} ?>
+    </ul>         
+</div>
+
+
+                        </div>
+                      
+                    </div> <!-- end tab content -->
+
+                    </div>
+                </div> <!-- end tabs -->
+                </div> <!-- end row -->
+            </div>
+
+          </div> <!-- end col product description -->
+        </div> <!-- end row -->
+
+                                  
+        
+      </div> <!-- end container -->
+    </section> <!-- end single product -->
+    <div class="modal fade tambah" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Laporkan Iklan ini</h4>
+            </div>
+            <div class="modal-body">
+                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                    <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
+
+                    
+                    <div class="form-group">
+                        <label for="ISI_REP">Isi Laporan</label>
+                        <input type="text" name="ISI_REP" placeholder="Masukkan isi laporan" class="form-control">
+                     </div>
+                        
+            <div class="modal-footer">
+                <div align="center" class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-md" name="report2">Kirim Laporan</button>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            </form>            
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade tambah1" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Diskusi</h4>
+            </div>
+            <div class="modal-body">
+                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                    <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
+
+                    
+                    <div class="form-group">
+                        <label for="ISI_DIS">Isi Diskusi</label>
+                        <input type="text" name="ISI_DIS" placeholder="Masukkan isi diskusi" class="form-control">
+                     </div>
+                        
+            <div class="modal-footer">
+                <div align="center" class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-md" name="komentar2">Kirim Diskusi</button>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            </form>            
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade tambah2" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Review</h4>
+            </div>
+            <div class="modal-body">
+                <form action="lib/proses.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                    <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
+
+                    
+                    <div class="form-group">
+                        <label for="ISI_REV">Isi Review</label>
+                        <input type="text" name="ISI_REV" placeholder="Masukkan isi review" class="form-control">
+                     </div>
+                     <div class="form-group">
+                            <label for="RATING">Rating</label>
+                            <select name="RATING" id="RATING" class="form-control" style="font-family:'FontAwesome', Arial; color:#f39c12;">
+                                <option value="0">
+                                    &#xf006;&#xf006;&#xf006;&#xf006;&#xf006;
+                                </option>
+                                <option value="1">
+                                    &#xf005;&#xf006;&#xf006;&#xf006;&#xf006;
+                                </option>
+                                <option value="2">
+                                    &#xf005;&#xf005;&#xf006;&#xf006;&#xf006;
+                                </option>
+                                <option value="3">
+                                    &#xf005;&#xf005;&#xf005;&#xf006;&#xf006;
+                                </option>
+                                <option value="4">
+                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf006;
+                                </option>
+                                <option value="5">
+                                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="FOTO_REV">Foto Review</label>
+                            <input type="file" id="FOTO_REV" name="FOTO_REV" class="form-control">
+                        </div>
+            <div class="modal-footer">
+                <div align="center" class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-md" name="ulasan2">Kirim Review</button>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            </form>            
+            </div>
+        </div>
+    </div>

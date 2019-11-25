@@ -16,22 +16,22 @@
                         ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Sukses!</strong> Penambahan data kategori baru berhasil.
+                            <strong>Insert Sukses!</strong> Penambahan data profil baru berhasil.
                         </div>
                         <?php } else if($alert=='insert_gagal'){ ?>
                         <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Insert Gagal!</strong> Penambahan data kategori baru gagal.
+                            <strong>Insert Gagal!</strong> Penambahan data profil baru gagal.
                         </div>
                         <?php } else if($alert=='update_sukses'){ ?>
                         <div role="alert" class="alert color green-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data kategori berhasil.
+                            <strong>Update Sukses!</strong> Pembaharuan data profil berhasil.
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>
                         <div role="alert" class="alert color blue-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Hapus sukses!</strong> Penghapusan data kategori berhasil.
+                            <strong>Hapus sukses!</strong> Penghapusan data profil berhasil.
                         </div>
                         <?php } } ?>
           <div class="main-title-sec">
@@ -51,7 +51,7 @@
                                </div><!-- Widget Controls -->
                               </div>
                               <div class="with-padding">                                          
-                                  <form action="../admin/lib/proses.php/" method="post" enctype="multipart/form-data">
+                                  <form action="pages/profil/proses.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <?php 
                                             
@@ -59,31 +59,31 @@
                                         ?>
                                        
                                        
-                                        <img src="../admin/images/<?php echo $row['FOTO']; ?>" height="100px" width="100px" >
+                                        <img src="pages/profil/images/<?php echo $row['FOTO']; ?>" height="100px" width="100px" >
                                         <br>
 
                                         <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>">
                                        
-                                        <label for="USERNAME">username</label>
+                                        <label for="USERNAME">Username</label>
                                         <input type="text" name="USERNAME" class="form-control" value="<?php echo $row['USERNAME']; ?>">
-                                        <label for="EMAIL">email</label>
+                                        <label for="EMAIL">Email</label>
                                         <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">
-                                        <label for="PASSWORD">password</label>
+                                        <label for="PASSWORD">Password</label>
                                         <input type="password" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
                                     
 
                                            
-                                        <label for="NAMA_LENGKAP">Nama lengkap</label>
+                                        <label for="NAMA_LENGKAP">Nama Lengkap</label>
                                         <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">
                                     
 
                                    
-                                        <label for="TGL_LAHIR">tanggal lahir</label>
+                                        <label for="TGL_LAHIR">Tanggal Lahir</label>
                                         <input type="date" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">
                                     
 
                                     
-                                        <label for="JENIS_KELAMIN">jenis kelamin</label>
+                                        <label for="JENIS_KELAMIN">Jenis Kelamin</label>
                                         <input type="text" name="JENIS_KELAMIN" class="form-control" value="<?php echo $row['JENIS_KELAMIN']; ?>">
                                     
                                        
@@ -95,7 +95,7 @@
                                     </div>
                                             
                                     <div class="form-group">
-                                        <button type="submit" class="c-btn large blue-bg" name="update_profil">Simpan</button>
+                                        <button type="submit" class="c-btn large blue-bg" >Simpan</button>
                                         </div>
                                 </form>
                               </div>

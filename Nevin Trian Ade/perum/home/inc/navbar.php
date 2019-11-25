@@ -66,6 +66,35 @@
                       <a href="index.php">Beranda</a>
                     </li>
 
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perumahan</a>
+                      <ul class="dropdown-menu megamenu">
+                        <li>
+                          <div class="megamenu-wrap">
+                            <div class="row">
+                              <?php 
+                                $kat = "SELECT KD_PERUM FROM perum";
+                                $result = mysqli_query($konek, $kat);
+                                $i = 0;
+                                while(mysqli_fetch_assoc($result)){
+                                  $sql[$i] = "SELECT KD_PERUM, NAMA_PERUM FROM perum ORDER BY NAMA_PERUM LIMIT $i, 4";
+                                  $hasil = mysqli_query($konek, $sql[$i]);
+                                  if($i%4==0){
+                              ?>
+                                <div class="col-md-3 megamenu-item">
+                                  <ul class="menu-list">
+                                    <?php while($row = mysqli_fetch_assoc($hasil)){ ?>
+                                    <li><a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM']; ?>&halaman=1"><?php echo $row['NAMA_PERUM']; ?></a></li>
+                                    <?php } ?>
+                                  </ul>
+                                </div>
+                              <?php } $i++; } ?>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li> <!-- end categories -->
+
                   
                     <li class="dropdown">
                       <a href="#">Informasi</a>
@@ -75,6 +104,14 @@
                       </ul>
                     </li>
 
+                    <li class="dropdown">
+                      <a href="#">Bantuan</a>
+                      <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
+                      <ul class="dropdown-menu">
+                        <li><a href="?p=contact">Kontak Kami</a></li>
+                        <li><a href="?p=faq">F.A.Q</a></li>
+                      </ul>
+                    </li>
                    
                     <li class="dropdown">
                       <a href="../login/login.php">Akun</a>
