@@ -14,8 +14,7 @@ $USERNAME = $_POST['USERNAME'];
 	$EMAIL= $_POST['EMAIL'];
 	$PASSWORD= $_POST['PASSWORD'];
 	$NAMA_LENGKAP =$_POST['NAMA_LENGKAP'];
-	$JENIS_KELAMIN = $_POST['JENIS_KELAMIN'];
-	$TGL_LAHIR = $_POST['TGL_LAHIR'];
+
 	$FOTO= $_FILES['FOTO']['name'];
 	$tmp = $_FILES['FOTO']['tmp_name'];
 	$gambarbaru = date('dmYHis').$FOTO;
@@ -29,7 +28,7 @@ $USERNAME = $_POST['USERNAME'];
 			unlink("images/" .$data['FOTO']); // Hapus file foto sebelumnya yang ada di folder images
 		
 		// Proses ubah data ke Database
-		$query = "UPDATE user SET USERNAME='$USERNAME', EMAIL='$EMAIL', PASSWORD='$PASSWORD', NAMA_LENGKAP='$NAMA_LENGKAP', TGL_LAHIR='$TGL_LAHIR', JENIS_KELAMIN='$JENIS_KELAMIN', FOTO='$gambarbaru'
+		$query = "UPDATE user SET USERNAME='$USERNAME', EMAIL='$EMAIL', PASSWORD='$PASSWORD', NAMA_LENGKAP='$NAMA_LENGKAP', FOTO='$gambarbaru'
 		WHERE user.USERNAME='$USERNAME'";
 		$sql = mysqli_query($konek, $query); // Eksekusi/ Jalankan query dari variabel $query
 

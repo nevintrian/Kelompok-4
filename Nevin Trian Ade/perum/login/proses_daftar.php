@@ -5,7 +5,7 @@ include "koneksi.php";
 // Ambil Data yang Dikirim dari Form
 
 $USERNAME = $_POST["USERNAME"];
-$PASSWORD = $_POST["PASSWORD"];
+$PASSWORD = md5($_POST["PASSWORD"]);
 $STATUS = $_POST['STATUS'];
 $EMAIL = $_POST['EMAIL'];
 $NAMA_LENGKAP= $_POST['NAMA_LENGKAP'];

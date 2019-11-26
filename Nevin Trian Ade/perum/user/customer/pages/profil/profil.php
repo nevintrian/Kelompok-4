@@ -79,12 +79,12 @@
 
                                    
                                         <label for="TGL_LAHIR">Tanggal Lahir</label>
-                                        <input type="date" name="TGL_LAHIR" class="form-control" value="<?php echo $row['TGL_LAHIR']; ?>">
+                                        <input type="date" name="TGL_LAHIR" class="form-control" readonly value="<?php echo $row['TGL_LAHIR']; ?>">
                                     
 
                                     
                                         <label for="JENIS_KELAMIN">Jenis Kelamin</label>
-                                        <input type="text" name="JENIS_KELAMIN" class="form-control" value="<?php echo $row['JENIS_KELAMIN']; ?>">
+                                        <input type="text" name="JENIS_KELAMIN" class="form-control" readonly value="<?php echo $row['JENIS_KELAMIN']; ?>">
                                     
                                        
                                     

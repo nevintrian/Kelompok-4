@@ -30,7 +30,8 @@
   <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 
 </head>
-
+<script type = "text/javascript" > history.pushState(null, null); window.addEventListener('popstate', function(event) { history.pushState(null, null); }); </script> 
+<body class="relative">
 <body class="relative">
 
   
