@@ -8,7 +8,7 @@ if (mysqli_connect_errno()){
  
 // mengaktifkan session pada php
 session_start();
- 
+
 // menghubungkan php dengan koneksi database
 include 'koneksi.php';
  
@@ -19,7 +19,7 @@ $PASSWORD = md5($_POST['PASSWORD']);
 
  
 // menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($koneksi,"select * from user WHERE (USERNAME = '$USERNAME' OR EMAIL = '$USERNAME') AND PASSWORD = '$PASSWORD'");
+$login = mysqli_query($koneksi,"select * from user WHERE USERNAME = '$USERNAME' AND PASSWORD = '$PASSWORD'");
 // menghitung jumlah data yang ditemukan
 $cek = mysqli_num_rows($login);
  

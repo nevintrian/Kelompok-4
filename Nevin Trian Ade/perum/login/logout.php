@@ -1,9 +1,9 @@
 
-
 <?php
-
+    //mengaktifkan sesion
     session_start();
-    session_unset();
+    //menghapus semua sesion
     session_destroy();
-    header("location:../home/index.php");
+    header("location:login.php");
     die();
+    ?>

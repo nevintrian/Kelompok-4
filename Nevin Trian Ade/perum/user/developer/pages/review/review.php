@@ -192,25 +192,26 @@
 			                    <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
 			                      <input type="file" name="FOTO_REV" class="form-control"> 
                           </div>
-                        <div class="form-group">
+                          <div class="form-group">
                             <label for="RATING">Rating</label>
-                            <select name="RATING" id="RATING_edit" class="form-control" style="font-family:'FontAwesome', Arial; color:#f39c12;">
-                                <option value="0" id="nol">
+                            <select name="RATING" id="RATING" class="form-control" style="font-family:'FontAwesome', Arial; color:#f39c12;">
+                                
+                                <option value=""<?php if( $row['RATING'] == ''){ echo 'selected';}  ?>>
                                     &#xf006;&#xf006;&#xf006;&#xf006;&#xf006;
                                 </option>
-                                <option value="1" id="satu">
+                                <option value="1"  <?php if( $row['RATING'] == '1'){ echo 'selected';}  ?>>
                                     &#xf005;&#xf006;&#xf006;&#xf006;&#xf006;
                                 </option>
-                                <option value="2" id="dua">
+                                <option value="2" <?php if( $row['RATING'] == '2'){ echo 'selected';}  ?>>
                                     &#xf005;&#xf005;&#xf006;&#xf006;&#xf006;
                                 </option>
-                                <option value="3" id="tiga">
+                                <option value="3"  <?php if( $row['RATING'] == '3'){ echo 'selected';}  ?>>
                                     &#xf005;&#xf005;&#xf005;&#xf006;&#xf006;
                                 </option>
-                                <option value="4" id="empat">
+                                <option value="4" <?php if( $row['RATING'] == '4'){ echo 'selected';}  ?>>
                                     &#xf005;&#xf005;&#xf005;&#xf005;&#xf006;
                                 </option>
-                                <option value="5" id="lima">
+                                <option value="5" <?php if( $row['RATING'] == '5'){ echo 'selected';}  ?>>
                                     &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
                                 </option>
                             </select>

@@ -5,10 +5,10 @@
           <a href="index.php">Beranda</a>
         </li>
         <li>
-          <a href="?p=buku&halaman=1">Buku</a>
+          <a href="?p=buku&halaman=1">Perumahan</a>
         </li>
         <li class="active">
-          Koleksi Buku
+          Cluster
         </li>
       </ol> <!-- end breadcrumbs -->
     </div>
@@ -63,11 +63,11 @@
                             <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
                             <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                         </a>
-                        <a href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
+                        <a href="?p=bukudetail/buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                         </div>
                         <div class="product-details">
                         <h3>
-                            <a title="<?php $row['NAMA_CLUSTER']; ?>" class="product-title" href="?p=buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
+                            <a title="<?php $row['NAMA_CLUSTER']; ?>" class="product-title" href="?p=bukudetail/buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>"><b><?php echo substr($row['NAMA_CLUSTER'], 0, 35); if(strlen($row['NAMA_CLUSTER'])>35) echo  "..." ?></b></a>
                         </h3>
                         <span class="price">
                             <ins>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -32,6 +34,8 @@
     <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
 
 </head>
+<script type = "text/javascript" > history.pushState(null, null); window.addEventListener('popstate', function(event) { history.pushState(null, null); }); </script> 
+<body class="relative">
 <body>
 <main class="content-wrapper oh">
     <?php
@@ -131,7 +135,7 @@
                                                        <div class="row">
                                                             <div class="feild col-md-12">
                                                             <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" required placeholder="Masukkan email atau username" />
+                                                                 <input type="text" name="USERNAME" required placeholder="Masukkan username" />
                                                             
                                                             </div>
                                                             <div class="feild col-md-12">

@@ -16,7 +16,7 @@
                 <img src="../user/admin/pages/slider/images/<?php echo $row['GAMBAR_SLIDER']; ?>" alt="" style="height:536px; width:100%">
                 <div class="img-holder img-<?php echo $row['GAMBAR_SLIDER']; ?>"></div>
                 <div class="hero-holder text-center right-align">
-                  <div class="hero-lines">
+                  <div>
                     <h1 class="hero-heading white"><?php echo $row['JUDUL']; ?></h1>
                     <h4 class="hero-subheading white uppercase"><?php echo $row['KETERANGAN']; ?></h4>
                   </div>
