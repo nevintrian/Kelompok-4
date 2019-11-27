@@ -68,9 +68,7 @@
                                         <input type="text" name="USERNAME" class="form-control" value="<?php echo $row['USERNAME']; ?>">
                                         <label for="EMAIL">Email</label>
                                         <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">
-                                        <label for="PASSWORD">Password</label>
-                                        <input type="password" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
-                                    
+                                      
 
                                            
                                         <label for="NAMA_LENGKAP">Nama Lengkap</label>
@@ -86,6 +84,12 @@
                                         <label for="JENIS_KELAMIN">Jenis Kelamin</label>
                                         <input type="text" name="JENIS_KELAMIN" class="form-control" readonly value="<?php echo $row['JENIS_KELAMIN']; ?>">
                                     
+                                        <label for="PASSWORD">Password</label>
+                                        <input type="password" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
+                                       
+                                        <label for="PASSWORD1">Password</label>
+                                        <input type="password" name="PASSWORD1" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
+
                                        
                                     
    
