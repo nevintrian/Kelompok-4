@@ -135,10 +135,9 @@
                                 <form role="form" action="pages/chat/balaschat.php" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="USERNAME" value="<?php echo $_SESSION['USERNAME']; ?>">
                                 <input type="hidden" name="PENERIMA" value="<?php echo  $USERNAME1;?>">   
-                            <div class="form-group">
-                                        <input type="text" name="ISI_CHAT" placeholder="Masukkan isi chat" class="form-control">
+                            <div class="modal-footer">
+                                        <textarea type="text" name="ISI_CHAT" placeholder="Masukkan isi chat" class="form-control"></textarea>
                             </div>
-
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Kirim</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

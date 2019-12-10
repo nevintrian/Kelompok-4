@@ -39,7 +39,7 @@
                          <div class="heading-profile">
                               <h2>Data Review</h2>
                               <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
-                         
+                             
                          </div>
                     </div>
                </div>
@@ -84,7 +84,7 @@
                                           ON cluster.KD_PERUM=perum.KD_PERUM
                                           INNER JOIN user
                                           ON user.USERNAME=review.USERNAME
-                                          WHERE user.USERNAME='$USERNAME'");
+                                          WHERE review.USERNAME='$USERNAME'");
          
                           while ($data = mysqli_fetch_assoc($query)) 
                                     {
@@ -173,7 +173,7 @@
                         </div>
                         <div class="form-group">
                           <label>Isi Review</label>
-                          <input type="text" name="ISI_REV" class="form-control" required value="<?php echo $row['ISI_REV']; ?>">      
+                          <textarea type="text" name="ISI_REV" class="form-control" readonly ><?php echo $row['ISI_REV']; ?></textarea>      
                         </div>
                         <div class="form-group">
                           <label>Nama Perumahan</label>

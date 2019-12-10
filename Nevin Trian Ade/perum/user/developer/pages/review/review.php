@@ -37,17 +37,15 @@
                     </div>
                     <div class="col-md-20 column">
                          <div class="heading-profile">
-                              <h2>Data Review Masuk</h2>
-                              <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
-                              <a href="?p=review/review"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_REV']; ?>"class="c-btn small blue-bg buzz edit_button">Review Masuk</a>
-                              <a href="?p=review/review_kirim"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_REV']; ?>" class="c-btn small green-bg buzz delete_button">Review Terkirim</a>
+                              <h2>Data Review</h2>
+                             
                          </div>
                     </div>
                </div>
           </div><!-- Heading Sec -->
           <ul class="breadcrumbs">
                <li><a href="#" title="">Beranda</a></li>
-               <li>Data Review Masuk</li>
+               <li>Data Review</li>
           </ul>
           <div class="main-content-area">
                <div class="row">
@@ -290,11 +288,9 @@
                         </a>
                                                 </div>
                                                 </br>
-                        <div class="modal-footer">
-                                <textarea type="text" name="ISI_REV1" placeholder="Masukkan isi review" class="form-control"></textarea>
-                        </div>
+                        
                         <div class="modal-footer">  
-                          <button type="submit" class="btn btn-success">Kirim</button>
+                         
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                         <?php 

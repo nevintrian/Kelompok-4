@@ -17,7 +17,7 @@ if(isset($_POST['ubah_foto'])){
 		$query = "SELECT * FROM review WHERE KD_REV='$KD_REV'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("../../home/img/" .$data['FOTO_REV'])) // Jika foto ada
+		if(is_file("../../../../home/img/" .$data['FOTO_REV'])) // Jika foto ada
 			unlink("../../../../home/img/" .$data['FOTO_REV']); // Hapus file foto sebelumnya yang ada di folder 
 		
 		// Proses ubah data ke Database

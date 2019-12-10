@@ -107,7 +107,7 @@
     </a>
   </div>
 </div> <!-- end gallery main -->
-<d3 ><a href="#" data-toggle="modal" data-target=".tambah" class="fa fa-flag" > Laporkan iklan </a></d3>
+
 
 </div> <!-- end col img slider -->
 
@@ -262,7 +262,7 @@
                             <?php if(mysqli_num_rows($rsKomentar)==0) { ?>
                                 <div class="review-body">
                                 <div class="review-content">
-                                    <h3 class="text-center">Belum ada diskusi pada buku ini</h3>
+                                    <h3 class="text-center">Belum ada diskusi</h3>
                                 </div>
                                 </div>
                             <?php 
@@ -316,7 +316,7 @@
     <?php if(mysqli_num_rows($rsReview)==0) { ?>
         <div class="ulasan-body">
         <div class="ulasan-content">
-            <h3 class="text-center">Belum ada review pada buku ini</h3>
+            <h3 class="text-center">Belum ada review</h3>
         </div>
         </div>
     <?php 

@@ -156,8 +156,7 @@
                 </a>
               </div>
             </div> <!-- end gallery main -->
-            <d3 ><a href="#" data-toggle="modal" data-target=".tambah" class="fa fa-flag" > Laporkan iklan </a></d3>
-     
+           
           </div> <!-- end col img slider -->
 
 
@@ -257,9 +256,7 @@
                         <li >
                         <a href="#tab-ulasan" data-toggle="tab">Review</a>
                         </li>  
-                        <li >
-                        <a href="#tab-chat" data-toggle="tab">Chat</a>
-                        </li>                                  
+                                                
                       
                                            
                     </ul> <!-- end tabs -->
@@ -318,16 +315,11 @@
 
 <div class="reviews">
     <ul class="reviews-list">
-    <form action="lib/proses.php" name="komentar" method="post">
-    <div align="right" class="streaming-table">
-    <a href="#" data-toggle="modal" data-target=".tambah1" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Diskusi</a>
-     </div>
-        </form> 
-        </br>
+
     <?php if(mysqli_num_rows($rsKomentar)==0) { ?>
         <div class="review-body">
         <div class="review-content">
-            <h3 class="text-center">Belum ada diskusi pada buku ini</h3>
+            <h3 class="text-center">Belum ada diskusi</h3>
         </div>
         </div>
     <?php 
@@ -357,16 +349,11 @@ echo $s;
 
 <div class="ulasan">
     <ul class="ulasan-list">
-    <form action="lib/proses.php" name="ulasan" method="post">
-    <div align="right" class="streaming-table">
-                            <a href="#" data-toggle="modal" data-target=".tambah2" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Review</a>
-                             </div>
-     </form>
-     </br>
+   
     <?php if(mysqli_num_rows($rsReview)==0) { ?>
         <div class="ulasan-body">
         <div class="ulasan-content">
-            <h3 class="text-center">Belum ada review pada buku ini</h3>
+            <h3 class="text-center">Belum ada review </h3>
         </div>
         </div>
     <?php 
