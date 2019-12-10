@@ -26,8 +26,8 @@
               <div class="product-item">
                 <div class="product-img">
                   <a href="#">
-                    <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
-                    <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
+                    <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
+                    <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                   </a>
                   <a href="?p=bukudetail/buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                 </div>
@@ -73,8 +73,8 @@
               <div class="product-item">
                 <div class="product-img">
                   <a href="#">
-                    <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
-                    <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
+                    <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
+                    <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                   </a>
                   <a href="?p=buku&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                 </div>

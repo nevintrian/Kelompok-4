@@ -37,16 +37,17 @@
                     </div>
                     <div class="col-md-20 column">
                          <div class="heading-profile">
-                              <h2>Data Review</h2>
+                              <h2>Data Review Masuk</h2>
                               <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
-                         
+                              <a href="?p=review/review"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_REV']; ?>"class="c-btn small blue-bg buzz edit_button">Review Masuk</a>
+                              <a href="?p=review/review_kirim"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_REV']; ?>" class="c-btn small green-bg buzz delete_button">Review Terkirim</a>
                          </div>
                     </div>
                </div>
           </div><!-- Heading Sec -->
           <ul class="breadcrumbs">
                <li><a href="#" title="">Beranda</a></li>
-               <li>Data Review</li>
+               <li>Data Review Masuk</li>
           </ul>
           <div class="main-content-area">
                <div class="row">
@@ -69,7 +70,7 @@
                                           <th>Tanggal Review</th>
                                           <th>Foto Review</th>
                                           <th>Rating</th>
-                                          <th>Hapus Review</th>
+                                          <th>Lihat Review</th>
                                         </tr>
                                     </thead>    
                                     <tbody>
@@ -84,7 +85,7 @@
                                           ON cluster.KD_PERUM=perum.KD_PERUM
                                           INNER JOIN user
                                           ON user.USERNAME=review.USERNAME
-                                          WHERE user.USERNAME='$USERNAME'");
+                                          WHERE review.PENERIMA_REV='$USERNAME'");
          
                           while ($data = mysqli_fetch_assoc($query)) 
                                     {
@@ -112,8 +113,8 @@
                                             <td><?php echo $data['NAMA_CLUSTER']; ?></td>
                                             <td><?php echo $data['TGLWAKTU_REV']; ?></td>
                                             <td>
-                                                <a data-fancybox="gallery" href="pages/review/images/<?php echo $data['FOTO_REV']; ?>">
-                                                    <img src="pages/review/images/<?php echo $data['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['FOTO_REV']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
@@ -128,8 +129,7 @@
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_REV']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_REV']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_REV']; ?>" class="c-btn small green-bg buzz delete_button">Lihat</a>
                                             </td>
                                         </tr>
                                         
@@ -235,10 +235,10 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Review</h4>
+                <h4 class="modal-title">Lihat Data Review</h4>
             </div>
             <div class="modal-body">
-            <form role="form" action="pages/review/delrev.php" method="get">
+            <form role="form" action="pages/review/balas_rev.php" method="post">
             <?php
                         $KD_REV = $data['KD_REV']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM review
@@ -253,33 +253,48 @@
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
                         <input type="hidden" name="KD_REV" value="<?php echo $row['KD_REV']; ?>">
-                        <div class="form-group">
-                          <label>Username</label>
-                          <input type="text" name="USERNAME" class="form-control" readonly value="<?php echo $row['USERNAME']; ?>">      
+                        <input type="hidden" name="KD_CLUSTER" value="<?php echo $row['KD_CLUSTER']; ?>">
+                        <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
+                        <input type="hidden" name="USERNAME1" value="<?php echo $_SESSION['USERNAME']; ?>">
+                        <p class="review-author"><strong><?php echo $data['USERNAME']; ?></strong><small> - <?php echo $data['TGLWAKTU_REV']; ?></small></p>
+                        <div>
+                                                <?php 
+                                                    $x = $row['RATING'];
+                                                    $j = 5-$x;
+                                                    for ($i=0; $i<$x ; $i++) {
+                                                ?>
+                                                <i class="fa fa-star" style="color:#f39c12;"></i>
+                                                <?php } for ($i=0; $i<$j ; $i++) { ?>
+                                                <i class="fa fa-star-o" style="color:#f39c12;"></i>
+                                                <?php } ?>
+                                                </div>
+                                                </br>
+                        <div>
+                                                <?php
+                                                    $text = $data['ISI_REV'];
+                                                    $strip = strip_tags(stripcslashes($text), '<a>');
+                                                    // echo $strip;
+                                                ?>
+                                                <div role="alert" class="alert color skyblue-bg">
+                                                    <?php
+                                                        echo substr($strip, 0, 80);
+                                                        if(strlen(trim($strip))>80) echo " [...]";
+                                                    ?>
+                                                </div>
                         </div>
-                        <div class="form-group">
-                          <label>Status</label>
-                          <input type="text" name="STATUS" class="form-control" readonly value="<?php echo $row['STATUS']; ?>">      
+                        
+                                                
+                        <div>
+                     <a data-fancybox="gallery" href="../../home/img/<?php echo $row['FOTO_REV']; ?>">
+                      <img src="../../home/img/<?php echo $row['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                        </a>
+                                                </div>
+                                                </br>
+                        <div class="modal-footer">
+                                <textarea type="text" name="ISI_REV1" placeholder="Masukkan isi review" class="form-control"></textarea>
                         </div>
-                        <div class="form-group">
-                          <label>Isi Review</label>
-                          <input type="text" name="ISI_REV" class="form-control" readonly value="<?php echo $row['ISI_REV']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Nama Perumahan</label>
-                          <input type="text" name="NAMA_PERUM" class="form-control" readonly value="<?php echo $row['NAMA_PERUM']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Nama Cluster</label>
-                          <input type="text" name="NAMA_CLUSTER" class="form-control" readonly value="<?php echo $row['NAMA_CLUSTER']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Tanggal & Waktu Review</label>
-                          <input type="text" name="TGLWAKTU_REV" class="form-control" readonly value="<?php echo $row['TGLWAKTU_REV']; ?>">      
-                        </div>
-                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         <div class="modal-footer">  
-                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="submit" class="btn btn-success">Kirim</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                         <?php 
@@ -292,7 +307,7 @@
               </div>
             </div>
 
-           
+    
             <?php               
           } 
           ?>

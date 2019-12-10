@@ -114,11 +114,11 @@
                         <input type="hidden" name="KD_MARKET" value="<?php echo $row['KD_MARKET']; ?>">
                         <div class="form-group">
                           <label>Nama Marketing</label>
-                          <input type="text" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
+                          <input type="text" pattern="[A-Za-z ]+" title="Masukkan data huruf" name="NAMA" class="form-control" value="<?php echo $row['NAMA']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>No Telepon</label>
-                          <input type="text" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
+                          <input type="tel" pattern="^\d{10}$" title="Masukkan data angka (minimal 10 karakter)" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
                         </div>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Update</button>
@@ -197,11 +197,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="NAMA">Nama Marketing</label>
-                                        <input type="text" name="NAMA" placeholder="Masukkan nama marketing" class="form-control">
+                                        <input type="text" pattern="[A-Za-z ]+" title="Masukkan data huruf" name="NAMA" placeholder="Masukkan nama marketing" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="NO_TELEPON">No Telepon</label>
-                                        <input type="text" name="NO_TELEPON" placeholder="Masukkan no telepon" class="form-control">
+                                        <input type="tel" pattern="^\d{10}$" title="Masukkan data angka (minimal 10 karakter)" name="NO_TELEPON" placeholder="Masukkan no telepon" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">Tambah</button>

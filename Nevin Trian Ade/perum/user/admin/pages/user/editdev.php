@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $USERNAME = $_POST['USERNAME'];
 $EMAIL = $_POST['EMAIL'];
 $PASSWORD = $_POST['PASSWORD'];
@@ -13,14 +13,14 @@ if(isset($_POST['ubah_foto'])){
 	$FOTO = $_FILES['FOTO']['name'];
 	$tmp = $_FILES['FOTO']['tmp_name'];
 	$gambarbaru = date('dmYHis').$FOTO;
-	$path = "images/".$gambarbaru;
+	$path = "../../../../home/img/".$gambarbaru;
 
 	if(move_uploaded_file($tmp, $path)){ 
 		$query = "SELECT * FROM user WHERE USERNAME='".$USERNAME."'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("images/" .$data['FOTO'])) // Jika foto ada
-			unlink("images/" .$data['FOTO']); // Hapus file foto sebelumnya yang ada di folder images
+		if(is_file("../../../../home/img/" .$data['FOTO'])) // Jika foto ada
+			unlink("../../../../home/img/" .$data['FOTO']); // Hapus file foto sebelumnya yang ada di folder
 		
 		// Proses ubah data ke Database
 		$query = "UPDATE user SET USERNAME='$USERNAME', PASSWORD='$PASSWORD', EMAIL='$EMAIL', NAMA_LENGKAP='$NAMA_LENGKAP', TGL_LAHIR='$TGL_LAHIR', JENIS_KELAMIN='$JENIS_KELAMIN' , FOTO='$gambarbaru' WHERE USERNAME='$USERNAME' ";

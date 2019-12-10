@@ -2,9 +2,9 @@
     include "lib/koneksi.php";
     session_start();
     define('MyConst', TRUE);
-    //if(!isset($_SESSION['username'])){
-      //  header("location:login.php?a=login_required");
-    //} else {
+    if(!isset($_SESSION['USERNAME'])){
+      header("location:../../login/login.php?a=login_required");
+    }
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
@@ -77,7 +77,7 @@
       </div>
       <div class="modal-footer">
         <div class="col-md-4 col-md-offset-4">
-                <a href="../../home/index.php" class="c-btn large blue-bg">Ya</a>
+        <a href="../../login/logout.php" class="c-btn large blue-bg">Ya</a>
                 <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
         </div>
       </div>
@@ -98,7 +98,7 @@
 <?php
     if(isset($_GET['p'])){
         $hal = $_GET['p'];
-        if($hal=='data'){
+        if($hal=='pt/pt'){
 ?>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
@@ -125,111 +125,79 @@
                 responsive: true
                 });
 			} );
-            $(document).on( "click", '.edit_button',function(e) {
-                var judul = $(this).data('judul');
-                var id = $(this).data('id');
-                var pengarang = $(this).data('pengarang');
-                var penerbit = $(this).data('penerbit');
-                var sinopsis = $(this).data('sinopsis');
-                var harga = $(this).data('harga');
-                var stok = $(this).data('stok');
-                var kategori= $(this).data('kategori');
-                var halaman = $(this).data('halaman');
-                var rating = $(this).data('rating');
-
-                $("#rating_edit").val(rating);
-                $("#"+kategori).attr({"selected": true});
-                $(".edit_id").val(id);
-                $(".edit_judul").val(judul);
-                $(".edit_pengarang").val(pengarang);
-                $(".edit_penerbit").val(penerbit);
-                // $(".edit_sinopsis").val(sinopsis);
-                tinyMCE.activeEditor.setContent(sinopsis);
-                $(".edit_harga").val(harga);
-                $(".edit_stok").val(stok);
-                $(".edit_halaman").val(halaman);
-                // $(".edit_rating").val(rating);
-                // $(".edit_kategori").val(kategori);
-            });
-            $(document).on( "click", '.delete_button',function(e) {
-                var judul = $(this).data('judul');
-                var id = $(this).data('id');
-                var pengarang = $(this).data('pengarang');
-                var penerbit = $(this).data('penerbit');
-
-                $(".hapus_id").val(id);
-                $(".hapus_judul").val(judul);
-                $(".hapus_pengarang").val(pengarang);
-                $(".hapus_penerbit").val(penerbit);
-            });
+           
         </script>
-<?php } else if($hal=='pt/pt'){?>
-    <script type="text/javascript" class="init">
-        $(document).on( "click", '.edit_button',function(e) {
-                var kategori = $(this).data('kategori');
-                var id = $(this).data('id');
 
-                $(".edit_id").val(id);
-                $(".edit_kategori").val(kategori);
-        });
-        $(document).on( "click", '.delete_button',function(e) {
-                var kategori = $(this).data('kategori');
-                var id = $(this).data('id');
+<?php } } ?>
 
-                $(".hapus_id").val(id);
-                $(".hapus_kategori").val(kategori);
-        });
-    </script>
-<?php } else if($hal=='slider'){  ?>
-    <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
-    <script type="text/javascript" class="init">
-        $(document).on( "click", '.edit_button',function(e) {
-                var judul = $(this).data('judul');
-                var id = $(this).data('id');
-                var keterangan = $(this).data('keterangan');
-                var urutan = $(this).data('urutan');
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='perum/perum'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 
-                $(".edit_id").val(id);
-                $(".edit_judul").val(judul);
-                $(".edit_keterangan").val(keterangan);
-                $(".edit_urutan").val(urutan);
-        });
-        $(document).on( "click", '.delete_button',function(e) {
-                var judul = $(this).data('judul');
-                var id = $(this).data('id');
-                var urutan = $(this).data('urutan');
-
-                $(".hapus_id").val(id);
-                $(".hapus_judul").val(judul);
-                $(".hapus_urutan").val(urutan);
-        });
-    </script>
-<?php } else if($hal=='comment'){?>
-    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" class="init">
-        $(document).ready(function() {
-				$('#komentar').DataTable({
-                responsive: true,
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+            });
+			$(document).ready(function() {
+				$('#buku').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
                 });
-                $('#komentar_deleted').DataTable({
-                responesive: true,
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-                });
-		} );
-        $(document).on( "click", '.delete_button',function(e) {
-                var judul = $(this).data('judul');
-                var id = $(this).data('id');
-                var komentar = $(this).data('komentar');
-                var nama = $(this).data('nama');
+			} );
+           
+        </script>
 
-                $(".hapus_id").val(id);
-                $(".hapus_judul").val(judul);
-                $(".hapus_komentar").val(komentar);
-                $(".hapus_nama").val(nama);
-        });
-    </script>
+<?php } } ?>
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='cluster/cluster'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#buku').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
 <?php } } ?>
 
 
@@ -273,6 +241,43 @@
     if(isset($_GET['p'])){
         $hal = $_GET['p'];
         if($hal=='review/review'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#buku').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
+<?php } } ?>
+
+
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='chat/chat'){
 ?>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>

@@ -1,6 +1,6 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_PERUM = $_POST['KD_PERUM'];
 $NAMA_PERUM = $_POST['NAMA_PERUM'];
 $LOKASI = $_POST['LOKASI'];
@@ -12,14 +12,14 @@ if(isset($_POST['ubah_foto'])){
 	$GAMBAR_PERUM = $_FILES['GAMBAR_PERUM']['name'];
 	$tmp = $_FILES['GAMBAR_PERUM']['tmp_name'];
 	$gambarbaru = date('dmYHis').$GAMBAR_PERUM;
-	$path = "images/".$gambarbaru;
+	$path = "../../../../home/img/".$gambarbaru;
 
 	if(move_uploaded_file($tmp, $path)){ 
 		$query = "SELECT * FROM perum WHERE KD_PERUM='$KD_PERUM'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("images/" .$data['GAMBAR_PERUM'])) // Jika foto ada
-			unlink("images/" .$data['GAMBAR_PERUM']); // Hapus file foto sebelumnya yang ada di folder images
+		if(is_file("../../../../home/img/" .$data['GAMBAR_PERUM'])) // Jika foto ada
+			unlink("../../../../home/img/" .$data['GAMBAR_PERUM']); // Hapus file foto sebelumnya yang ada di folder 
 		
 		// Proses ubah data ke Database
 		$query = "UPDATE perum SET NAMA_PERUM='$NAMA_PERUM', LOKASI='$LOKASI', GAMBAR_PERUM='$gambarbaru' WHERE KD_PERUM='$KD_PERUM' ";

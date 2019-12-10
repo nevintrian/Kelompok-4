@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_MARKET = $_GET['KD_MARKET'];
 $NAMA = $_GET['NAMA'];
 $NO_TELEPON= $_GET['NO_TELEPON'];

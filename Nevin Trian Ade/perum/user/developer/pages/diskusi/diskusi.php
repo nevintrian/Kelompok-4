@@ -37,16 +37,17 @@
                     </div>
                     <div class="col-md-20 column">
                          <div class="heading-profile">
-                              <h2>Data Diskusi</h2>
+                              <h2>Data Diskusi Masuk</h2>
                               <p align= right >Halo <b><?php echo $_SESSION['USERNAME']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['STATUS']; ?></b>.</p>
-                         
+                              <a href="?p=diskusi/diskusi"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_DIS']; ?>"class="c-btn small blue-bg buzz edit_button">Diskusi Masuk</a>
+                              <a href="?p=diskusi/diskusi_kirim"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_DIS']; ?>" class="c-btn small green-bg buzz delete_button">Diskusi Terkirim</a>
                          </div>
                     </div>
                </div>
           </div><!-- Heading Sec -->
           <ul class="breadcrumbs">
                <li><a href="#" title="">Beranda</a></li>
-               <li>Data Diskusi</li>
+               <li>Data Diskusi Masuk</li>
           </ul>
           <div class="main-content-area">
                <div class="row">
@@ -66,7 +67,7 @@
                                           <th>Nama Perumahan</th>
                                           <th>Nama Cluster</th>
                                           <th>Tanggal Diskusi</th>
-                                          <th>Hapus Diskusi</th>
+                                          <th>Operasi</th>
                                         </tr>
                                     </thead>    
                                     <tbody>
@@ -81,7 +82,7 @@
                                           ON cluster.KD_PERUM=perum.KD_PERUM
                                           INNER JOIN user
                                           ON user.USERNAME=diskusi.USERNAME
-                                          WHERE user.USERNAME='$USERNAME'");
+                                          WHERE diskusi.PENERIMA_DIS='$USERNAME'");
          
                           while ($data = mysqli_fetch_assoc($query)) 
                                     {
@@ -108,8 +109,8 @@
                                             <td><?php echo $data['NAMA_CLUSTER']; ?></td>
                                             <td><?php echo $data['TGLWAKTU_DIS']; ?></td>
                                             <td>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_DIS']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_DIS']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_DIS']; ?>" class="c-btn small green-bg buzz delete_button">Lihat</a>
                                             </td>
                                         </tr>
                                         
@@ -153,7 +154,7 @@
                         </div>
                         <div class="form-group">
                           <label>Isi Diskusi</label>
-                          <input type="text" name="ISI_DIS" class="form-control" required value="<?php echo $row['ISI_DIS']; ?>">      
+                          <textarea type="text" name="ISI_DIS" class="form-control" required <?php echo $row['ISI_DIS']; ?>></textarea>    
                         </div>
                         <div class="form-group">
                           <label>Nama Perumahan</label>
@@ -187,10 +188,10 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hapus Data Diskusi</h4>
+                <h4 class="modal-title">Lihat Data Diskusi</h4>
             </div>
             <div class="modal-body">
-            <form role="form" action="pages/diskusi/deldis.php" method="get">
+            <form role="form" action="pages/diskusi/balas_dis.php" method="post">
             <?php
                         $KD_DIS = $data['KD_DIS']; 
                         $query_edit = mysqli_query($konek, "SELECT * FROM diskusi
@@ -205,34 +206,29 @@
                         while ($row = mysqli_fetch_array($query_edit)) {  
                         ?>
                         <input type="hidden" name="KD_DIS" value="<?php echo $row['KD_DIS']; ?>">
-                        <div class="form-group">
-                          <label>Username</label>
-                          <input type="text" name="USERNAME" class="form-control" readonly value="<?php echo $row['USERNAME']; ?>">      
+                        <input type="hidden" name="KD_CLUSTER" value="<?php echo $row['KD_CLUSTER']; ?>">
+                        <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
+                        <input type="hidden" name="USERNAME1" value="<?php echo $_SESSION['USERNAME']; ?>">
+                        <p class="review-author"><strong><?php echo $data['USERNAME']; ?></strong><small> - <?php echo $data['TGLWAKTU_DIS']; ?></small></p>
+                                   <div>
+                                                <?php
+                                                    $text = $data['ISI_DIS'];
+                                                    $strip = strip_tags(stripcslashes($text), '<a>');
+                                                    // echo $strip;
+                                                ?>
+                                                <div role="alert" class="alert color skyblue-bg">
+                                                    <?php
+                                                        echo substr($strip, 0, 80);
+                                                        if(strlen(trim($strip))>80) echo " [...]";
+                                                    ?>
+                                                </div>
                         </div>
-                        <div class="form-group">
-                          <label>Status</label>
-                          <input type="text" name="STATUS" class="form-control" readonly value="<?php echo $row['STATUS']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Isi Diskusi</label>
-                          <input type="text" name="ISI_DIS" class="form-control" readonly value="<?php echo $row['ISI_DIS']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Nama Perumahan</label>
-                          <input type="text" name="NAMA_PERUM" class="form-control" readonly value="<?php echo $row['NAMA_PERUM']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Nama Cluster</label>
-                          <input type="text" name="NAMA_CLUSTER" class="form-control" readonly value="<?php echo $row['NAMA_CLUSTER']; ?>">      
-                        </div>
-                        <div class="form-group">
-                          <label>Tanggal & Waktu Diskusi</label>
-                          <input type="text" name="TGLWAKTU_DIS" class="form-control" readonly value="<?php echo $row['TGLWAKTU_DIS']; ?>">      
-                        </div>
-                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
                         
+                        <div class="modal-footer">
+                                <textarea type="text" name="ISI_DIS1" placeholder="Masukkan isi diskusi" class="form-control"></textarea>
+                        </div>
                         <div class="modal-footer">  
-                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="submit" class="btn btn-success">Kirim</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                         <?php 
@@ -256,3 +252,18 @@
 
 </html>
       
+<li>
+                                <div class="review-body">
+                                <div class="review-content">
+                                    <p class="review-author"><strong><?php echo $data['USERNAME']; ?></strong><small> - <?php echo $data['TGLWAKTU_DIS']; ?></small></p>
+                                    <p align="justify">                    
+                                        <?php                       
+                                             echo $data['ISI_DIS'];                              
+                                        ?>
+                                           
+                                 
+                                    </p>
+                                    
+                                </div>
+                                </div>
+                            </li>

@@ -1,77 +1,74 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Input Pemesanan Tiket Travel</title>
-		<link rel="icon" type="img/png" href="img/logo.png" class="rounded-circle">
-	</head>
-	<body>
-		<h3 align="center">INPUT PEMESANAN TIKET TRAVEL</h3>
-		<center><a href="index.php">&Lt; Tabel Pemesanan Tiket Travel</a></center></br>
-		<fieldset style="width: 50%; margin: auto;">
-			<legend>Form Input Pemesanan Tiket Travel</legend>
-		<form action="simpan.php" method="post">
-		<table>
-		<tr>
-			<td>Nama</td>
-			<td>:</td>
-			<td><input type="text" name="nama"required=required placeholder='nama lengkap'></td>
-		</tr>
-		<tr>
-			<td>jurusan</td>
-			<td>:</td>
-			<td><select name="jurusan" id="jurusan" class="form-control" onchange='changeValue(this.value)' required>
-  			<option value="">-Pilih-</option>
-			<?php
-			$koneksi = mysqli_connect("localhost","root","","bismillahyaallah");
-            $result = mysqli_query($koneksi, "SELECT * FROM jurusan ORDER BY jurusan asc");
-            $result = mysqli_query($koneksi, "SELECT *FROM jurusan");    
-			$jsArray = "var prdName = new Array();\n";
-			while($row = mysqli_fetch_assoc($result))
-  			 {
-				echo '<option name="jurusan"  value="' . $row['jurusan'] . '">' . $row['jurusan'] . '</option>';  
-				$jsArray .= "prdName	['" . $row['jurusan'] . "'] = {harga:'" . addslashes($row['harga']) . "',jam:'". addslashes($row['jam'])."'};\n";
-				
-			}
-			
-		 ?>
-				   </select>
-			</td>
-			
-			<td>Jumlah Tiket</td>
-			<td>:</td>
-			<td><input type="number" name="Jumlah_Tiket"required=required placeholder='Jumlah Tiket'></td>
-		</tr>
-		<tr>
-			<td>Alamat</td>
-			<td>:</td>
-			<td><input type="text" name="berangkat"required=required placeholder='Alamat'></td>
-			<td>Tanggal</td>
-			<td>:</td>
-			<td><input type="date" name="tanggal_berangkat"required=required placeholder='ex:YYYY-MM-DD'></td>
-		</tr>
-		<tr>
-			<td>Harga</td>
-			<td>:</td>
-			<td><input class="form-control"  name="harga" id="harga" readonly placeholder='harga tiket'> </td>
-			
-			<td>jam keberangkatan</td>
-			<td>:</td>
-			<td><input class="form-control"  name="jam" id="jam" readonly placeholder='jam keberangkatan'> 	 </td>
-		</tr>
-        <tr>
-            <td><input type="submit" value="Simpan" /></td>
-            <td><input type="reset" value="Reset" onclick="return confirm('hapus data yang telah diinput?')"></td>
-        </tr>
-		</table>
-    </form>
-	</fieldset>
-	
-	</body>
-</html>
-<script type="text/javascript"> 
-<?php echo $jsArray; ?>
-function changeValue(id){
-    document.getElementById('harga').value = prdName[id].harga;
-	document.getElementById('jam').value = prdName[id].jam;
-};
-</script>
+<div class="main-content-area">
+               <div class="row">
+               <div class="streaming-table">
+                    <a href="#" data-toggle="modal" data-target=".tambah" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Cluster</a>
+                  </div>
+              </div>
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="streaming-table">
+                                   <span id="found" class="label label-info"></span>
+                                   <table id="buku" class='table table-responsive table-responsive table-striped table-hover'>
+                                    <thead>
+                                        <tr>
+
+                                          <th>Isi Diskusi</th>
+                                          <th>Operasi</th>
+                                        </tr>
+                                    </thead>    
+                                    <tbody>
+                                        <?php 
+                                          
+                                          $query = mysqli_query($konek,  "SELECT *
+                               FROM cluster 
+                               INNER JOIN perum
+                               ON cluster.KD_PERUM=perum.KD_PERUM
+                               INNER JOIN pt
+                               ON perum.KD_PT=pt.KD_PT
+                               INNER JOIN user
+                               ON pt.USERNAME=user.USERNAME
+                               WHERE user.USERNAME='$USERNAME'");
+         
+                          while ($data = mysqli_fetch_assoc($query)) 
+                                    {
+                                        ?>
+                                        
+                                        <tr>
+                                            
+                                        <td><?php echo $data['KD_CLUSTER']; ?></td>
+                                            <td><?php echo $data['NAMA_CLUSTER']; ?></td>
+                                            <td><?php echo $data['NAMA_PERUM']; ?></td>
+                                          
+                                            <td><?php echo $data['TIPE']; ?></td>
+                                            <td><?php echo $data['LUAS_TANAH']; ?></td>
+                                            <td><?php echo $data['STOK']; ?></td>
+                                            <td><?php echo $data['HARGA']; ?></td>
+                                            <td><?php echo $data['FASILITAS']; ?></td>
+                                       
+
+                                                <td>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>">
+                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_CLUSTER']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_CLUSTER']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        
+                                   
+                                
+                              </div>
+                         </div>
+                    </div> 

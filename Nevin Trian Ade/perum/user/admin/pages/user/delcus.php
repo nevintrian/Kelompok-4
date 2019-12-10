@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $USERNAME = $_GET['USERNAME'];
 
 //query update

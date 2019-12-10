@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
 $host = "localhost"; // Nama host
 $username = "root"; // Username
 $password = ""; // Password 

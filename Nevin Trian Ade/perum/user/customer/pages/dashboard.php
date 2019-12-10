@@ -40,7 +40,18 @@
             <div class="row">
                   </div><!-- Widget -->
                 </div>
-     
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <div class="quick-report-widget">
+                            <span>Chat</span>
+                            <h4>
+                                <?php echo mysqli_num_rows($chat); ?>
+                            </h4>
+                            <i class="fa fa-comments skyblue-bg"></i>
+                            <h5>Total Chat : <?php echo mysqli_num_rows($chat); ?></h5>
+                        </div>
+                    </div><!-- Widget -->
+                </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
                         <div class="quick-report-widget">
@@ -48,7 +59,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($diskusi); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-comments skyblue-bg"></i>
                             <h5>Total Diskusi : <?php echo mysqli_num_rows($diskusi); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -60,23 +71,12 @@
                             <h4>
                                 <?php echo mysqli_num_rows($review); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-book skyblue-bg"></i>
                             <h5>Total Review : <?php echo mysqli_num_rows($review); ?></h5>
                         </div>
                     </div><!-- Widget -->
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <div class="quick-report-widget">
-                            <span>Report</span>
-                            <h4>
-                                <?php echo mysqli_num_rows($report); ?>
-                            </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
-                            <h5>Total Report : <?php echo mysqli_num_rows($report); ?></h5>
-                        </div>
-                    </div><!-- Widget -->
-                </div>
+                
             </div>
         </div>
     </div><!-- Panel Content -->

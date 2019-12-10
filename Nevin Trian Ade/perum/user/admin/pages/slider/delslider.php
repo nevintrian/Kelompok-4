@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_SLIDER = $_GET['KD_SLIDER'];
 //query update
 $query = "DELETE slider FROM slider WHERE KD_SLIDER='$KD_SLIDER' ";

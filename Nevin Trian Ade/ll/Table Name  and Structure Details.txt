@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS `Table_Name` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `parent_id` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;# MySQL returned an empty result set (i.e. zero rows).

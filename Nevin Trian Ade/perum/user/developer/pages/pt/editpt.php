@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_PT = $_GET['KD_PT'];
 $NAMA_PT = $_GET['NAMA_PT'];
 

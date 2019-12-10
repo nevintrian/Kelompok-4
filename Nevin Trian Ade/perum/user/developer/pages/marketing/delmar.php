@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_MARKET = $_GET['KD_MARKET'];
 
 //query update

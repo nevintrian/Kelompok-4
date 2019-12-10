@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_REP = $_GET['KD_REP'];
 $ISI_REP = $_GET['ISI_REP'];
 

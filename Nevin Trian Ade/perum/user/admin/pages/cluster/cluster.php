@@ -102,22 +102,26 @@
                                             <td><?php echo $data['LUAS_TANAH']; ?></td>
                                             <td><?php echo $data['STOK']; ?></td>
                                             <td><?php echo $data['HARGA']; ?></td>
-                                            <td><?php echo $data['FASILITAS']; ?></td>
+                                            <td><?php 
+                                            $ringkas= $data['FASILITAS'];
+                                            $sub_ringkas=substr($ringkas,0,30);
+                                            echo $sub_ringkas;                                                                                   
+                                            ?></td>
                                        
 
                                                 <td>
-                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR']; ?>">
-                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['GAMBAR']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['GAMBAR']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
-                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>">
-                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR1']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['GAMBAR1']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['GAMBAR1']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
-                                                <a data-fancybox="gallery" href="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>">
-                                                    <img src="pages/cluster/images/<?php echo $data['GAMBAR2']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['GAMBAR2']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['GAMBAR2']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
@@ -175,7 +179,7 @@
                         </div>
                         <div class="form-group">
                           <label>Fasilitas</label>
-                          <input type="text" name="FASILITAS" class="form-control" value="<?php echo $row['FASILITAS']; ?>">      
+                          <textarea type="text" name="FASILITAS" class="form-control" readonly ><?php echo $row['FASILITAS']; ?></textarea>          
                         </div>
                      
                         <div class="form-group">
@@ -247,10 +251,7 @@
                           <label>Harga</label>
                           <input type="text" name="HARGA" class="form-control" readonly value="<?php echo $row['HARGA']; ?>">      
                         </div>
-                        <div class="form-group">
-                          <label>Fasilitas</label>
-                          <input type="text" name="FASILITAS" class="form-control" readonly value="<?php echo $row['FASILITAS']; ?>">      
-                        </div>
+                        
                         <p>Apakah Anda yakin akan menghapus data di atas?</p>
                      
                         <div class="modal-footer">  
@@ -296,7 +297,7 @@
                                     ON pt.USERNAME=user.USERNAME
                                     INNER JOIN perum
                                     ON perum.KD_PT=pt.KD_PT
-                                    WHERE pt.USERNAME='$USERNAME'");
+                                    ");
                                     while($data=mysqli_fetch_assoc($kat)){ ?>
                                     <option value="<?php echo $data['KD_PERUM']; ?>" id="<?php echo $data['KD_PERUM']; ?>"><?php echo $data['NAMA_PERUM']; ?></option>
                                 <?php } ?>
@@ -305,30 +306,30 @@
 
                     <div class="form-group">
                         <label for="NAMA_CLUSTER">Nama Cluster</label>
-                        <input type="text" name="NAMA_CLUSTER" placeholder="Masukkan nama cluster" class="form-control">
+                        <input type="text" name="NAMA_CLUSTER" placeholder="Masukkan nama cluster" required class="form-control">
                      </div>
                         <div class="form-group">
                          <label for="TIPE">Tipe</label>
-                            <input type="number" name="TIPE" placeholder="Masukkan tipe" class="form-control">
+                            <input type="number" min="1" name="TIPE" placeholder="Masukkan tipe" required class="form-control">
                      </div>
                      
                         <div class="form-group">
                          <label for="LUAS_TANAH">Luas Tanah</label>
-                            <input type="number" name="LUAS_TANAH" placeholder="Masukkan luas tanah" class="form-control">
+                            <input type="number" min="1" name="LUAS_TANAH" placeholder="Masukkan luas tanah" required class="form-control">
                      </div>
                      
                         <div class="form-group">
                          <label for="STOK">Stok</label>
-                            <input type="number" name="STOK" placeholder="Masukkan stok" class="form-control">
+                            <input type="number" min="0" name="STOK" placeholder="Masukkan stok" required class="form-control">
                      </div>
                      
                         <div class="form-group">
                          <label for="HARGA">Harga</label>
-                            <input type="number" name="HARGA" placeholder="Masukkan harga" class="form-control">
+                            <input type="number" min="1" name="HARGA" placeholder="Masukkan harga" required class="form-control">
                      </div>
                      <div class="form-group">
                          <label for="FASILITAS">Fasilitas</label>
-                            <input type="text" name="FASILITAS" placeholder="Masukkan fasilitas" class="form-control">
+                         <textarea type="text" name="FASILITAS" placeholder="Masukkan fasilitas" class="form-control"></textarea>
                      </div>
                      
                        

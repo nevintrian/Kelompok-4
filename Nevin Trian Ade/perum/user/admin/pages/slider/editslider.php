@@ -1,6 +1,6 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_SLIDER = $_POST['KD_SLIDER'];
 $JUDUL = $_POST['JUDUL'];
 $KETERANGAN = $_POST['KETERANGAN'];
@@ -13,14 +13,14 @@ if(isset($_POST['ubah_foto'])){
 	$GAMBAR_SLIDER = $_FILES['GAMBAR_SLIDER']['name'];
 	$tmp = $_FILES['GAMBAR_SLIDER']['tmp_name'];
 	$gambarbaru = date('dmYHis').$GAMBAR_SLIDER;
-	$path = "images/".$gambarbaru;
+	$path = "../../../../home/img/".$gambarbaru;
 
 	if(move_uploaded_file($tmp, $path)){ 
 		$query = "SELECT * FROM slider WHERE KD_SLIDER='$KD_SLIDER'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("images/" .$data['GAMBAR_SLIDER'])) // Jika foto ada
-			unlink("images/" .$data['GAMBAR_SLIDER']); // Hapus file foto sebelumnya yang ada di folder images
+		if(is_file("../../../../home/img/" .$data['GAMBAR_SLIDER'])) // Jika foto ada
+			unlink("../../../../home/img/" .$data['GAMBAR_SLIDER']); // Hapus file foto sebelumnya yang ada di folder 
 		
 		// Proses ubah data ke Database
 		$query = "UPDATE slider SET JUDUL='$JUDUL', KETERANGAN='$KETERANGAN', GAMBAR_SLIDER='$gambarbaru', URUTAN='$URUTAN' WHERE KD_SLIDER='$KD_SLIDER' ";

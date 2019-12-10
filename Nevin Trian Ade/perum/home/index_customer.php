@@ -1,6 +1,12 @@
 <?php 
   include "lib/koneksi.php";
   session_start();
+
+  
+if (!isset($_SESSION['USERNAME'])){
+header("Location:../login/login.php?a=login_required");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

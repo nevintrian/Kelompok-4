@@ -1,7 +1,7 @@
 <!-- Our Website Content Goes Here -->
 <?php 
 
-
+$USERNAME=$_SESSION['USERNAME'];
       $pt=mysqli_query($konek, "SELECT KD_PT FROM pt");
       $perum=mysqli_query($konek, "SELECT KD_PERUM FROM perum");
       $cluster=mysqli_query($konek, "SELECT KD_CLUSTER FROM cluster");
@@ -11,6 +11,10 @@
       $diskusi=mysqli_query($konek, "SELECT KD_DIS FROM diskusi");
       $review=mysqli_query($konek, "SELECT KD_REV FROM review");
       $report=mysqli_query($konek, "SELECT KD_REP FROM report");
+      $chat=mysqli_query($konek, "SELECT DISTINCT USERNAME
+      FROM chat WHERE chat.PENERIMA='$USERNAME'");
+      $slider=mysqli_query($konek, "SELECT * FROM slider");
+      
       
 ?>
 <header class="simple-normal">
@@ -44,29 +48,31 @@
                          </ul>
                         </li>
                          <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='perum'||$_GET['p']=='cluster'||$_GET['p']=='pt') echo 'active'; ?>">
-                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Rumah</span></a>
+                              <a title="Area administrasi buku"><i class="ti-home"></i><span>Rumah</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
                               <li><a href="?p=pt/pt">Data PT <i class="badge blue-bg"><?php echo mysqli_num_rows($pt); ?></i></a></li>     
-                              <li><a href="?p=perum/perum">Data Perumahan <i class="badge red-bg"><?php echo mysqli_num_rows($perum); ?></i></a></li> 
-                              <li><a href="?p=cluster/cluster">Data Cluster <i class="badge red-bg"><?php echo mysqli_num_rows($cluster); ?></i></a></li> 
+                              <li><a href="?p=perum/perum">Data Perumahan <i class="badge blue-bg"><?php echo mysqli_num_rows($perum); ?></i></a></li> 
+                              <li><a href="?p=cluster/cluster">Data Cluster <i class="badge blue-bg"><?php echo mysqli_num_rows($cluster); ?></i></a></li> 
                                    
                          </ul>
                         </li>
                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') echo 'active'; ?>">
-                              <a title="Area administrasi buku"><i class="ti-book"></i><span>User</span></a>
+                              <a title="Area administrasi buku"><i class="ti-user"></i><span>User</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
                               <li><a href="?p=user/admin">Data Admin <i class="badge blue-bg"><?php echo mysqli_num_rows($admin); ?></i></a></li>     
-                              <li><a href="?p=user/developer">Data Developer <i class="badge red-bg"><?php echo mysqli_num_rows($developer); ?></i></a></li> 
-                              <li><a href="?p=user/customer">Data Customer <i class="badge red-bg"><?php echo mysqli_num_rows($customer); ?></i></a></li> 
+                              <li><a href="?p=user/developer">Data Developer <i class="badge blue-bg"><?php echo mysqli_num_rows($developer); ?></i></a></li> 
+                              <li><a href="?p=user/customer">Data Customer <i class="badge blue-bg"><?php echo mysqli_num_rows($customer); ?></i></a></li> 
                                    
                          </ul>
                         </li>
                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') echo 'active'; ?>">
-                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Lainnya</span></a>
+                              <a title="Area administrasi buku"><i class="ti-comments"></i><span>Lainnya</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
+                              <li><a href="?p=chat/chat">Data Chat <i class="badge blue-bg"><?php echo mysqli_num_rows($chat); ?></i></a></li> 
                               <li><a href="?p=diskusi/diskusi">Data Diskusi <i class="badge blue-bg"><?php echo mysqli_num_rows($diskusi); ?></i></a></li>     
-                              <li><a href="?p=review/review">Data Review <i class="badge red-bg"><?php echo mysqli_num_rows($review); ?></i></a></li> 
-                              <li><a href="?p=report/report">Data Report <i class="badge red-bg"><?php echo mysqli_num_rows($report); ?></i></a></li> 
+                              <li><a href="?p=review/review">Data Review <i class="badge blue-bg"><?php echo mysqli_num_rows($review); ?></i></a></li> 
+                              <li><a href="?p=report/report">Data Report <i class="badge blue-bg"><?php echo mysqli_num_rows($report); ?></i></a></li> 
+                              
                                    
                          </ul>
                         </li>

@@ -13,7 +13,7 @@
                 while($row=mysqli_fetch_assoc($result)){ 
             ?>
               <li>
-                <img src="../user/admin/pages/slider/images/<?php echo $row['GAMBAR_SLIDER']; ?>" alt="" style="height:536px; width:100%">
+                <img src="img/<?php echo $row['GAMBAR_SLIDER']; ?>" alt="" style="height:536px; width:100%">
                 <div class="img-holder img-<?php echo $row['GAMBAR_SLIDER']; ?>"></div>
                 <div class="hero-holder text-center right-align">
                   <div>

@@ -59,38 +59,39 @@
                                         ?>
                                        
                                        
-                                        <img src="pages/profil/images/<?php echo $row['FOTO']; ?>" height="100px" width="100px" >
+                                        <img src="../../home/img/<?php echo $row['FOTO']; ?>" height="100px" width="100px" >
                                         <br>
 
                                         <input type="file" name="FOTO" class="form-control" value="<?php echo $row['FOTO']; ?>">
                                        
                                         <label for="USERNAME">Username</label>
-                                        <input type="text" name="USERNAME" class="form-control" value="<?php echo $row['USERNAME']; ?>">
+                                        <input type="text" name="USERNAME" class="form-control" readonly value="<?php echo $row['USERNAME']; ?>">
                                         <label for="EMAIL">Email</label>
-                                        <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">
-                                       
+                                        <input type="text" name="EMAIL" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Masukkan email (contoh : xyz@something.com)" class="form-control" value="<?php echo $row['EMAIL']; ?>">
+                                      
 
                                            
-                                        <label for="NAMA_LENGKAP">Nama lengkap</label>
-                                        <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">
+                                        <label for="NAMA_LENGKAP">Nama Lengkap</label>
+                                        <input type="text" name="NAMA_LENGKAP" pattern="[A-Za-z ]+" title="Masukkan data huruf saja" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">
                                     
 
                                    
                                         <label for="TGL_LAHIR">Tanggal Lahir</label>
-                                        <input type="date" name="TGL_LAHIR" class="form-control" readonly value="<?php echo $row['TGL_LAHIR']; ?>">
+                                        <input type="text" name="TGL_LAHIR" class="form-control" readonly value="<?php echo $row['TGL_LAHIR']; ?>">
                                     
 
                                     
                                         <label for="JENIS_KELAMIN">Jenis Kelamin</label>
                                         <input type="text" name="JENIS_KELAMIN" class="form-control" readonly value="<?php echo $row['JENIS_KELAMIN']; ?>">
                                     
-                                       
                                         <label for="PASSWORD">Password</label>
-                                        <input type="password" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
+                                        <input type="password" name="PASSWORD" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Masukkan password dengan huruf besar, huruf kecil, dan angka (minimal 8 karakter)" class="form-control" placeholder ="Biarkan kosong jika tidak ingin mengubah password!">
                                        
-                                        <label for="PASSWORD1">Password</label>
-                                        <input type="password" name="PASSWORD1" class="form-control" value="<?php echo $row['PASSWORD']; ?>">
+                                        <label for="PASSWORD1">Ulangi Password</label>
+                                        <input type="password" name="PASSWORD1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Masukkan password dengan huruf besar, huruf kecil, dan angka (minimal 8 karakter)" class="form-control" placeholder ="Biarkan kosong jika tidak ingin mengubah password!">
 
+                                       
+                                    
    
                                     <?php 
                                     }

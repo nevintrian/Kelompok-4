@@ -1,4 +1,4 @@
-<!-- Navigation -->
+<?php $_SESSION['STATUS'];?>
 <header class="nav-type-1">
     
     <nav class="navbar navbar-static-top">
@@ -63,7 +63,7 @@
                   </li>
 
                   <li class="dropdown">
-                    <a href="index.php">Beranda</a>
+                    <a href="index_developer.php">Beranda</a>
                   </li>
 
                   <li class="dropdown">
@@ -119,7 +119,7 @@
                 <a><?php echo $_SESSION['USERNAME'];?></a>
                 <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
-                    <li><a href="../user/developer/index.php">Setting Akun</a></li>
+                    <li><a href="../user/developer/index.php">Dashboard</a></li>
                     <li> <a data-toggle="modal" data-target="#myModal" href="#">Logout</a></li>
                 </ul>
               </li>

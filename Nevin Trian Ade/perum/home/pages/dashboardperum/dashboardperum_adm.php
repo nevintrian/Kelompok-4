@@ -23,8 +23,8 @@ include "inc/slider.php";
               <div class="product-item">
                 <div class="product-img">
                   <a href="#">
-                    <img src="img/perum/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" style="height:347px; width:277px;">
-                    <img src="img/perum/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" class="back-img">
+                    <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" style="height:347px; width:277px;">
+                    <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" class="back-img">
                   </a>
                   <a href="?p=dashboard/dashboard_adm&KD_PERUM=<?php echo $row['KD_PERUM']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                   
@@ -64,8 +64,8 @@ include "inc/slider.php";
               <div class="product-item">
                 <div class="product-img">
                   <a href="#">
-                    <img src="img/perum/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" style="height:347px; width:277px;">
-                    <img src="img/perum/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" class="back-img">
+                    <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" style="height:347px; width:277px;">
+                    <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" class="back-img">
                   </a>
                   <a href="?p=dashboard&KD_PERUM=<?php echo $row['KD_PERUM']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                 </div>

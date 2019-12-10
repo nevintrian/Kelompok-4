@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_PERUM = $_GET['KD_PERUM'];
 $NAMA_PERUM = $_GET['NAMA_PERUM'];
 //query update

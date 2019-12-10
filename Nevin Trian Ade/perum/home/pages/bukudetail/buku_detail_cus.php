@@ -3,7 +3,7 @@
 
     $KD_CLUSTER = $_GET['KD_CLUSTER'];
     $USERNAME=$_SESSION['USERNAME'];
-    $queryProduct = "SELECT perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.TIPE, cluster.STOK, cluster.HARGA, cluster.FASILITAS, cluster.GAMBAR, cluster.GAMBAR1, cluster.GAMBAR2, cluster.LUAS_TANAH, pt.KD_PT, user.USERNAME, marketing.KD_MARKET, marketing.NAMA, marketing.NO_TELEPON, pt.NAMA_PT, pt.KD_PT
+    $queryProduct = "SELECT *
     FROM cluster
     INNER JOIN perum
     ON cluster.KD_PERUM=perum.KD_PERUM
@@ -30,6 +30,20 @@
     WHERE diskusi.KD_CLUSTER=$KD_CLUSTER";
     $rsKomentar = mysqli_query($konek, $queryKomentar);
 
+    $queryProduct13 = "SELECT *
+    FROM cluster
+    INNER JOIN perum
+    ON cluster.KD_PERUM=perum.KD_PERUM
+    INNER JOIN pt
+    ON perum.KD_PT=pt.KD_PT
+    INNER JOIN user
+    ON pt.USERNAME=user.USERNAME
+    INNER JOIN marketing
+    ON user.USERNAME=marketing.USERNAME
+    WHERE cluster.KD_CLUSTER=$KD_CLUSTER";
+    
+    $rsProduct13 = mysqli_query($konek, $queryProduct13);
+
     $queryReview = "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.RATING, review.FOTO_REV, user.USERNAME, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
     FROM review
     INNER JOIN cluster
@@ -45,12 +59,20 @@
 
     $query=  "SELECT AVG(RATING) FROM review WHERE KD_CLUSTER='$KD_CLUSTER'";
     $rsq= mysqli_query($konek, $query);
+
+    $c=array();
+    $s='{0}';
+    $q="SELECT * 
+    FROM diskusi INNER JOIN cluster
+    ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
+    WHERE diskusi.KD_CLUSTER=$KD_CLUSTER ";
+    $k=mysqli_query($konek, $q);
 ?>
 <!-- Breadcrumbs -->
     <div class="container">
       <ol class="breadcrumb">
         <li>=
-          <a href="index.php">Beranda</a>
+          <a href="index_customer.php">Beranda</a>
         </li>
         <li>
           <a href="?p=buku&halaman=1">Cluster</a>
@@ -91,18 +113,18 @@
 <div class="flickity  mfp-hover" id="gallery-main">
 
   <div class="gallery-cell">
-    <a href="img/perum/<?php echo $row['GAMBAR']; ?>" class="lightbox-img">
-      <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" />
+    <a href="img/<?php echo $row['GAMBAR']; ?>" class="lightbox-img">
+      <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" />
     </a>
   </div>
   <div class="gallery-cell">
-    <a href="img/perum/<?php echo $row['GAMBAR1']; ?>" class="lightbox-img">
-      <img src="img/perum/<?php echo $row['GAMBAR1']; ?>" alt="" />
+    <a href="img/<?php echo $row['GAMBAR1']; ?>" class="lightbox-img">
+      <img src="img/<?php echo $row['GAMBAR1']; ?>" alt="" />
     </a>
   </div>
   <div class="gallery-cell">
-    <a href="img/perum/<?php echo $row['GAMBAR2']; ?>" class="lightbox-img">
-      <img src="img/perum/<?php echo $row['GAMBAR2']; ?>" alt="" />
+    <a href="img/<?php echo $row['GAMBAR2']; ?>" class="lightbox-img">
+      <img src="img/<?php echo $row['GAMBAR2']; ?>" alt="" />
     </a>
   </div>
 </div> <!-- end gallery main -->
@@ -141,6 +163,11 @@
 
             <div class="product_meta">
                 <table class="table table-hover table-responsive">
+                     <tr>
+                        <td width="5px"><span class="fa fa-building"></span></td>
+                        <td><span class="sku">LOKASI</td>
+                        <td><?php echo $row['LOKASI']; ?></span></td>
+                    </tr>
                     <tr>
                         <td width="5px"><span class="icon_book"></span></td>
                         <td><span class="sku">TIPE</td>
@@ -157,23 +184,28 @@
                         <td><?php echo $row['STOK']; ?></span></td>
                     </tr>
                     <tr>
-                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td width="5px"><span class="icon_briefcase"></span></td>
                         <td><span class="posted_in">NAMA PT</td>
                         <td><?php echo $row['NAMA_PT']; ?></a></span></td>
                     </tr>
                     <tr>
-                        <td width="5px"><span class="icon_tags"></span></td>
+                        <td width="5px"><span class="fa fa-home"></span></td>
                         <td><span class="posted_in">NAMA PERUM</td>
                         <td><a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM'] ?>&halaman=1" target="_blank">
                             <?php echo $row['NAMA_PERUM']; ?></a></span></td>
                     </tr>
-                    <tr>
-                        <td width="5px"><span class="icon_tags"></span></td>
+                    <?php
+                    while ($data = mysqli_fetch_assoc($rsProduct13))
+{
+    ?>              <tr>
+ 
+                        <td width="5px"><span class="fa fa-phone"></span></td>
                         <td><span class="posted_in">KONTAK</td>
-                        <td> <?php echo $row['NO_TELEPON']; ?></a></span></td>
-                        <td> <?php echo $row['NAMA']; ?></a></span></td>
-                            
+                        <td> <?php echo $data['NO_TELEPON']; ?></a></span></td>
+                        <td> <?php echo $data['NAMA']; ?></a></span></td>
+                                   
                     </tr>
+                    <?php } ?>       
                 </table>
                 <!-- tabs -->
                 <div class="row">
@@ -190,7 +222,9 @@
                         <li >
                         <a href="#tab-ulasan" data-toggle="tab">Review</a>
                         </li>                                  
-                      
+                        <li >
+                        <a href="#tab-chat" data-toggle="tab">Chat</a>
+                        </li> 
                                            
                     </ul> <!-- end tabs -->
                     
@@ -204,47 +238,91 @@
                         </p>
                         </div>     
                  
-
+                        <div class="tab-pane fade" id="tab-chat">
+                    <form action="lib/proses.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                    <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                        <?php
+                    $query_edit = mysqli_query($konek, "SELECT * FROM cluster
+                    INNER JOIN perum
+                    ON cluster.KD_PERUM=perum.KD_PERUM
+                    INNER JOIN pt
+                    ON perum.KD_PT=pt.KD_PT
+                    INNER JOIN user
+                    ON pt.USERNAME=user.USERNAME
+                    INNER JOIN marketing
+                    ON user.USERNAME=marketing.USERNAME
+                    WHERE cluster.KD_CLUSTER=$KD_CLUSTER");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row123 = mysqli_fetch_array($query_edit)) {  
+                        ?>
+               
+                    
+                    <input name="PENERIMA" type="hidden" value="<?php echo $row123['USERNAME']; ?>">
+                    
+                    <?php }?> 
+                        <center><label for="ISI_CHAT">Masukkan Isi Chat</label></center>
+                        </br>
+                        <textarea type="text" name="ISI_CHAT" placeholder="Masukkan isi chat" class="form-control"></textarea>
+                     </div>
+                <div align="center" class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-md" name="chat3">Kirim Chat</button>
+                
+                </div>
+                </div>
+               
+</form>
+                                    
+                 
 
  
-                        <div class="tab-pane fade" id="tab-reviews">
+<div class="tab-pane fade" id="tab-reviews">
 
-                        <div class="reviews">
-                            <ul class="reviews-list">
-                            <form action="lib/proses.php" name="komentar" method="post">
-                            <div align="right" class="streaming-table">
-                            <a href="#" data-toggle="modal" data-target=".tambah1" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Diskusi</a>
-                             </div>
-                                </form> 
-                                </br>
-                            <?php if(mysqli_num_rows($rsKomentar)==0) { ?>
-                                <div class="review-body">
-                                <div class="review-content">
-                                    <h3 class="text-center">Belum ada diskusi pada buku ini</h3>
-                                </div>
-                                </div>
-                            <?php 
-                                } else { 
-                                    while($row=mysqli_fetch_assoc($rsKomentar)){ 
-                            ?>
-                            
-                            <li>
-                                <div class="review-body">
-                                <div class="review-content">
-                                    <p class="review-author"><strong><?php echo $row['USERNAME']; ?></strong><small> - <?php echo $row['TGLWAKTU_DIS']; ?></small></p>
-                                    <p align="justify">
-                                        <?php
-                                             echo $row['ISI_DIS'];
-                                        ?>
-                                    </p>
-                                </div>
-                                </div>
-                            </li>
-                            <br><hr><br>
-                            <?php  }} ?>
-                            </ul>         
-                        </div> <!--  end reviews -->
-                        </div> 
+<div class="reviews">
+    <ul class="reviews-list">
+    <form action="lib/proses.php" name="komentar" method="post">
+    <div align="right" class="streaming-table">
+    <a href="#" data-toggle="modal" data-target=".tambah1" class="icon-btn pulse-grow"><i class="fa fa-plus-square blue-bg"></i> Tambah Data Diskusi</a>
+     </div>
+        </form> 
+        </br>
+    <?php if(mysqli_num_rows($rsKomentar)==0) { ?>
+        <div class="review-body">
+        <div class="review-content">
+            <h3 class="text-center">Belum ada diskusi pada buku ini</h3>
+        </div>
+        </div>
+    <?php 
+        } else { 
+            while($data=mysqli_fetch_assoc($rsKomentar)){ 
+    ?>
+    
+    <li>
+        <div class="review-body">
+        <div class="review-content">
+            <p class="review-author"><strong><?php echo $data['USERNAME']; ?></strong><small> - <?php echo $data['TGLWAKTU_DIS']; ?></small></p>
+            <p align="justify">                    
+                <?php                       
+                     echo $data['ISI_DIS'];                              
+                ?>
+                   
+         
+            </p>
+            
+        </div>
+        </div>
+    </li>
+
+       
+    <br><hr><br>
+    
+    <?php  }} ?>
+    
+    </ul>    
+         
+</div> <!--  end reviews -->
+</div> 
 
 <div class="tab-pane fade" id="tab-ulasan">
 
@@ -291,8 +369,8 @@
                 ?>
                 </br></br>
                 <td>
-                     <a data-fancybox="gallery" href="../home/img/perum/<?php echo $row1['FOTO_REV']; ?>">
-                      <img src="../home/img/perum/<?php echo $row1['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                     <a data-fancybox="gallery" href="../home/img/<?php echo $row1['FOTO_REV']; ?>">
+                      <img src="../home/img/<?php echo $row1['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                         </a>
                           </td>
             </p>
@@ -339,7 +417,7 @@
                     
                     <div class="form-group">
                         <label for="ISI_REP">Isi Laporan</label>
-                        <input type="text" name="ISI_REP" placeholder="Masukkan isi laporan" class="form-control">
+                        <textarea type="text" name="ISI_REP" placeholder="Masukkan isi laporan" class="form-control"></textarea>
                      </div>
                         
             <div class="modal-footer">
@@ -374,7 +452,7 @@
                     
                     <div class="form-group">
                         <label for="ISI_DIS">Isi Diskusi</label>
-                        <input type="text" name="ISI_DIS" placeholder="Masukkan isi diskusi" class="form-control">
+                        <textarea type="text" name="ISI_DIS" placeholder="Masukkan isi diskusi" class="form-control"></textarea>
                      </div>
                         
             <div class="modal-footer">
@@ -409,7 +487,7 @@
                     
                     <div class="form-group">
                         <label for="ISI_REV">Isi Review</label>
-                        <input type="text" name="ISI_REV" placeholder="Masukkan isi review" class="form-control">
+                        <textarea type="text" name="ISI_REV" placeholder="Masukkan isi review" class="form-control"></textarea>
                      </div>
                      <div class="form-group">
                             <label for="RATING">Rating</label>

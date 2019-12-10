@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_CLUSTER = $_GET['KD_CLUSTER'];
 
 //query update

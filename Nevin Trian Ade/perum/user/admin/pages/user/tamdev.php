@@ -1,14 +1,14 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 
 $USERNAME = $_POST['USERNAME'];
 $EMAIL= $_POST['EMAIL'];
-$PASSWORD= $_POST['PASSWORD'];
+$PASSWORD= md5($_POST['PASSWORD']);
 $NAMA_LENGKAP =$_POST['NAMA_LENGKAP'];
 $TGL_LAHIR = $_POST['TGL_LAHIR'];
 $JENIS_KELAMIN = $_POST['JENIS_KELAMIN'];
-$FOTO = $_POST['FOTO'];
+$FOTO = "pp.jpg";
 $STATUS = "developer";
 
 $query = "INSERT INTO user (`USERNAME`, `EMAIL`, `PASSWORD`, `STATUS`, `NAMA_LENGKAP`, `TGL_LAHIR`, `JENIS_KELAMIN`, `FOTO`) VALUES ('$USERNAME', '$EMAIL', '$PASSWORD', '$STATUS', '$NAMA_LENGKAP', '$TGL_LAHIR', '$JENIS_KELAMIN' , '$FOTO')";

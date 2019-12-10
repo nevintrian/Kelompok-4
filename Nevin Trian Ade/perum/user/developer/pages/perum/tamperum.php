@@ -1,6 +1,6 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 
 $KD_PT = $_POST['KD_PT'];
 $NAMA_PERUM= $_POST['NAMA_PERUM'];
@@ -11,7 +11,7 @@ $tmp = $_FILES['GAMBAR_PERUM']['tmp_name'];
 
 $gambarbaru = date('dmYHis').$GAMBAR_PERUM;
 
-$path = "images/".$gambarbaru;
+$path = "../../../../home/img/".$gambarbaru;
 
 //query update
 if (move_uploaded_file($tmp, $path)) {

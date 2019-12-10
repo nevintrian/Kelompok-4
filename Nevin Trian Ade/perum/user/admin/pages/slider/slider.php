@@ -89,8 +89,8 @@
                                        
 
                                                 <td>
-                                                <a data-fancybox="gallery" href="pages/slider/images/<?php echo $data['GAMBAR_SLIDER']; ?>">
-                                                    <img src="pages/slider/images/<?php echo $data['GAMBAR_SLIDER']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['GAMBAR_SLIDER']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['GAMBAR_SLIDER']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td><?php echo $data['URUTAN']; ?></td>

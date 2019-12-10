@@ -60,8 +60,8 @@
                     <div class="product-item">
                         <div class="product-img">
                         <a href="#">
-                            <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
-                            <img src="img/perum/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
+                            <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" style="height:347px; width:277px;">
+                            <img src="img/<?php echo $row['GAMBAR']; ?>" alt="" class="back-img">
                         </a>
                         <a href="?p=bukudetail/buku_detail&KD_CLUSTER=<?php echo $row['KD_CLUSTER']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                         </div>
@@ -73,8 +73,8 @@
                             <ins>
                             <span class="ammount text-danger">
                                 <?php
-                                $harga = number_format($row['HARGA'], 2, ",", ".");
-                                echo "Rp ".$harga;
+ $harga = number_format($row['TIPE']);
+ echo " TIPE ".$harga;
                                 ?>
                             </span>
                             </ins>
@@ -144,7 +144,7 @@
                         $sideKatPer = "SELECT KD_CLUSTER FROM cluster WHERE KD_PERUM=".$row['KD_PERUM'];
                         $rsSideKatPer = mysqli_query($konek, $sideKatPer);
                 ?>
-                    <li class="<?php if($row['KD_PERUM']==$id_kat) echo $active ?>">
+                    <li class="<?php if($row['KD_PERUM']==$KD_PERUM) echo $active ?>">
                         <a href="?p=buku&KD_PERUM=<?php echo $row['KD_PERUM'] ?>&halaman=1"><?php echo $row['NAMA_PERUM']." (".mysqli_num_rows($rsSideKatPer).")"; ?></a>
                     </li>
                 <?php } ?>

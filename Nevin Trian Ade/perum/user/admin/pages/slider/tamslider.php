@@ -1,6 +1,6 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 
 
 $JUDUL= $_POST['JUDUL'];
@@ -12,7 +12,7 @@ $tmp = $_FILES['GAMBAR_SLIDER']['tmp_name'];
 
 $gambarbaru = date('dmYHis').$GAMBAR_SLIDER;
 
-$path = "images/".$gambarbaru;
+$path = "../../../../home/img/".$gambarbaru;
 
 //query update
 if (move_uploaded_file($tmp, $path)) {

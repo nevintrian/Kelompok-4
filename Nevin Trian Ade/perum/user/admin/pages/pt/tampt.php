@@ -1,6 +1,6 @@
 
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 
 $USERNAME = $_POST['USERNAME'];
 $NAMA_PT= $_POST['NAMA_PT'];

@@ -54,6 +54,7 @@ if($cek > 0){
 		$_SESSION['STATUS'] = "admin";
 		// alihkan ke halaman dashboard pegawai
 		header("location:../home/index_admin.php");
+		
  
 	}else{
  

@@ -95,8 +95,8 @@
                                        
 
                                                 <td>
-                                                <a data-fancybox="gallery" href="pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>">
-                                                    <img src="pages/perum/images/<?php echo $data['GAMBAR_PERUM']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['GAMBAR_PERUM']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['GAMBAR_PERUM']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>

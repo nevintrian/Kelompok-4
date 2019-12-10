@@ -1,5 +1,25 @@
+<?php 
+  session_start();
+  if (isset($_SESSION['STATUS'], $_SESSION['USERNAME']))
+  {
+       
+       if ($_SESSION['STATUS'] == "admin")
+     {  
+          header("Location:../home/index_admin.php");
 
+     }
 
+     else if ($_SESSION['STATUS'] == "developer")
+     {
+          header("Location:../home/index_developer.php");
+     }
+     else if ($_SESSION['STATUS'] == "customer")
+     {
+          header("Location:../home/index_customer.php");
+     }
+  }
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -10,7 +30,12 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-
+     <?php
+          header('Last-Modified:'.  gmdate('D, d M Y H:i:s').'GMT');
+          header('Cache-Control: no-store, no-cache, must-revalidate');
+          header('Cache-Control: post-check=0, pre-check=0',false);
+          header('Pragma: no-cache');
+?>
     <!-- Meta-Information -->
     <title>carirumah.com | Halaman Login</title>
     <meta charset="utf-8">
@@ -34,25 +59,8 @@
     <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
 
 </head>
-<script type = "text/javascript" > history.pushState(null, null); window.addEventListener('popstate', function(event) { history.pushState(null, null); }); </script> 
-<body class="relative">
-<body>
-<main class="content-wrapper oh">
-    <?php
-        include "/home/inc/navbar.php";
-        if(isset($_GET["p"])) {
-            $page = "pages/".$_GET["p"].".php";
-            if(is_file($page)) {
-                include($page);
-            } else {
-                include "pages/404.php";
-            }
-        } else {
-            include "pages/dashboardperum.php";
-        }
-        include "inc/footer.php";
-    ?>  
-  </main>
+
+
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -81,11 +89,11 @@
                             <strong>Login Gagal!</strong> Username atau password yang anda masukkan salah.
                         </div>
                         </div>
-                        <?php } else if($alert=='update_sukses'){ ?>
+                        <?php } else if($alert=='login_required'){ ?>
                          <div class="col-md-6 col-md-offset-3">
-                        <div role="alert" class="alert color green-bg fade in alert-dismissible">
+                        <div role="alert" class="alert color red-bg fade in alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <strong>Update Sukses!</strong> Pembaharuan data perumahan berhasil.
+                            <strong>Gagal Masuk ke Halaman ini!</strong> Anda harus login telebih dahulu.
                         </div>
                         </div>
                         <?php } else if($alert=='hapus_sukses'){ ?>

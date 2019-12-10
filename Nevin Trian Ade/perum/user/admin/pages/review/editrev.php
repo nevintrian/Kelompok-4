@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('../../lib/koneksi.php');
 $KD_REV = $_POST['KD_REV'];
 $ISI_REV = $_POST['ISI_REV'];
 $RATING = $_POST['RATING'];
@@ -11,14 +11,14 @@ if(isset($_POST['ubah_foto'])){
 	$FOTO_REV = $_FILES['FOTO_REV']['name'];
 	$tmp = $_FILES['FOTO_REV']['tmp_name'];
 	$gambarbaru = date('dmYHis').$FOTO_REV;
-	$path = "images/".$gambarbaru;
+	$path = "../../../../home/img/".$gambarbaru;
 
 	if(move_uploaded_file($tmp, $path)){ 
 		$query = "SELECT * FROM review WHERE KD_REV='$KD_REV'";
 		$sql = mysqli_query($konek, $query); 
 		
-		if(is_file("images/" .$data['FOTO_REV'])) // Jika foto ada
-			unlink("images/" .$data['FOTO_REV']); // Hapus file foto sebelumnya yang ada di folder images
+		if(is_file("../../../../home/img/" .$data['FOTO_REV'])) // Jika foto ada
+			unlink("../../../../home/img/" .$data['FOTO_REV']); // Hapus file foto sebelumnya yang ada di folder 
 		
 		// Proses ubah data ke Database
         $query = "UPDATE review SET ISI_REV='$ISI_REV', FOTO_REV='$gambarbaru', RATING='$RATING' WHERE KD_REV='$KD_REV' ";

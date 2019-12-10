@@ -1,4 +1,5 @@
 <!-- Navigation -->
+<?php $_SESSION['STATUS'];?>
 <header class="nav-type-1">
     
     <nav class="navbar navbar-static-top">
@@ -63,7 +64,7 @@
                   </li>
 
                   <li class="dropdown">
-                    <a href="index.php">Beranda</a>
+                    <a href="index_admin.php">Beranda</a>
                   </li>
 
                   <li class="dropdown">
@@ -119,7 +120,7 @@
                 <a><?php echo $_SESSION['USERNAME'];?></a>
                 <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
-                    <li><a href="../user/admin/index.php">Setting Akun</a></li>
+                    <li><a href="../user/admin/index.php">Dashboard</a></li>
                     <li> <a data-toggle="modal" data-target="#myModal" href="#">Logout</a></li>
                 </ul>
               </li>
@@ -157,7 +158,7 @@
         <div align= "center" class="col-md-4 col-md-offset-4">
               <button type="submit" class="c-btn large blue-bg" >Ya</button>
                 <button type="button" class="c-btn large red-bg" data-dismiss="modal">Batal</button>
-                                  </form>
+               </form>
         </div>
       </div>
     </div>

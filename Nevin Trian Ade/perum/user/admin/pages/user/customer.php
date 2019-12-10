@@ -94,8 +94,8 @@
                                             <td><?php echo $data['JENIS_KELAMIN']; ?></td>
 
                                                 <td>
-                                                <a data-fancybox="gallery" href="pages/user/images/<?php echo $data['FOTO']; ?>">
-                                                    <img src="pages/user/images/<?php echo $data['FOTO']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['FOTO']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['FOTO']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>
@@ -132,15 +132,15 @@
                         <input type="hidden" name="USERNAME" value="<?php echo $row['USERNAME']; ?>">
                         <div class="form-group">
                           <label>Email</label>
-                          <input type="text" name="EMAIL" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
+                          <input type="text" name="EMAIL" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Masukkan email (contoh : xyz@something.com)" class="form-control" value="<?php echo $row['EMAIL']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Password</label>
-                          <input type="text" name="PASSWORD" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
+                          <input type="text" name="PASSWORD" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Masukkan password dengan huruf besar, huruf kecil, dan angka (minimal 8 karakter)" class="form-control" value="<?php echo $row['PASSWORD']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Nama Lengkap</label>
-                          <input type="text" name="NAMA_LENGKAP" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">      
+                          <input type="text" name="NAMA_LENGKAP" pattern="[A-Za-z ]+" title="Masukkan data huruf saja" class="form-control" value="<?php echo $row['NAMA_LENGKAP']; ?>">      
                         </div>
                         <div class="form-group">
                           <label>Tanggal Lahir</label>
@@ -241,27 +241,27 @@
                     <div class="col-md-10 col-md-offset-1">
                     <div class="form-group">
                                         <label for="USERNAME">Username</label>
-                                        <input type="text" name="USERNAME" placeholder="Masukkan username" class="form-control">
+                                        <input type="text" type="text" pattern="^[a-zA-Z][a-zA-Z0-9]{5,12}$"  title="Masukkan angka atau huruf (6-12 karakter)" name="USERNAME" placeholder="Masukkan username" required class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="EMAIL">Email</label>
-                                        <input type="text" name="EMAIL" placeholder="Masukkan email" class="form-control">
+                                        <input type="text" name="EMAIL" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Masukkan email (contoh : xyz@something.com)" placeholder="Masukkan email" required class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="PASSWORD">Password</label>
-                                        <input type="text" name="PASSWORD" placeholder="Masukkan password" class="form-control">
+                                        <input type="password" name="PASSWORD" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Masukkan password dengan huruf besar, huruf kecil, dan angka (minimal 8 karakter)" required placeholder="Masukkan password" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="NAMA_LENGKAP">Nama Lengkap</label>
-                                        <input type="text" name="NAMA_LENGKAP" placeholder="Masukkan nama lengkap" class="form-control">
+                                        <input type="text" name="NAMA_LENGKAP" pattern="[A-Za-z ]+" title="Masukkan data huruf saja" placeholder="Masukkan nama lengkap" required class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="TGL_LAHIR">Tanggal Lahir</label>
-                                        <input type="date" name="TGL_LAHIR" placeholder="Masukkan tanggal lahir" class="form-control">
+                                        <input type="date" name="TGL_LAHIR" placeholder="Masukkan tanggal lahir" required class="form-control">
                                     </div>
                                     <div class="form-group">  
                                     <label> Jenis Kelamin </label>                                                  
-			                             <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" class="form-control" >
+			                             <select name="JENIS_KELAMIN" id="JENIS_KELAMIN" required class="form-control" >
                                       <option value="">--PILIH JENIS KELAMIN--</option>
                                       <option value="laki-laki">laki-laki</option>
                                       <option value="perempuan">perempuan</option>

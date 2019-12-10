@@ -123,22 +123,22 @@
                                                             </div>
                                                             <div class="feild col-md-12">
                                                                 <label> USERNAME </label>
-                                                                 <input type="text" name="USERNAME" required placeholder="Masukkan username" />
+                                                                 <input type="text" pattern="^[a-zA-Z][a-zA-Z0-9]{5,12}$" title="Masukkan angka atau huruf (6-12 karakter)" name="USERNAME"  required placeholder="Masukkan username" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> EMAIL </label>
-                                                                 <input type="text" name="EMAIL" required placeholder="Masukkan email" />
+                                                                 <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Masukkan email (contoh : xyz@something.com)" name="EMAIL" required placeholder="Masukkan email" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> PASSWORD </label>
-                                                                 <input type="password" name="PASSWORD" required placeholder="Masukkan Password" />
+                                                                 <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Masukkan password dengan huruf besar, huruf kecil, dan angka (minimal 8 karakter)" name="PASSWORD" required placeholder="Masukkan Password" />
                                                             </div>
                                                            
                                                             <div class="feild col-md-12">
                                                             <label> NAMA LENGKAP </label>
-                                                                 <input type="text" name="NAMA_LENGKAP" required  placeholder="Masukkan nama lengkap" />
+                                                                 <input type="text" pattern="[A-Za-z ]+" title="Masukkan data huruf saja" name="NAMA_LENGKAP" required  placeholder="Masukkan nama lengkap" />
                                                             </div>
                                                              
                                                             <div class="feild col-md-12">   

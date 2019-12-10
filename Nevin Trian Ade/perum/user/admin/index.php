@@ -1,10 +1,11 @@
+
 <?php
     include "lib/koneksi.php";
     session_start();
     define('MyConst', TRUE);
-    //if(!isset($_SESSION['username'])){
-      //  header("location:login.php?a=login_required");
-    //} else {
+    if(!isset($_SESSION['USERNAME'])){
+      header("location:../../login/login.php?a=login_required");
+    }
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
@@ -367,6 +368,41 @@
 
             });
 			$(document).ready(function() {
+				$('#buku').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
+<?php } } ?>
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='chat/chat'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
 				$('#komentar').DataTable({
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 responsive: true
@@ -376,6 +412,43 @@
         </script>
 
 <?php } } ?>
+
+
+<?php
+    if(isset($_GET['p'])){
+        $hal = $_GET['p'];
+        if($hal=='slider/slider'){
+?>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" class="init">
+            tinymce.init({
+                selector: 'textarea',
+                height: 200,
+                branding: false,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+            });
+			$(document).ready(function() {
+				$('#buku').DataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                responsive: true
+                });
+			} );
+           
+        </script>
+
+<?php } } ?>
+
 
 
 <?php

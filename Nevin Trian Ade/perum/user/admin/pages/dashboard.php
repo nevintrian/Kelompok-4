@@ -9,6 +9,7 @@
     $diskusi=mysqli_query($konek, "SELECT KD_DIS FROM diskusi");
     $review=mysqli_query($konek, "SELECT KD_REV FROM review");
     $report=mysqli_query($konek, "SELECT KD_REP FROM report");
+    $slider=mysqli_query($konek, "SELECT KD_SLIDER FROM slider");
 ?>
 <div class="panel-content">
         <div class="main-title-sec">
@@ -47,7 +48,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($user); ?>
                             </h4>
-                            <i class="fa fa-book red-bg"></i>
+                            <i class="fa fa-user red-bg"></i>
                             <h5>Total User : <?php echo mysqli_num_rows($user); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -59,7 +60,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($pt); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-briefcase skyblue-bg"></i>
                             <h5>Total PT : <?php echo mysqli_num_rows($pt); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -71,7 +72,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($perum); ?>
                             </h4>
-                            <i class="fa fa-comments green-bg"></i>
+                            <i class="fa fa-home green-bg"></i>
                             <h5>Total Perumahan : <?php echo mysqli_num_rows($perum); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -83,7 +84,7 @@
                             <h4 class="number">
                                 <?php echo mysqli_num_rows($cluster); ?>
                             </h4>
-                            <i class="fa fa-area-chart blue-bg"></i>
+                            <i class="fa fa-building blue-bg"></i>
                             <h5>Total Cluster : <?php echo mysqli_num_rows($cluster); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -95,7 +96,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($pt); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-comments skyblue-bg"></i>
                             <h5>Total Diskusi : <?php echo mysqli_num_rows($diskusi); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -107,7 +108,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($review); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-comments skyblue-bg"></i>
                             <h5>Total Review : <?php echo mysqli_num_rows($review); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -119,8 +120,21 @@
                             <h4>
                                 <?php echo mysqli_num_rows($report); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-book skyblue-bg"></i>
                             <h5>Total Report : <?php echo mysqli_num_rows($report); ?></h5>
+                        </div>
+                    </div><!-- Widget -->
+                </div>
+                <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <div class="quick-report-widget">
+                            <span>Slider</span>
+                            <h4>
+                                <?php echo mysqli_num_rows($slider); ?>
+                            </h4>
+                            <i class="fa fa-book red-bg"></i>
+                            <h5>Total Slider : <?php echo mysqli_num_rows($slider); ?></h5>
                         </div>
                     </div><!-- Widget -->
                 </div>

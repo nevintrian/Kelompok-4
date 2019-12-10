@@ -3,52 +3,9 @@
             die('Akses langsung tidak diperbolehkan');
         }
     $USERNAME=$_SESSION['USERNAME'];
-    $user=mysqli_query($konek, "SELECT * FROM user WHERE user.USERNAME='$USERNAME'");
-    $pt=mysqli_query($konek, "SELECT pt.KD_PT, pt.NAMA_PT, user.USERNAME FROM pt INNER JOIN user ON pt.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
-    $perum=mysqli_query($konek, "SELECT KD_PERUM 
-    FROM user
-    INNER JOIN pt ON user.USERNAME=pt.USERNAME
-    INNER JOIN perum ON pt.KD_PT=perum.KD_PT
-    WHERE user.USERNAME='$USERNAME'");
-    $cluster=mysqli_query($konek, "SELECT user.USERNAME, perum.KD_PERUM, cluster.KD_CLUSTER, pt.KD_PT
-    FROM cluster 
-    INNER JOIN perum ON cluster.KD_PERUM=perum.KD_PERUM 
-    INNER JOIN pt ON perum.KD_PT=pt.KD_PT
-    INNER JOIN user ON pt.USERNAME=user.USERNAME
-    WHERE user.USERNAME='$USERNAME'");
-    $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, diskusi.ISI_DIS, diskusi.TGLWAKTU_DIS, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
-    FROM diskusi
-    INNER JOIN cluster
-    ON diskusi.KD_CLUSTER=cluster.KD_CLUSTER
-    INNER JOIN perum
-    ON cluster.KD_PERUM=perum.KD_PERUM
-    INNER JOIN pt
-    ON perum.KD_PT=pt.KD_PT
-    INNER JOIN user
-    ON pt.USERNAME=user.USERNAME
-    WHERE user.USERNAME='$USERNAME'");
-    $review=mysqli_query($konek, "SELECT review.KD_REV, review.ISI_REV, review.TGLWAKTU_REV, review.FOTO_REV, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
-    FROM review
-    INNER JOIN cluster
-    ON review.KD_CLUSTER=cluster.KD_CLUSTER
-    INNER JOIN perum
-    ON cluster.KD_PERUM=perum.KD_PERUM
-    INNER JOIN pt
-    ON perum.KD_PT=pt.KD_PT
-    INNER JOIN user
-    ON pt.USERNAME=user.USERNAME
-    WHERE user.USERNAME='$USERNAME'");
-    $report=mysqli_query($konek, "SELECT report.KD_REP, report.ISI_REP, report.TGLWAKTU_REP, user.USERNAME, user.STATUS, perum.KD_PERUM, perum.NAMA_PERUM, cluster.KD_CLUSTER, cluster.NAMA_CLUSTER, cluster.GAMBAR, pt.KD_PT, pt.NAMA_PT
-    FROM report
-    INNER JOIN cluster
-    ON report.KD_CLUSTER=cluster.KD_CLUSTER
-    INNER JOIN perum
-    ON cluster.KD_PERUM=perum.KD_PERUM
-    INNER JOIN pt
-    ON perum.KD_PT=pt.KD_PT
-    INNER JOIN user
-    ON pt.USERNAME=user.USERNAME
-    WHERE user.USERNAME='$USERNAME'");
+    
+
+    
 ?>
 <div class="panel-content">
         <div class="main-title-sec">
@@ -85,11 +42,23 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
                         <div class="quick-report-widget">
+                            <span>Marketing</span>
+                            <h4>
+                                <?php echo mysqli_num_rows($marketing); ?>
+                            </h4>
+                            <i class="fa fa-user skyblue-bg"></i>
+                            <h5>Total Marketing : <?php echo mysqli_num_rows($marketing); ?></h5>
+                        </div>
+                    </div><!-- Widget -->
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <div class="quick-report-widget">
                             <span>PT</span>
                             <h4>
                                 <?php echo mysqli_num_rows($pt); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-briefcase skyblue-bg"></i>
                             <h5>Total PT : <?php echo mysqli_num_rows($pt); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -101,7 +70,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($perum); ?>
                             </h4>
-                            <i class="fa fa-comments green-bg"></i>
+                            <i class="fa fa-home green-bg"></i>
                             <h5>Total Perumahan : <?php echo mysqli_num_rows($perum); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -113,8 +82,20 @@
                             <h4 class="number">
                                 <?php echo mysqli_num_rows($cluster); ?>
                             </h4>
-                            <i class="fa fa-area-chart blue-bg"></i>
+                            <i class="fa fa-building blue-bg"></i>
                             <h5>Total Cluster : <?php echo mysqli_num_rows($cluster); ?></h5>
+                        </div>
+                    </div><!-- Widget -->
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <div class="quick-report-widget">
+                            <span>Chat</span>
+                            <h4>
+                                <?php echo mysqli_num_rows($chat); ?>
+                            </h4>
+                            <i class="fa fa-comments skyblue-bg"></i>
+                            <h5>Total Chat : <?php echo mysqli_num_rows($chat); ?></h5>
                         </div>
                     </div><!-- Widget -->
                 </div>
@@ -125,7 +106,7 @@
                             <h4>
                                 <?php echo mysqli_num_rows($diskusi); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-comments skyblue-bg"></i>
                             <h5>Total Diskusi : <?php echo mysqli_num_rows($diskusi); ?></h5>
                         </div>
                     </div><!-- Widget -->
@@ -137,23 +118,12 @@
                             <h4>
                                 <?php echo mysqli_num_rows($review); ?>
                             </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
+                            <i class="fa fa-book skyblue-bg"></i>
                             <h5>Total Review : <?php echo mysqli_num_rows($review); ?></h5>
                         </div>
                     </div><!-- Widget -->
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <div class="quick-report-widget">
-                            <span>Report</span>
-                            <h4>
-                                <?php echo mysqli_num_rows($report); ?>
-                            </h4>
-                            <i class="fa fa-tags skyblue-bg"></i>
-                            <h5>Total Report : <?php echo mysqli_num_rows($report); ?></h5>
-                        </div>
-                    </div><!-- Widget -->
-                </div>
+                
             </div>
         </div>
     </div><!-- Panel Content -->

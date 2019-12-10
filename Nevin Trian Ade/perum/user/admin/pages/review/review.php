@@ -111,8 +111,8 @@
                                             <td><?php echo $data['NAMA_CLUSTER']; ?></td>
                                             <td><?php echo $data['TGLWAKTU_REV']; ?></td>
                                             <td>
-                                                <a data-fancybox="gallery" href="pages/review/images/<?php echo $data['FOTO_REV']; ?>">
-                                                    <img src="pages/review/images/<?php echo $data['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
+                                                <a data-fancybox="gallery" href="../../home/img/<?php echo $data['FOTO_REV']; ?>">
+                                                    <img src="../../home/img/<?php echo $data['FOTO_REV']; ?>" class="img-thumbnail img-responsive" alt="img" style="width:50px;">
                                                 </a>
                                             </td>
                                             <td>

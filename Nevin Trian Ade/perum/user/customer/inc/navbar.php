@@ -4,7 +4,9 @@
   
  $diskusi=mysqli_query($konek, "SELECT diskusi.KD_DIS, user.USERNAME FROM diskusi INNER JOIN user ON diskusi.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
  $review=mysqli_query($konek, "SELECT review.KD_REV, user.USERNAME  FROM review INNER JOIN user ON review.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
- $report=mysqli_query($konek, "SELECT report.KD_REP, user.USERNAME FROM report INNER JOIN user ON report.USERNAME=user.USERNAME WHERE user.USERNAME='$USERNAME'");
+
+ $chat=mysqli_query($konek, "SELECT DISTINCT USERNAME
+ FROM chat WHERE chat.PENERIMA='$USERNAME'");
 
 ?>
 <header class="simple-normal">
@@ -37,12 +39,13 @@
                          </ul>
                         </li>
                         <li class="menu-item-has-children <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') echo 'active'; ?>">
-                              <a title="Area administrasi buku"><i class="ti-book"></i><span>Lainnya</span></a>
+                              <a title="Area administrasi buku"><i class="ti-comments"></i><span>Lainnya</span></a>
                               <ul <?php if(isset($_GET['p'])) if($_GET['p']=='buku'||$_GET['p']=='data'||$_GET['p']=='pt') { ?> style="display: block;" <?php } ?>>
+                              <li><a href="?p=chat/chat">Data Chat <i class="badge blue-bg"><?php echo mysqli_num_rows($chat); ?></i></a></li> 
                               <li><a href="?p=diskusi/diskusi">Data Diskusi <i class="badge blue-bg"><?php echo mysqli_num_rows($diskusi); ?></i></a></li>     
-                              <li><a href="?p=review/review">Data Review <i class="badge red-bg"><?php echo mysqli_num_rows($review); ?></i></a></li> 
-                              <li><a href="?p=report/report">Data Report <i class="badge red-bg"><?php echo mysqli_num_rows($report); ?></i></a></li> 
-                                   
+                              <li><a href="?p=review/review">Data Review <i class="badge blue-bg"><?php echo mysqli_num_rows($review); ?></i></a></li> 
+                            
+                             
                          </ul>
                         </li>
                         <li class="">
