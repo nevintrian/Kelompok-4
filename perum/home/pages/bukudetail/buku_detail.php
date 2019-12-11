@@ -253,36 +253,26 @@
             <h3 class="text-center">Belum ada diskusi</h3>
         </div>
         </div>
-    <?php 
+        <?php 
         } else { 
-            while($data=mysqli_fetch_assoc($rsKomentar)){ 
-    ?>
-    
-    <li>
-        <div class="review-body">
-        <div class="review-content">
-            <p class="review-author"><strong><?php echo $data['USERNAME']; ?></strong><small> - <?php echo $data['TGLWAKTU_DIS']; ?></small></p>
-            <p align="justify">                    
-                <?php                       
-                     echo $data['ISI_DIS'];                              
-                ?>
-                   
-         
-            </p>
-            
-        </div>
-        </div>
-    </li>
 
-       
-    <br><hr><br>
-    
-    <?php  }} ?>
-    
+while($r=mysqli_fetch_assoc($k)) {
+  $t='';
+  if(!isset($c[$r['KD_DISP']])) {$t='<div>';$c[$r['KD_DISP']]='{'.$r['KD_DISP'].'}';}
+  $s=str_replace('{'.$r['KD_DISP'].'}',$t.'<div><div> <strong>'.$r['USERNAME'].'</strong><small><i> - '.$r['TGLWAKTU_DIS'].'</i></small> </div> </br> '.$r['ISI_DIS'].' <div align=right></br> </br>{'.$r['KD_DIS'].'}</div>{'.$r['KD_DISP'].'} </div>',$s);
+}
+$s=str_replace($c,'</div>',$s);
+$s=preg_replace('/\{\d+\}/','',$s);
+echo $s;
+
+        }
+    ?>
+   
     </ul>    
          
 </div> <!--  end reviews -->
 </div> 
+
 
 <div class="tab-pane fade" id="tab-ulasan">
 
