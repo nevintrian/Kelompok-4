@@ -292,7 +292,7 @@ echo $s;
     <li>
         <div class="ulasan-body">
         <div class="ulasan-content">
-            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><small> - <?php echo $row1['TGLWAKTU_REV']; ?></small></p>
+            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><small><i> - <?php echo $row1['TGLWAKTU_REV']; ?></i> </small></p>
             <p align="justify">
              
             <td>

@@ -325,7 +325,7 @@ echo $s;
     <li>
         <div class="ulasan-body">
         <div class="ulasan-content">
-            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><small> - <?php echo $row1['TGLWAKTU_REV']; ?></small></p>
+            <p class="ulasan-author"><strong><?php echo $row1['USERNAME']; ?></strong><i><small> - <?php echo $row1['TGLWAKTU_REV']; ?></small></i></p>
             <p align="justify">
               
             <td>

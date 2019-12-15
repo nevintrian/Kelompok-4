@@ -59,34 +59,49 @@
                                    <table id="komentar" class='table table-responsive table-responsive table-striped table-hover'>
                                     <thead>
                                         <tr>
-                                       
-                                          <th>Username Pengirim</th>
-                                        
-                                          <th>Operasi</th>
+                                        <th>Kode Chat</th>
+                                          <th>Username</th>
+                                          <th>Status</th>
+                                          <th>Isi Chat</th>
+                                          <th>Tanggal Chat</th>
+                                          <th>Hapus Chat</th>
                                         </tr>
                                     </thead>    
                                     <tbody>
                                         <?php 
                                           
                                              
-                                          $query = mysqli_query($konek, "SELECT DISTINCT chat.USERNAME
+                                          $query = mysqli_query($konek, "SELECT *
                                           FROM chat
                                           INNER JOIN user
-                                          ON user.USERNAME=chat.USERNAME
-                                          WHERE chat.PENERIMA='$USERNAME' ORDER BY TGLWAKTU_CHAT ASC");
+                                          ON user.USERNAME=chat.USERNAME");
          
                           while ($data = mysqli_fetch_assoc($query)) 
                                     {
                                         ?>
                                         
                                         <tr>
-                                        
+                                        <td><?php echo $data['KD_CHAT']; ?></td>
                                         <td><?php echo $data['USERNAME']; ?></td>
-                                            
-                                            
+                                            <td><?php echo $data['STATUS']; ?></td>
                                             <td>
-                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['USERNAME']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-book"></i></a>
-                                          
+                                                <?php
+                                                    $text = $data['ISI_CHAT'];
+                                                    $strip = strip_tags(stripcslashes($text), '<a>');
+                                                    // echo $strip;
+                                                ?>
+                                                <div role="alert" class="alert color skyblue-bg">
+                                                    <?php
+                                                        echo substr($strip, 0, 80);
+                                                        if(strlen(trim($strip))>80) echo " [...]";
+                                                    ?>
+                                                </div>
+                                            </td>
+                                           
+                                            <td><?php echo $data['TGLWAKTU_CHAT']; ?></td>
+                                            <td>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal<?php echo $data['KD_CHAT']; ?>"class="c-btn small blue-bg buzz edit_button"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="#"  data-toggle="modal" data-target="#myModal1<?php echo $data['KD_CHAT']; ?>" class="c-btn small red-bg buzz delete_button"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         
@@ -95,63 +110,112 @@
                               </div>
                          </div>
                     </div>   
-                   
-        <div class="modal fade" tabindex="-3" id="myModal<?php echo $data['USERNAME']; ?>" role="dialog">
+                    
+     
+         <div class="modal fade" tabindex="-3" id="myModal<?php echo $data['KD_CHAT']; ?>" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Balas Chat</h4>
+                <h4 class="modal-title">Edit Data Chat</h4>
             </div>
             <div class="modal-body">
-                            <?php 
-                                $USERNAME1 = $data['USERNAME']; 
-                                
-                                 $rsKomentar = mysqli_query($konek, "SELECT *
-                                 FROM chat INNER JOIN user
-                                 ON chat.USERNAME=user.USERNAME
-                                 WHERE (chat.PENERIMA='$USERNAME' AND chat.USERNAME='$USERNAME1') OR (chat.USERNAME='$USERNAME' AND chat.PENERIMA='$USERNAME1')  ORDER BY TGLWAKTU_CHAT ASC");
-                                    while($row=mysqli_fetch_assoc($rsKomentar)){           
-                            ?>
-                                <div align="center" class="review-body">
-                                <div align="center" class="review-content">
-                                    <p class="review-author"><strong><?php echo $row['USERNAME']; ?></strong><small> - <?php echo $row['TGLWAKTU_CHAT']; ?></small></p>
-                                    <p align="center">
-                                                <?php
-                                                    $text = $row['ISI_CHAT'];
-                                                    $strip = strip_tags(stripcslashes($text), '<a>');
-                                                    // echo $strip;
-                                                ?>
-                                                <div role="alert" class="alert color skyblue-bg" class="alert color green-bg">
-                                                    <?php
-                                                        echo substr($strip, 0, 80);
-                                                        if(strlen(trim($strip))>80) echo " [...]";
-                                                    ?>
-                                                </div>
-                                    </p>
-                                </div>
-                                </div>
-                                <?php } ?>
-                                <form role="form" action="pages/chat/balaschat.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="USERNAME" value="<?php echo $_SESSION['USERNAME']; ?>">
-                                <input type="hidden" name="PENERIMA" value="<?php echo  $USERNAME1;?>">   
-                            <div class="form-group">
-                                        <input type="text" name="ISI_CHAT" placeholder="Masukkan isi chat" class="form-control">
-                            </div>
-
+            <form role="form" action="pages/chat/editchat.php" method="get">
+            <?php
+                        $KD_CHAT = $data['KD_CHAT']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM chat
+                        INNER JOIN user
+                        ON chat.USERNAME=user.USERNAME
+                        WHERE KD_CHAT='$KD_CHAT'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="KD_CHAT" value="<?php echo $row['KD_CHAT']; ?>">
+                        <div class="form-group">
+                          <label>Username</label>
+                          <input type="text" name="USERNAME" class="form-control" readonly value="<?php echo $row['USERNAME']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Status</label>
+                          <input type="text" name="STATUS" class="form-control" readonly value="<?php echo $row['STATUS']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Isi Chat</label>
+                          <input type="text" name="ISI_CHAT" class="form-control" required value="<?php echo $row['ISI_CHAT']; ?>">      
+                        </div>
+                       
+                        <div class="form-group">
+                          <label>Tanggal & Waktu Chat</label>
+                          <input type="text" name="TGLWAKTU_CHAT" class="form-control" readonly value="<?php echo $row['TGLWAKTU_CHAT']; ?>">      
+                        </div>
                         <div class="modal-footer">  
-                          <button type="submit" class="btn btn-success">Kirim</button>
+                          <button type="submit" class="btn btn-success">Update</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                        </div> <!--  end reviews -->
-                        </div> 
-                        </div> <!--  end reviews -->
-                        </div> 
-                        </div> <!--  end reviews -->
-                        </div> 
-    
-                        </form> 
+
+     <div class="modal fade" tabindex="-3" id="myModal1<?php echo $data['KD_CHAT']; ?>" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hapus Data Chat</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" action="pages/chat/delchat.php" method="get">
+            <?php
+                        $KD_CHAT = $data['KD_CHAT']; 
+                        $query_edit = mysqli_query($konek, "SELECT * FROM chat
+                        INNER JOIN user
+                        ON chat.USERNAME=user.USERNAME
+                        WHERE KD_CHAT='$KD_CHAT'");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($query_edit)) {  
+                        ?>
+                        <input type="hidden" name="KD_CHAT" value="<?php echo $row['KD_CHAT']; ?>">
+                        <div class="form-group">
+                          <label>Username</label>
+                          <input type="text" name="USERNAME" class="form-control" readonly value="<?php echo $row['USERNAME']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Status</label>
+                          <input type="text" name="STATUS" class="form-control" readonly value="<?php echo $row['STATUS']; ?>">      
+                        </div>
+                        <div class="form-group">
+                          <label>Isi Chat</label>
+                          <input type="text" name="ISI_CHAT" class="form-control" readonly value="<?php echo $row['ISI_CHAT']; ?>">      
+                        </div>
+                      
+                        <div class="form-group">
+                          <label>Tanggal & Waktu Chat</label>
+                          <input type="text" name="TGLWAKTU_CHAT" class="form-control" readonly value="<?php echo $row['TGLWAKTU_CHAT']; ?>">      
+                        </div>
+                        <p>Apakah Anda yakin akan menghapus data di atas?</p>
+                        
+                        <div class="modal-footer">  
+                          <button type="submit" class="btn btn-success">Delete</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <?php 
+                        }
+                        //mysql_close($host);
+                        ?>        
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
             <?php               
           } 
           ?>
