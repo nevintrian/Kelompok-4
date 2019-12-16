@@ -1,0 +1,181 @@
+body{
+	font-family: sans-serif;
+	background-image: url("ss.jpg");
+	background-repeat: no-repeat;
+}
+ 
+h1{
+	text-align: center;
+	/*ketebalan font*/
+	font-weight: 300;
+	color: white;
+}
+ 
+.tulisan_login{
+	text-align: center;
+	/*membuat semua huruf menjadi kapital*/
+	text-transform: uppercase;
+}
+ 
+.kotak_login{
+	width: 350px;
+	background: white;
+	/*meletakkan form ke tengah*/
+	margin: 80px auto;
+	padding: 30px 20px;
+	box-shadow: 0px 0px 100px 4px #d6d6d6;
+}
+
+.kotak_login1{
+	width: 700px;
+	background: white;
+	/*meletakkan form ke tengah*/
+	margin: 80px auto;
+	padding: 30px 20px;
+	box-shadow: 0px 0px 100px 4px #d6d6d6;
+}
+ 
+ 
+.tombol_batal{
+	background: #f34646;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
+
+.tombol_daftar{
+	background: #7e7e7e;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
+label{
+	font-size: 11pt;
+}
+ 
+.form_login{
+	/*membuat lebar form penuh*/
+	box-sizing : border-box;
+	width: 100%;
+	padding: 10px;
+	font-size: 11pt;
+	margin-bottom: 20px;
+}
+ 
+.tombol_login{
+	background: #7e7e7e;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
+ 
+.link{
+	color: #232323;
+	text-decoration: none;
+	font-size: 10pt;
+}
+ 
+.alert{
+	background: #e44e4e;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	border:1px solid #b32929;
+}   
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.nav{
+    margin: auto;
+    text-align: center;
+    font-family: fantasy;
+    width: 100%;
+    font-size: 20px;
+}
+.nav ul{
+    background: #7e7e7e;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+    width: 100%;
+    padding: 0 20px;
+}
+.nav ul li{
+    float: left;
+}
+.nav ul li:hover{
+    background: #887d7d;
+    
+}
+.nav ul li:hover a{
+    color: snow;
+}
+.nav ul li a{
+    display: block;
+    padding: 20px;
+    color: #bdc3c7;
+    text-decoration: none;
+}
+
+#isi {
+padding : 5px;
+width : 99%;
+height : auto;
+background-color : #ffffff;
+position : relative;
+margin-top : 5px;
+
+
+}
+
+.isiposting{
+width: 99%;
+height: 150px;
+margin-bottom : 5px;
+padding : 5px;
+background: white;
+/*meletakkan form ke tengah*/
+box-shadow: 0px 0px 100px 4px #d6d6d6;
+}
+
+
+.gambardepan{
+float: left;
+height: 140px;
+width : 150px;
+margin-right : 5px;
+margin-top : 3px;
+padding: 1px;
+border: 1px solid #ffffff;
+}
+
+.gambardepan1{
+	float: center;
+	height: 280px;
+	width : 700px;
+	margin-right : 5px;
+	margin-top : 3px;
+	padding: 1px;
+	border: 1px solid #ffffff;
+	}
+
+
+.isiposting a{
+
+	text-decoration : none;
+}
+
+.isipossting a:hover{
+	color: yellow;
+}

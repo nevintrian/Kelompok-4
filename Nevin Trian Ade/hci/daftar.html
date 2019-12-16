@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>DAFTAR</title>
+    <title>Membuat Login Multi User Level </title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+		<div class="nav">
+				<ul>
+			<li><a href="navbar.html">Beranda</a></li>
+			<li><a href="login.html">Login</a></li>
+			<li><a href="daftar.html">Daftar</a></li>
+			<li><a href="about.html">Tentang Kami</a></li>
+			</ul>
+			</div>
+		</br>
+	<h1>DAFTAR</h1>
+
+
+	
+	<div class="kotak_login">
+
+    <label>USERNAME</label>
+			<input type="text" name="USERNAME" class="form_login" placeholder="username..." required="required">
+ 
+			<label>PASSWORD</label>
+			<input type="password" name="PASSWORD" class="form_login" placeholder="password..." required="required">
+
+
+			<label>TANGGAL LAHIR</label>
+			<input type="date" name="PASSWORD" class="form_login" placeholder="password..." required="required">
+
+
+			
+					<label> NAMA LENGKAP </label>
+						 <input type="text" class="form_login" pattern="[A-Za-z ]+" title="Masukkan data huruf saja" name="NAMA_LENGKAP" required  placeholder="Masukkan nama lengkap" />
+				
+					 
+					   
+					<label> JENIS KELAMIN </label>                                                  
+						<select name="JENIS_KELAMIN" class="form_login" id="JENIS_KELAMIN" required class="form-control" >
+							<option value="">--Pilih jenis kelamin--</option>
+							<option value="laki-laki">laki-laki</option>
+							<option value="perempuan">perempuan</option>
+						</select>
+						<label> STATUS </label>                                                  
+						<select name="STATUS" class="form_login" id="STATUS" required class="form-control" >
+							<option value="">--Pilih Status--</option>
+							<option value="Guru">Guru</option>
+							<option value="Siswa">Siswa</option>
+						</select>
+
+
+
+           
+	</br>
+            <input type="submit" class="tombol_daftar" value="Daftar">
+
+
+ 
+</div>
+</body>
+</html>

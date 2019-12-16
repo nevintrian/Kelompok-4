@@ -67,7 +67,7 @@ include "inc/slider.php";
                     <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" style="height:347px; width:277px;">
                     <img src="img/<?php echo $row['GAMBAR_PERUM']; ?>" alt="" class="back-img">
                   </a>
-                  <a href="?p=dashboard&KD_PERUM=<?php echo $row['KD_PERUM']; ?>" class="product-quickview">Lihat Selengkapnya</a>
+                  <a href="?p=dashboard/dashboard&KD_PERUM=<?php echo $row['KD_PERUM']; ?>" class="product-quickview">Lihat Selengkapnya</a>
                 </div>
                 <div class="product-details">
                   <h3>

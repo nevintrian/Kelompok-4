@@ -49,7 +49,7 @@
               ?>
               <div class="col-md-12 col-xs-12">
                     <div class="product-item text-center">
-                        <h1>Maaf, data buku kategori terkait masih kosong!</h1>
+                        <h1>Maaf, data perumahan terkait masih kosong!</h1>
                     </div>
               </div>
               <?php   

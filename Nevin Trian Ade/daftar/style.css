@@ -37,7 +37,17 @@ label{
 	margin-bottom: 20px;
 }
  
-.tombol_login{
+.tombol_batal{
+	background: #f34646;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
+
+.tombol_daftar{
 	background: #2aa7e2;
 	color: white;
 	font-size: 11pt;
@@ -46,7 +56,7 @@ label{
 	border-radius: 3px;
 	padding: 10px 20px;
 }
- 
+
 .link{
 	color: #232323;
 	text-decoration: none;
