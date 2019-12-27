@@ -118,7 +118,7 @@
                         </div>
                         <div class="form-group">
                           <label>No Telepon</label>
-                          <input type="tel" pattern="^\d{10}$" title="Masukkan data angka (minimal 10 karakter)" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
+                          <input type="tel" pattern="^\d{10}$" title="Masukkan data angka (minimal 10 angka)" name="NO_TELEPON" class="form-control" value="<?php echo $row['NO_TELEPON']; ?>">      
                         </div>
                         <div class="modal-footer">  
                           <button type="submit" class="btn btn-success">Update</button>

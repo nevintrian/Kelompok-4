@@ -47,6 +47,14 @@ if($cek > 0){
 		// alihkan ke halaman dashboard pegawai
 		header("location:../home/index_customer.php");
 
+	}else if($data['STATUS']=="super"){
+		// buat session login dan username
+		$_SESSION['USERNAME'] = $USERNAME;
+
+		$_SESSION['STATUS'] = "super";
+		// alihkan ke halaman dashboard pegawai
+		header("location:../home/index_super.php");
+
 	}else if($data['STATUS']=="admin"){
 		// buat session login dan username
 		$_SESSION['USERNAME'] = $USERNAME;
@@ -54,7 +62,8 @@ if($cek > 0){
 		$_SESSION['STATUS'] = "admin";
 		// alihkan ke halaman dashboard pegawai
 		header("location:../home/index_admin.php");
-		
+		header("Cache-Control: no-store, no-cache, must-revalidate");
+		header("Cache-Control: post-check=0, pre-check=0", false); 
  
 	}else{
  
