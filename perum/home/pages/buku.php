@@ -27,7 +27,7 @@
               <?php
                 $bukuAll = "SELECT KD_CLUSTER FROM cluster";
                 $rsBukuAll = mysqli_query($konek, $bukuAll);
-                $halaman = 6;
+                $halaman = 9;
                 $page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1;
                 $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
                 if(isset($_GET['KD_PERUM'])){

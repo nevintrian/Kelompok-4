@@ -17,6 +17,10 @@
      {
           header("Location:../home/index_customer.php");
      }
+     else if ($_SESSION['STATUS'] == "super")
+     {
+          header("Location:../home/index_super.php");
+     }
   }
 
 ?>

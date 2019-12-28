@@ -422,18 +422,32 @@ echo $s;
             <div class="modal-body">
                 <form action="lib/proses.php" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                <div class="form-group">
                     <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
-
-                
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                        <?php
+                    $query_edit = mysqli_query($konek, "SELECT * FROM cluster
+                    INNER JOIN perum
+                    ON cluster.KD_PERUM=perum.KD_PERUM
+                    INNER JOIN pt
+                    ON perum.KD_PT=pt.KD_PT
+                    INNER JOIN user
+                    ON pt.USERNAME=user.USERNAME
+                    INNER JOIN marketing
+                    ON user.USERNAME=marketing.USERNAME
+                    WHERE cluster.KD_CLUSTER=$KD_CLUSTER");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row123 = mysqli_fetch_array($query_edit)) {  
+                        ?>
+               
+                    
+                    <input name="PENERIMA" type="hidden" value="<?php echo $row123['USERNAME']; ?>">
+                    
+                    <?php }?> 
+                    
                     <div class="form-group">
                         <label for="ISI_DIS">Isi Diskusi</label>
                         <textarea type="text" name="ISI_DIS" placeholder="Masukkan isi diskusi" class="form-control"></textarea>
-                        <?php
-                                             
-                            echo $data['KD_DIS'];
-                        ?>
                      </div>
                         
             <div class="modal-footer">
@@ -463,10 +477,28 @@ echo $s;
             <div class="modal-body">
                 <form action="lib/proses.php" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                <div class="form-group">
                     <input name="USERNAME" type="hidden" value="<?php echo $_SESSION['USERNAME']; ?>">
-
+                    <input name="KD_CLUSTER" type="hidden" value="<?php echo $_GET['KD_CLUSTER']; ?>">
+                        <?php
+                    $query_edit = mysqli_query($konek, "SELECT * FROM cluster
+                    INNER JOIN perum
+                    ON cluster.KD_PERUM=perum.KD_PERUM
+                    INNER JOIN pt
+                    ON perum.KD_PT=pt.KD_PT
+                    INNER JOIN user
+                    ON pt.USERNAME=user.USERNAME
+                    INNER JOIN marketing
+                    ON user.USERNAME=marketing.USERNAME
+                    WHERE cluster.KD_CLUSTER=$KD_CLUSTER");
+                        //$result = mysqli_query($conn, $query);
+                        while ($row123 = mysqli_fetch_array($query_edit)) {  
+                        ?>
+               
+                    
+                    <input name="PENERIMA" type="hidden" value="<?php echo $row123['USERNAME']; ?>">
+                    
+                    <?php }?> 
                     
                     <div class="form-group">
                         <label for="ISI_REV">Isi Review</label>
